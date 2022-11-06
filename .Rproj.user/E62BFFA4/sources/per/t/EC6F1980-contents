@@ -1,0 +1,15 @@
+test_that("name |> environment[['GetVariableByName']]() returns value which match with value in .Renviron file", {
+    environment <- Environment.Utility.Service()
+
+    # Given
+    variable.Name  <- 'Username'
+    variable.Value <- 'Rinopilot'
+
+    input.name <- variable.Name
+    expected.value <- variable.Value
+
+    # Then
+    input.name |>
+        environment[["GetVariableByName"]]() |>
+            expect_equal(expected.value)
+})

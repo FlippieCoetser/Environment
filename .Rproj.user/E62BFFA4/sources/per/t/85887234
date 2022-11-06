@@ -1,0 +1,26 @@
+{
+    "id": "85887234",
+    "path": "C:/Data/OneDrive/R-Programming/Storage.Configurator/tests/testthat/test-Environment.Utility.Validation.Service.R",
+    "project_path": "tests/testthat/test-Environment.Utility.Validation.Service.R",
+    "type": "r_source",
+    "hash": "487426538",
+    "contents": "",
+    "dirty": false,
+    "created": 1667567159750.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "6,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1667568722,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1667568722905,
+    "read_only": false,
+    "read_only_alternatives": []
+}

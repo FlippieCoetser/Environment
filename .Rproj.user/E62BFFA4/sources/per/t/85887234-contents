@@ -1,0 +1,24 @@
+test_that("name |> validate[['Name']]() should throw error when name is null", {
+    validate <- Environment.Utility.Validation.Service()
+
+    # Given
+    error <- "Name is null. Function requires name of environment variable to retrieve its value."
+    name  <- NULL
+
+    # Then
+    name |>
+        validate[["Name"]]() |>
+            expect_error(error)
+})
+test_that("value |> validate[['Value']]() should throw error when value is empty", {
+    validate <- Environment.Utility.Validation.Service()
+
+    # Given
+    error <- "No value for environment variable with name: Name, found. Check .Renviron configuration file."
+    value <- ''
+
+    # Then
+    value |>
+        validate[["Value"]]() |>
+            expect_error(error)
+})

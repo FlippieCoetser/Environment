@@ -1,0 +1,16 @@
+Environment.Utility.Exceptions <- \() {
+    exception <- list()
+    exception[["NameIsNull"]] <- \(invoke) {
+        if (invoke) {
+            stop("Name is null. Function requires name of environment variable to retrieve its value.")
+        }
+    }
+    exception[["ValueIsEmpty"]]   <- \(invoke) {
+        if (invoke) {
+            stop("No value for environment variable with name: Name, found. Check .Renviron configuration file.")
+        }
+    }
+
+    return(exception)
+}
+
