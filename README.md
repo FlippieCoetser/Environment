@@ -15,12 +15,13 @@ library(Environment)
 ```r
 utility <- Utility.Service()
 ```
+
 ### Defining Variables
 All environment variables are defined in a locally stored `.Renviron` configuration file.
 This package does not diretly add environment variables into the `.Renviron` configuration file.
 To define new variable, simply use the provided utility function to open an existing or a new empty file directly in your IDE.
 
-3.1 Open `.Renviron` Configuration File
+1 Open `.Renviron` Configuration File
 ```r
 utility[["OpenConfigurationFile"]]()
 ```
@@ -28,7 +29,9 @@ utility[["OpenConfigurationFile"]]()
 > Note: Add new environment variables as key value pairs directly into the `.Renviron` configuration file.
 > Example, adding this: `Username='DefinedUsername'` on a new line, defines a new environment variable with name `Username` and value `DefinedUsername`
 
-### Reading an environment variable
+### Reading a Variable
+
+1. Get environment variable's value
 ```r
 variable.name <- "Username"
 
@@ -36,7 +39,6 @@ variable.value <-
   variable.name |>
     utility[["GetVariableByName"]]()
 ```
-
 
 ## Installation
 At the time of writing this README, this `Environment` R-Package is not available on CRAN.
