@@ -1,1 +1,4 @@
-Path.Utility.Exceptions <- \() {}
+Path.Utility.Exceptions <- \() {
+  exceptions <- list()
+  return(exceptions)
+}
