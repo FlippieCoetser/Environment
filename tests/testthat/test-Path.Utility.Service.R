@@ -41,4 +41,11 @@ describe("When services <- Path.Utility.Service()", {
     # Then
     services[["CombinePath"]] |> expect.exist()
   })
+  it("then services should contain FilepathExists service.", {
+    # Given
+    services <- Path.Utility.Broker()
+
+    # Then
+    services[["FilepathExists"]] |> expect.exist()
+  })
 })
