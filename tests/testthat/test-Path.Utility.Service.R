@@ -20,4 +20,11 @@ describe("When services <- Path.Utility.Service()", {
     # Then
     services[["GetUserHomePath"]] |> expect.exist()
   })
+  it("then services should contain GetConfigFilename service.", {
+    # Given
+    services <- Path.Utility.Broker()
+
+    # Then
+    services[["GetConfigFilename"]] |> expect.exist()
+  })
 })
