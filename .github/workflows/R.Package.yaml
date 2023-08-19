@@ -1,13 +1,13 @@
 on:
   push:
-    branches: [main, master]
+    branches: [main, staging]
   pull_request:
-    branches: [main, master]
+    branches: [main, staging]
 
-name: R-CMD-check
+name: R-Package
 
 jobs:
-  R-CMD-check:
+  R-Package:
     runs-on: ${{ matrix.config.os }}
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
@@ -17,10 +17,14 @@ jobs:
       matrix:
         config:
           - { os: windows-latest, r: "release" }
+          - { os: macos-latest, r: "release" }
+          - { os: ubuntu-latest, r: "release" }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+      USERNAME: ${{ secrets.USERNAME}}
+      ENVIRONMENT: "ci"
 
     steps:
       - name: Checkout Code Base
@@ -39,7 +43,12 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
 
-      - name: Run Tests
+      - name: Create and Populate .Renviron file
+        run: |
+          echo Username="$USERNAME" >> ~/.Renviron
+        shell: bash
+
+      - name: Run Unit Tests
         uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
