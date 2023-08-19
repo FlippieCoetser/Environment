@@ -3,7 +3,9 @@ Path.Utility.Service <- \(broker) {
   services[['GetUserHomePath']] <- \() {
     broker[['GetUserHomePath']]()
   }
-  services[['GetConfigFilename']] <- \() {}
+  services[['GetConfigFilename']] <- \() {
+    broker[['GetConfigFilename']]()
+  }
   services[['NormalizePath']] <- \(path) {}
   services[['CombinePath']] <- \(path, filename) {}
   services[['FilepathExists']] <- \(filepath) {}
