@@ -123,3 +123,20 @@ describe("When path |> service[['CombinePath']](filename)",{
     actual.path |> expect.equal(expected.path)
   })
 })
+
+describe("When filepath |> service[['FilepathExists']]()",{
+  it("then FALSE is returned if filepath does not exist.",{
+    # Given
+    broker  <- Path.Utility.Broker()
+    service <- broker |> Path.Utility.Service()
+
+    input.filepath <- "C:/InvalidPath/.Renviron"
+    expected.exists <- input.filepath |> broker[['FilepathExists']]()
+
+    # When
+    actual.exists <- input.filepath |> service[["FilepathExists"]]()
+
+    # Then
+    actual.exists |> expect.equal(expected.exists)
+  })
+})
