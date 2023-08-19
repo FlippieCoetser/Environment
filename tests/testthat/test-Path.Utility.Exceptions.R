@@ -20,4 +20,30 @@ describe("When exceptions <- Path.Utility.Exceptions()",{
     # Then
     exceptions[["InvalidPath"]] |> expect.exist()
   })
-}) 
+})
+
+describe("When input |> exception[['InvalidPath']](path)",{
+  it("then no exception should be thrown if input is FALSE.",{
+    # Given
+    exception <- Path.Utility.Exceptions()
+
+    # When
+    validation.input <- FALSE
+
+    # Then
+    validation.input |> exception[["InvalidPath"]]() |> expect.no.error()
+  })
+  it("then an exception should be thrown if input is TRUE.",{
+    # Given
+    exception <- Path.Utility.Exceptions()
+
+    random.path    <- "random.path"
+    expected.error <- paste0("Invalid path: ", random.path, ".")
+
+    # When
+    validation.input <- TRUE
+
+    # Then
+    validation.input |> exception[["InvalidPath"]](random.path) |> expect.error(expected.error)
+  })
+})
