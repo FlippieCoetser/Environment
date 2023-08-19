@@ -12,7 +12,9 @@ Path.Utility.Service <- \(broker) {
   services[['CombinePath']] <- \(path, filename) {
     path |> broker[['CombinePath']](filename)
   }
-  services[['FilepathExists']] <- \(filepath) {}
+  services[['FilepathExists']] <- \(filepath) {
+    filepath |> broker[['FilepathExists']]()
+  }
   services[['CreateFilepath']] <- \(filepath) {}
   return(services)
 }
