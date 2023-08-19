@@ -105,3 +105,21 @@ describe("When path |> service[['NormalizePath']]()",{
     actual.path |> expect.equal(expected.path)
   })
 })
+
+describe("When path |> service[['CombinePath']](filename)",{
+  it("then path and filename are combined.",{
+    # Given
+    broker  <- Path.Utility.Broker()
+    service <- broker |> Path.Utility.Service()
+
+    input.path     <- "C:/Users/username/Documents"
+    input.filename <- "file.txt"
+    expected.path  <- input.path |> broker[['CombinePath']](input.filename)
+
+    # When
+    actual.path <- input.path |> service[["CombinePath"]](input.filename)
+
+    # Then
+    actual.path |> expect.equal(expected.path)
+  })
+})
