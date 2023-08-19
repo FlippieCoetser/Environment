@@ -156,3 +156,21 @@ describe("When filepath |> service[['FilepathExists']]()",{
     actual.exists |> expect.equal(expected.exists)
   })
 })
+
+describe("When filepath |> service[['CreateFilepath']]()",{
+  it("then the filepath is created if the path is valid.",{
+    skip_if_not(environment == 'local')
+    # Given
+    broker  <- Path.Utility.Broker()
+    service <- broker |> Path.Utility.Service()
+
+    input.filepath <- "C:/Users/Analyst/Documents/test.txt"
+    expected.exists <- input.filepath |> broker[['CreateFilepath']]()
+
+    # When
+    actual.exists <- input.filepath |> service[["CreateFilepath"]]()
+
+    # Then
+    actual.exists |> expect.equal(expected.exists)
+  })
+})
