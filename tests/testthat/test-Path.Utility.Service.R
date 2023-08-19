@@ -72,3 +72,19 @@ describe("When service[['GetUserHomePath']]()", {
     expected.path |> expect.equal(expected.path)
   })
 })
+
+describe("When service[['GetConfigFilename']]()", {
+  it("then broker[['GetConfigFilename']]() should be returned.", {
+    # Given
+    broker  <- Path.Utility.Broker()
+    service <- broker |> Path.Utility.Service()
+
+    expected.filename <- broker[['GetConfigFilename']]()
+
+    # When
+    actual.filename <- service[["GetConfigFilename"]]()
+
+    # Then
+    expected.filename |> expect.equal(expected.filename)
+  })
+})
