@@ -13,4 +13,11 @@ describe("When services <- Path.Utility.Service()", {
     # Then
     services |> expect.list()
   })
+  it("then services should contain GetUserHomePath service.", {
+    # Given
+    services <- Path.Utility.Broker()
+
+    # Then
+    services[["GetUserHomePath"]] |> expect.exist()
+  })
 })
