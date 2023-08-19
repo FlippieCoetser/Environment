@@ -36,4 +36,17 @@ describe("When path |> validate[['Path']]()",{
     # Then
     actual.path |> expect.equal(expect.path)
   })
+  it("then the path should be returned if it is a valid unix style path.",{
+    # Given
+    validate <- Path.Utility.Validation()
+
+    input.path <- "/home/username/Documents"
+    expect.path <- input.path
+
+    # When
+    actual.path <-  input.path |> validate[["Path"]]()
+    
+    # Then
+    actual.path |> expect.equal(expect.path)
+  })
 })
