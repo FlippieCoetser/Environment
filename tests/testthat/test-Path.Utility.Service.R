@@ -173,4 +173,15 @@ describe("When filepath |> service[['CreateFilepath']]()",{
     # Then
     actual.exists |> expect.equal(expected.exists)
   })
+  it("then a warning is thrown if filepath is invalid.",{
+    skip_if_not(environment == 'local')
+    # Given
+    broker  <- Path.Utility.Broker()
+    service <- broker |> Path.Utility.Service()
+
+    input.filepath <- "C:/InvalidPath/test.txt"
+
+    # Then
+    input.filepath |> service[["CreateFilepath"]]() |> expect_warning()
+  })
 })
