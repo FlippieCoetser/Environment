@@ -5,5 +5,6 @@ Path.Utility.Service <- \() {
   services[['NormalizePath']] <- \(path) {}
   services[['CombinePath']] <- \(path, filename) {}
   services[['FilepathExists']] <- \(filepath) {}
+  services[['CreateFilepath']] <- \(filepath) {}
   return(services)
 }
