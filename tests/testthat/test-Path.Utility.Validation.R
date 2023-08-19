@@ -21,3 +21,19 @@ describe("When validators <- Path.Utility.Validation()", {
     validators[["Path"]] |> expect.exist()
   })
 })
+
+describe("When path |> validate[['Path']]()",{
+  it("then the path should be returned if it is a valid windows style path.",{
+    # Given
+    validate <- Path.Utility.Validation()
+
+    input.path <- "C:\\Users\\username\\Documents"
+    expect.path <- input.path
+
+    # When
+    actual.path <-  input.path |> validate[["Path"]]()
+    
+    # Then
+    actual.path |> expect.equal(expect.path)
+  })
+})
