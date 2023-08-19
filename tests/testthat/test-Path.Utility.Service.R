@@ -27,4 +27,11 @@ describe("When services <- Path.Utility.Service()", {
     # Then
     services[["GetConfigFilename"]] |> expect.exist()
   })
+  it("then services should contain NormalizePath service.", {
+    # Given
+    services <- Path.Utility.Broker()
+
+    # Then
+    services[["NormalizePath"]] |> expect.exist()
+  })
 })
