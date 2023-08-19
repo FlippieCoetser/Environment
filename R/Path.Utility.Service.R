@@ -3,5 +3,6 @@ Path.Utility.Service <- \() {
   services[['GetUserHomePath']] <- \() {}
   services[['GetConfigFilename']] <- \() {}
   services[['NormalizePath']] <- \(path) {}
+  services[['CombinePath']] <- \(path, filename) {}
   return(services)
 }
