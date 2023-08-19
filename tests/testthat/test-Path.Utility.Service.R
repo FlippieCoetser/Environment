@@ -56,3 +56,19 @@ describe("When services <- Path.Utility.Service()", {
     services[["CreateFilepath"]] |> expect.exist()
   })
 })
+
+describe("When service[['GetUserHomePath']]()", {
+  it("then broker[['GetUserHomePath']]() should be returned.", {
+    # Given
+    broker  <- Path.Utility.Broker()
+    service <- broker |> Path.Utility.Service()
+
+    expected.path <- broker[['GetUserHomePath']]()
+
+    # When
+    actual.path <- service[["GetUserHomePath"]]()
+
+    # Then
+    expected.path |> expect.equal(expected.path)
+  })
+})
