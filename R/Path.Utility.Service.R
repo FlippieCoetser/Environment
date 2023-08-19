@@ -1,6 +1,8 @@
-Path.Utility.Service <- \() {
+Path.Utility.Service <- \(broker) {
   services <- list()
-  services[['GetUserHomePath']] <- \() {}
+  services[['GetUserHomePath']] <- \() {
+    broker[['GetUserHomePath']]()
+  }
   services[['GetConfigFilename']] <- \() {}
   services[['NormalizePath']] <- \(path) {}
   services[['CombinePath']] <- \(path, filename) {}
