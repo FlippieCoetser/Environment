@@ -126,11 +126,27 @@ describe("When path |> service[['CombinePath']](filename)",{
 
 describe("When filepath |> service[['FilepathExists']]()",{
   it("then FALSE is returned if filepath does not exist.",{
+    skip_if_not(environment == 'local')
     # Given
     broker  <- Path.Utility.Broker()
     service <- broker |> Path.Utility.Service()
 
     input.filepath <- "C:/InvalidPath/.Renviron"
+    expected.exists <- input.filepath |> broker[['FilepathExists']]()
+
+    # When
+    actual.exists <- input.filepath |> service[["FilepathExists"]]()
+
+    # Then
+    actual.exists |> expect.equal(expected.exists)
+  })
+  it("then TRUE is returned if filepath exists.",{
+    skip_if_not(environment == 'local')
+    # Given
+    broker  <- Path.Utility.Broker()
+    service <- broker |> Path.Utility.Service()
+
+    input.filepath <- "C:/Users/Analyst/Documents/.Renviron"
     expected.exists <- input.filepath |> broker[['FilepathExists']]()
 
     # When
