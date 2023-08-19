@@ -88,3 +88,20 @@ describe("When service[['GetConfigFilename']]()", {
     expected.filename |> expect.equal(expected.filename)
   })
 })
+
+describe("Then path |> service[['NormalizePath']]()",{
+  it("then all double backslashes are replaced with single forwardslash.",{
+    # Given
+    broker  <- Path.Utility.Broker()
+    service <- broker |> Path.Utility.Service()
+
+    input.path    <- "C:\\Users\\username\\Documents"
+    expected.path <- "C:/Users/username/Documents"
+
+    # When
+    actual.path <- input.path |> service[["NormalizePath"]]()
+
+    # Then
+    actual.path |> expect.equal(expected.path)
+  })
+})
