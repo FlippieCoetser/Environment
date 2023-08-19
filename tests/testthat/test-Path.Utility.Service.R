@@ -34,4 +34,11 @@ describe("When services <- Path.Utility.Service()", {
     # Then
     services[["NormalizePath"]] |> expect.exist()
   })
+  it("then services should contain CombinePath service.", {
+    # Given
+    services <- Path.Utility.Broker()
+
+    # Then
+    services[["CombinePath"]] |> expect.exist()
+  })
 })
