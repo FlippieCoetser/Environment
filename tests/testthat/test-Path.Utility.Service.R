@@ -48,4 +48,11 @@ describe("When services <- Path.Utility.Service()", {
     # Then
     services[["FilepathExists"]] |> expect.exist()
   })
+  it("then services should contain CreateFilepath service.", {
+    # Given
+    services <- Path.Utility.Broker()
+
+    # Then
+    services[["CreateFilepath"]] |> expect.exist()
+  })
 })
