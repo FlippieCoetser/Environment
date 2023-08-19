@@ -13,4 +13,11 @@ describe("When validators <- Path.Utility.Validation()", {
     # Then
     validators |> expect.list()
   })
+  it("then validators should contain Path service.", {
+    # Given
+    validators <- Path.Utility.Validation()
+
+    # Then
+    validators[["Path"]] |> expect.exist()
+  })
 })
