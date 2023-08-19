@@ -89,7 +89,7 @@ describe("When service[['GetConfigFilename']]()", {
   })
 })
 
-describe("Then path |> service[['NormalizePath']]()",{
+describe("When path |> service[['NormalizePath']]()",{
   it("then all double backslashes are replaced with single forwardslash.",{
     # Given
     broker  <- Path.Utility.Broker()
