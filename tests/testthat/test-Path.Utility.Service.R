@@ -182,6 +182,6 @@ describe("When filepath |> service[['CreateFilepath']]()",{
     input.filepath <- "C:/InvalidPath/test.txt"
 
     # Then
-    input.filepath |> service[["CreateFilepath"]]() |> expect_warning()
+    input.filepath |> service[["CreateFilepath"]]() |> expect.warning()
   })
 })

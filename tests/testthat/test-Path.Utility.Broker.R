@@ -174,6 +174,6 @@ describe("When filepath |> operation[['CreateFilepath']]()",{
     input.filepath <- "C:/Users/Analyst/Invalid/test.txt"
 
     # Then
-    input.filepath |> operation[["CreateFilepath"]]() |> expect_warning()
+    input.filepath |> operation[["CreateFilepath"]]() |> expect.warning()
   })
 })
