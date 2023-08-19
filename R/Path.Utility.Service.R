@@ -9,7 +9,9 @@ Path.Utility.Service <- \(broker) {
   services[['NormalizePath']] <- \(path) {
     path |> broker[['NormalizePath']]()
   }
-  services[['CombinePath']] <- \(path, filename) {}
+  services[['CombinePath']] <- \(path, filename) {
+    path |> broker[['CombinePath']](filename)
+  }
   services[['FilepathExists']] <- \(filepath) {}
   services[['CreateFilepath']] <- \(filepath) {}
   return(services)
