@@ -162,6 +162,20 @@ describe("When path |> service[['NormalizePath']]()",{
     # Then
     input.path |> service[["NormalizePath"]]() |> expect.error(expected.error)
   })
+  it("then an exception should be thrown if the returned path is not normalized.",{
+    # Given
+    broker  <- Path.Utility.Broker()
+    broker[['NormalizePath']] <- \(...) "C:\\Users\\username\\Documents"
+
+    service <- broker |> Path.Utility.Service()
+
+    input.path    <- "C:\\Users\\username\\Documents"
+
+    expected.error <- paste0("Invalid normalized path: ", "C:\\\\Users\\\\username\\\\Documents", ".")
+
+    # Then
+    input.path |> service[['NormalizePath']]() |> expect.error(expected.error)
+  })
 })
 
 describe("When path |> service[['CombinePath']](filename)",{
