@@ -266,6 +266,17 @@ describe("When filepath |> service[['FilepathExists']]()",{
     # Then
     actual.exists |> expect.equal(expected.exists)
   })
+  it("then an exception is thrown in filepath is invalid.",{
+    # Given
+    broker  <- Path.Utility.Broker()
+    service <- broker |> Path.Utility.Service()
+
+    input.filepath <- "C:\\Users\\username\\Documents\\.Renviron"
+    expected.error <- paste0("Invalid filepath: ", "C:\\\\Users\\\\username\\\\Documents\\\\.Renviron", ".")
+
+    # Then
+    input.filepath |> service[["FilepathExists"]]() |> expect.error(expected.error)
+  })
 })
 
 describe("When filepath |> service[['CreateFilepath']]()",{
