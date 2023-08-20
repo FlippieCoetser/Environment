@@ -6,7 +6,7 @@ Path.Utility.Service <- \(broker) {
     broker[['GetUserHomePath']]() |> validate[['Path']]()
   }
   services[['GetConfigFilename']] <- \() {
-    broker[['GetConfigFilename']]()
+    broker[['GetConfigFilename']]() |> validate[['Filename']]()
   }
   services[['NormalizePath']] <- \(path) {
     path |> broker[['NormalizePath']]()
