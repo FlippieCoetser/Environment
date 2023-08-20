@@ -126,4 +126,14 @@ describe("When path |> validate[['Normalized']]()",{
     # Then
     actual.path |> expect.equal(expect.path)
   })
+  it("then an exception should be thrown if path is windows style path.",{
+    # Given
+    validate <- Path.Utility.Validation()
+
+    path <- "C:\\Users\\username\\Documents"
+    expected.error <- paste0("Invalid normalized path: ", "C:\\\\Users\\\\username\\\\Documents", ".")
+
+    # Then
+    path |> validate[["Normalized"]]() |> expect.error(expected.error)
+  })
 })
