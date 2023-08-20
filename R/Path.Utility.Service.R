@@ -16,7 +16,7 @@ Path.Utility.Service <- \(broker) {
     path |> validate[['Normalized']]()
     filename |> validate[['Filename']]()
     
-    path |> broker[['CombinePath']](filename)
+    path |> broker[['CombinePath']](filename) |> validate[['Filepath']]()
   }
   services[['FilepathExists']] <- \(filepath) {
     filepath |> broker[['FilepathExists']]()
