@@ -15,5 +15,6 @@ Path.Utility.Exceptions <- \() {
       stop("Invalid normalized path: ", path, ".", call. = FALSE)
     }
   }
+  exceptions[['InvalidFilepath']] <- \() {}
   return(exceptions)
 }
