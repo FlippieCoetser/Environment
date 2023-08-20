@@ -159,4 +159,14 @@ describe("When filepath |> validate[['Filepath']]()",{
     # Then
     actual.filepath |> expect.equal(expect.filepath)
   })
+  it("then an exception should be thrown if filepath in not valid.",{
+    # Given
+    validate <- Path.Utility.Validation()
+
+    filepath <- "C:\\Users\\username\\Documents\\.Renviron"
+    expected.error <- paste0("Invalid filepath: ", "C:\\\\Users\\\\username\\\\Documents\\\\.Renviron", ".")
+
+    # Then
+    filepath |> validate[["Filepath"]]() |> expect.error(expected.error)
+  })
 })
