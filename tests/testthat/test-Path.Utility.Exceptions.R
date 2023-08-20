@@ -27,6 +27,13 @@ describe("When exceptions <- Path.Utility.Exceptions()",{
     # Then
     exceptions[["InvalidFilename"]] |> expect.exist()
   })
+  it("then exceptions should contains InvalidNormalized exception.",{
+    # Given
+    exceptions <- Path.Utility.Exceptions()
+
+    # Then
+    exceptions[["InvalidNormalized"]] |> expect.exist()
+  })
 })
 
 describe("When input |> exception[['InvalidPath']](path)",{
