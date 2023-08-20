@@ -1,7 +1,9 @@
 Path.Utility.Service <- \(broker) {
+  validate <- Path.Utility.Validation()
+
   services <- list()
   services[['GetUserHomePath']] <- \() {
-    broker[['GetUserHomePath']]()
+    broker[['GetUserHomePath']]() |> validate[['Path']]()
   }
   services[['GetConfigFilename']] <- \() {
     broker[['GetConfigFilename']]()
