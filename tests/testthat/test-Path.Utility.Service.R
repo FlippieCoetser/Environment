@@ -199,10 +199,9 @@ describe("When path |> service[['CombinePath']](filename)",{
     broker  <- Path.Utility.Broker()
     service <- broker |> Path.Utility.Service()
 
-    input.path <- "C:\\Users\\username/Documents"
-    filename   <- "file.txt"
-
-    expected.error <- paste0("Invalid path: ", "C:\\\\Users\\\\username/Documents", ".")
+    input.path     <- "C:\\Users\\username\\Documents"
+    input.filename <- "file.txt"
+    expected.error <- paste0("Invalid normalized path: ", "C:\\\\Users\\\\username\\\\Documents", ".")
 
     # Then
     input.path |> service[["CombinePath"]](filename) |> expect.error(expected.error)
