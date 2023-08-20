@@ -66,4 +66,17 @@ describe("When input |> exception[['InvalidFilename']](filename)",{
     # Then
     validation.input |> exception[["InvalidFilename"]]() |> expect.no.error()
   })
+  it("then an exception should be thrown if input is TRUE.",{
+    # Given
+    exception <- Path.Utility.Exceptions()
+
+    random.filename <- "filename."
+    expected.error  <- paste0("Invalid filename: ", random.filename, ".")
+
+    # When
+    validation.input <- TRUE
+
+    # Then
+    validation.input |> exception[["InvalidFilename"]](random.filename) |> expect.error(expected.error)
+  })
 })
