@@ -8,6 +8,11 @@ Path.Utility.Validation <- \() {
 
     return(path)
   }
-  validators[['Filename']] <- \() {}
+  validators[['Filename']] <- \(filename) {
+    pattern <- "^[a-zA-Z0-9_.-]*[a-zA-Z0-9]$"
+    pattern |> grepl(filename) |> isFALSE() |> exception[['InvalidFilename']](filename)
+
+    return(filename)
+  }
   return(validators)
 }
