@@ -23,6 +23,7 @@ Path.Utility.Service <- \(broker) {
     filepath |> broker[['FilepathExists']]()
   }
   services[['CreateFilepath']] <- \(filepath) {
+    filepath |> validate[['Filepath']]()
     filepath |> broker[['CreateFilepath']]()
   }
   return(services)
