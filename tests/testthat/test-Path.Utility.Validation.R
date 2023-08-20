@@ -20,6 +20,13 @@ describe("When validators <- Path.Utility.Validation()", {
     # Then
     validators[["Path"]] |> expect.exist()
   })
+  it("then validators should contain Filename validator.", {
+    # Given
+    validators <- Path.Utility.Validation()
+
+    # Then
+    validators[["Filename"]] |> expect.exist()
+  })
 })
 
 describe("When path |> validate[['Path']]()",{
