@@ -71,7 +71,7 @@ describe("When service[['GetUserHomePath']]()", {
     # Then
     expected.path |> expect.equal(expected.path)
   })
-  it("then an exception is thrown if the returned path is an invalid windows style path.", {
+  it("then an exception is thrown if returned path is invalid windows style path.", {
     # Given
     broker  <- Path.Utility.Broker()
     broker[['GetUserHomePath']] <- \() "C:\\Users\\username/Documents"
@@ -83,7 +83,7 @@ describe("When service[['GetUserHomePath']]()", {
     # Then
     service[['GetUserHomePath']]() |> expect.error(expected.error)
   })
-  it("then an exception is thrown if the returned path is an invalid unix style path.", {
+  it("then an exception is thrown if returned path is invalid unix style path.", {
     # Given
     broker  <- Path.Utility.Broker()
     broker[['GetUserHomePath']] <- \() "/home/username\\Documents"
@@ -111,7 +111,7 @@ describe("When service[['GetConfigFilename']]()", {
     # Then
     expected.filename |> expect.equal(expected.filename)
   })
-  it("then an exception is thrown if the returned filename is invalid.", {
+  it("then an exception is thrown if returned filename is invalid.", {
     # Given
     broker  <- Path.Utility.Broker()
     broker[['GetConfigFilename']] <- \() "filename."
@@ -126,7 +126,7 @@ describe("When service[['GetConfigFilename']]()", {
 })
 
 describe("When path |> service[['NormalizePath']]()",{
-  it("then all double backslashes are replaced with single forwardslash.",{
+  it("then all backslashes are replaced with forwardslash.",{
     # Given
     broker  <- Path.Utility.Broker()
     service <- broker |> Path.Utility.Service()
@@ -140,7 +140,7 @@ describe("When path |> service[['NormalizePath']]()",{
     # Then
     actual.path |> expect.equal(expected.path)
   })
-  it("then an exception should be thrown is path is invalid windows style path.",{
+  it("then an exception should be thrown if path is invalid windows style path.",{
     # Given
     broker  <- Path.Utility.Broker()
     service <- broker |> Path.Utility.Service()
@@ -162,7 +162,7 @@ describe("When path |> service[['NormalizePath']]()",{
     # Then
     input.path |> service[["NormalizePath"]]() |> expect.error(expected.error)
   })
-  it("then an exception should be thrown if the returned path is not normalized.",{
+  it("then an exception should be thrown if returned path is not normalized.",{
     # Given
     broker  <- Path.Utility.Broker()
     broker[['NormalizePath']] <- \(...) "C:\\Users\\username\\Documents"
@@ -194,7 +194,7 @@ describe("When path |> service[['CombinePath']](filename)",{
     # Then
     actual.path |> expect.equal(expected.path)
   })
-  it("then an exception is thrown if path is windows style path.",{
+  it("then an exception is thrown if path is invalid.",{
     # Given
     broker  <- Path.Utility.Broker()
     service <- broker |> Path.Utility.Service()
@@ -218,7 +218,7 @@ describe("When path |> service[['CombinePath']](filename)",{
     # Then
     input.path |> service[["CombinePath"]](input.filename) |> expect.error(expected.error)
   })
-  it("then an exception is thrown if the returned filepath is not valid.",{
+  it("then an exception is thrown if returned filepath is invalid.",{
     # Given
     broker  <- Path.Utility.Broker()
     broker[['CombinePath']] <- \(...) "C:\\Users\\username\\Documents\\file.txt"
@@ -266,7 +266,7 @@ describe("When filepath |> service[['FilepathExists']]()",{
     # Then
     actual.exists |> expect.equal(expected.exists)
   })
-  it("then an exception is thrown in filepath is invalid.",{
+  it("then an exception is thrown if filepath is invalid.",{
     # Given
     broker  <- Path.Utility.Broker()
     service <- broker |> Path.Utility.Service()
@@ -294,17 +294,6 @@ describe("When filepath |> service[['CreateFilepath']]()",{
 
     # Then
     actual.exists |> expect.equal(expected.exists)
-  })
-  it("then a warning is thrown if filepath is invalid.",{
-    skip_if_not(environment == 'local')
-    # Given
-    broker  <- Path.Utility.Broker()
-    service <- broker |> Path.Utility.Service()
-
-    input.filepath <- "C:/InvalidPath/test.txt"
-
-    # Then
-    input.filepath |> service[["CreateFilepath"]]() |> expect.warning()
   })
   it("then an exception is thrown if filepath is invalid.",{
     # Given

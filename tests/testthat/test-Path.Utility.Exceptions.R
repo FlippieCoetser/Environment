@@ -13,28 +13,28 @@ describe("When exceptions <- Path.Utility.Exceptions()",{
     # Then
     exceptions |> expect.list()
   })
-  it("then exceptions should contains InvalidPath exception.",{
+  it("then exceptions should contain InvalidPath exception.",{
     # Given
     exceptions <- Path.Utility.Exceptions()
 
     # Then
     exceptions[["InvalidPath"]] |> expect.exist()
   })
-  it("then exceptions should contains InvalidFilename exception.",{
+  it("then exceptions should contain InvalidFilename exception.",{
     # Given
     exceptions <- Path.Utility.Exceptions()
 
     # Then
     exceptions[["InvalidFilename"]] |> expect.exist()
   })
-  it("then exceptions should contains InvalidNormalized exception.",{
+  it("then exceptions should contain InvalidNormalized exception.",{
     # Given
     exceptions <- Path.Utility.Exceptions()
 
     # Then
     exceptions[["InvalidNormalized"]] |> expect.exist()
   })
-  it("then exceptions should contains InvalidFilepath exception.",{
+  it("then exceptions should contain InvalidFilepath exception.",{
     # Given
     exceptions <- Path.Utility.Exceptions()
 
