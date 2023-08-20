@@ -306,4 +306,15 @@ describe("When filepath |> service[['CreateFilepath']]()",{
     # Then
     input.filepath |> service[["CreateFilepath"]]() |> expect.warning()
   })
+  it("then an exception is thrown if filepath is invalid.",{
+    # Given
+    broker  <- Path.Utility.Broker()
+    service <- broker |> Path.Utility.Service()
+
+    input.filepath <- "C:\\Users\\username\\Documents\\test.txt"
+    expected.error <- paste0("Invalid filepath: ", "C:\\\\Users\\\\username\\\\Documents\\\\test.txt", ".")
+
+    # Then
+    input.filepath |> service[["CreateFilepath"]]() |> expect.error(expected.error)
+  })
 })
