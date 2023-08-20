@@ -14,6 +14,8 @@ Path.Utility.Validation <- \() {
 
     return(filename)
   }
-  validators[['Normalized']] <- \() {}
+  validators[['Normalized']] <- \(path) {
+    return(path)
+  }
   return(validators)
 }
