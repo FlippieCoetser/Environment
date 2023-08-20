@@ -15,6 +15,9 @@ Path.Utility.Validation <- \() {
     return(filename)
   }
   validators[['Normalized']] <- \(path) {
+    pattern <- "^(([a-zA-Z]:)(/[a-zA-Z0-9_.-]+)+)$|^(/([a-zA-Z0-9_.-]*/?)*)$"
+    pattern |> grepl(path) |> isFALSE() |> exception[['InvalidNormalized']](path)
+
     return(path)
   }
   return(validators)
