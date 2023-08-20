@@ -5,5 +5,6 @@ Path.Utility.Exceptions <- \() {
       stop("Invalid path: ", path, ".", call. = FALSE)
     } 
   }
+  exceptions[['InvalidFilename']] <- \() {  }
   return(exceptions)
 }
