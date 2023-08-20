@@ -144,3 +144,19 @@ describe("When path |> validate[['Normalized']]()",{
     path |> validate[["Normalized"]]() |> expect.error(expected.error)
   })
 })
+
+describe("When filepath |> validate[['Filepath']]()",{
+  it("then the filepath should be returned if filepath is valid.",{
+    # Given
+    validate <- Path.Utility.Validation()
+
+    input.filepath <- "C:/Users/username/Documents/.Renviron"
+    expect.filepath <- input.filepath
+
+    # When
+    actual.filepath <-  input.filepath |> validate[["Filepath"]]()
+    
+    # Then
+    actual.filepath |> expect.equal(expect.filepath)
+  })
+})
