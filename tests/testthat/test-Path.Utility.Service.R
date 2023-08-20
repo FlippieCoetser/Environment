@@ -83,6 +83,18 @@ describe("When service[['GetUserHomePath']]()", {
     # Then
     service[['GetUserHomePath']]() |> expect.error(expected.error)
   })
+  it("then an exception is thrown if the returned path is an invalid unix style path.", {
+    # Given
+    broker  <- Path.Utility.Broker()
+    broker[['GetUserHomePath']] <- \() "/home/username\\Documents"
+
+    service <- broker |> Path.Utility.Service()
+
+    expected.error <- paste0("Invalid path: ", "/home/username\\\\Documents", ".")
+
+    # Then
+    service[['GetUserHomePath']]() |> expect.error(expected.error)
+  })
 })
 
 describe("When service[['GetConfigFilename']]()", {
