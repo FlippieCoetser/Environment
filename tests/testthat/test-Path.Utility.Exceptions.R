@@ -87,3 +87,29 @@ describe("When input |> exception[['InvalidFilename']](filename)",{
     validation.input |> exception[["InvalidFilename"]](random.filename) |> expect.error(expected.error)
   })
 })
+
+describe("When input |> exception[['InvalidNormalized']](path)",{
+  it("then no exception should be thrown if input is FALSE.",{
+    # Given
+    exception <- Path.Utility.Exceptions()
+
+    # When
+    validation.input <- FALSE
+
+    # Then
+    validation.input |> exception[["InvalidNormalized"]]() |> expect.no.error()
+  })
+  it("then an exception should be thrown if input is TRUE.",{
+    # Given
+    exception <- Path.Utility.Exceptions()
+
+    random.path    <- "random.path"
+    expected.error <- paste0("Invalid normalized path: ", random.path, ".")
+
+    # When
+    validation.input <- TRUE
+
+    # Then
+    validation.input |> exception[["InvalidNormalized"]](random.path) |> expect.error(expected.error)
+  })
+})
