@@ -23,7 +23,7 @@ describe("When validators <- Path.Utility.Validation()", {
 })
 
 describe("When path |> validate[['Path']]()",{
-  it("then the path should be returned if it is a valid windows style path.",{
+  it("then the path should be returned if path is a valid windows style path.",{
     # Given
     validate <- Path.Utility.Validation()
 
@@ -36,7 +36,7 @@ describe("When path |> validate[['Path']]()",{
     # Then
     actual.path |> expect.equal(expect.path)
   })
-  it("then the path should be returned if it is a valid unix style path.",{
+  it("then the path should be returned if path is a valid unix style path.",{
     # Given
     validate <- Path.Utility.Validation()
 
