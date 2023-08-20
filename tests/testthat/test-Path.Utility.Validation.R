@@ -84,7 +84,7 @@ describe("When filename |> validate[['Filename']]()",{
     # Given
     validate <- Path.Utility.Validation()
 
-    input.filename <- "filename.txt"
+    input.filename <- ".Renviron"
     expect.filename <- input.filename
 
     # When
@@ -92,5 +92,15 @@ describe("When filename |> validate[['Filename']]()",{
     
     # Then
     actual.filename |> expect.equal(expect.filename)
+  })
+  it("then an exception should be thrown if filename is not valid.",{
+    # Given
+    validate <- Path.Utility.Validation()
+
+    filename <- "filename."
+    expected.error <- paste0("Invalid filename: ", filename, ".")
+
+    # Then
+    filename |> validate[["Filename"]]() |> expect.error(expected.error)
   })
 })
