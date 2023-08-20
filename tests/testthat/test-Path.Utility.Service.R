@@ -111,6 +111,18 @@ describe("When service[['GetConfigFilename']]()", {
     # Then
     expected.filename |> expect.equal(expected.filename)
   })
+  it("then an exception is thrown if the returned filename is invalid.", {
+    # Given
+    broker  <- Path.Utility.Broker()
+    broker[['GetConfigFilename']] <- \() "filename."
+
+    service <- broker |> Path.Utility.Service()
+
+    expected.error <- paste0("Invalid filename: ", "filename.", ".")
+
+    # Then
+    service[['GetConfigFilename']]() |> expect.error(expected.error)
+  })
 })
 
 describe("When path |> service[['NormalizePath']]()",{
