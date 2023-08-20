@@ -2,27 +2,27 @@ Path.Utility.Service <- \(broker) {
   validate <- Path.Utility.Validation()
 
   services <- list()
-  services[['GetUserHomePath']] <- \() {
+  services[['GetUserHomePath']]   <- \() {
     broker[['GetUserHomePath']]() |> validate[['Path']]()
   }
   services[['GetConfigFilename']] <- \() {
     broker[['GetConfigFilename']]() |> validate[['Filename']]()
   }
-  services[['NormalizePath']] <- \(path) {
+  services[['NormalizePath']]     <- \(path) {
     path |> validate[['Path']]()
     path |> broker[['NormalizePath']]() |> validate[['Normalized']]()
   }
-  services[['CombinePath']] <- \(path, filename) {
+  services[['CombinePath']]       <- \(path, filename) {
     path |> validate[['Normalized']]()
     filename |> validate[['Filename']]()
     
     path |> broker[['CombinePath']](filename) |> validate[['Filepath']]()
   }
-  services[['FilepathExists']] <- \(filepath) {
+  services[['FilepathExists']]    <- \(filepath) {
     filepath |> validate[['Filepath']]()
     filepath |> broker[['FilepathExists']]()
   }
-  services[['CreateFilepath']] <- \(filepath) {
+  services[['CreateFilepath']]    <- \(filepath) {
     filepath |> validate[['Filepath']]()
     filepath |> broker[['CreateFilepath']]()
   }
