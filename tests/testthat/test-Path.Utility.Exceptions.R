@@ -120,3 +120,16 @@ describe("When input |> exception[['InvalidNormalized']](path)",{
     validation.input |> exception[["InvalidNormalized"]](random.path) |> expect.error(expected.error)
   })
 })
+
+describe("When input |> exception[['InvalidFilepath']]()",{
+  it("then no exception should be thrown if input is FALSE.",{
+    # Given
+    exception <- Path.Utility.Exceptions()
+
+    # When
+    validation.input <- FALSE
+
+    # Then
+    validation.input |> exception[["InvalidFilepath"]]() |> expect.no.error()
+  })
+})
