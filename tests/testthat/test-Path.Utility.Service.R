@@ -194,7 +194,7 @@ describe("When path |> service[['CombinePath']](filename)",{
     # Then
     actual.path |> expect.equal(expected.path)
   })
-  it("then an exception is thrown if path is invalid windows style path.",{
+  it("then an exception is thrown if path is windows style path.",{
     # Given
     broker  <- Path.Utility.Broker()
     service <- broker |> Path.Utility.Service()
