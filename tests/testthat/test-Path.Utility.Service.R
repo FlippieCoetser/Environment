@@ -140,6 +140,17 @@ describe("When path |> service[['NormalizePath']]()",{
     # Then
     actual.path |> expect.equal(expected.path)
   })
+  it("then an exception should be thrown is path is invalid windows style path.",{
+    # Given
+    broker  <- Path.Utility.Broker()
+    service <- broker |> Path.Utility.Service()
+
+    input.path <- "C:\\Users\\username/Documents"
+    expected.error <- paste0("Invalid path: ", "C:\\\\Users\\\\username/Documents", ".")
+
+    # Then
+    input.path |> service[["NormalizePath"]]() |> expect.error(expected.error)
+  })
 })
 
 describe("When path |> service[['CombinePath']](filename)",{
