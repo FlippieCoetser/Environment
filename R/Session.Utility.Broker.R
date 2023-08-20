@@ -6,8 +6,8 @@ Session.Utility.Broker <- \() {
   operations[['HasNavigateToFile']] <- \() {
     rstudioapi::hasFun("navigateToFile")
   }
-  operations[['NavigateToFile']]    <- \(path) {
-    path |> rstudioapi::navigateToFile()
+  operations[['NavigateToFile']]    <- \(filepath) {
+    filepath |> rstudioapi::navigateToFile()
   }
   operations[['IDEInUse']]          <- \() {
     interactive()
