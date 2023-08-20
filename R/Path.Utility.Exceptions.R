@@ -9,6 +9,11 @@ Path.Utility.Exceptions <- \() {
     if (invoke) {
       stop("Invalid filename: ", filename, ".", call. = FALSE)
     }
-   }
+  }
+  exceptions[['InvalidNormalized']] <- \(invoke, path = NULL) {
+    if (invoke) {
+      stop("Invalid normalized path: ", path, ".", call. = FALSE)
+    }
+  }
   return(exceptions)
 }
