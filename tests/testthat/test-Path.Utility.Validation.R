@@ -78,3 +78,19 @@ describe("When path |> validate[['Path']]()",{
     path |> validate[["Path"]]() |> expect.error(expected.error)
   })
 })
+
+describe("When filename |> validate[['Filename']]()",{
+  it("then the filename should be returned if filename is valid.",{
+    # Given
+    validate <- Path.Utility.Validation()
+
+    input.filename <- "filename.txt"
+    expect.filename <- input.filename
+
+    # When
+    actual.filename <-  input.filename |> validate[["Filename"]]()
+    
+    # Then
+    actual.filename |> expect.equal(expect.filename)
+  })
+})
