@@ -29,7 +29,7 @@ describe("When path |> validate[['Path']]()",{
 
     input.path <- "C:\\Users\\username\\Documents"
     expect.path <- input.path
-
+    
     # When
     actual.path <-  input.path |> validate[["Path"]]()
     
@@ -59,5 +59,15 @@ describe("When path |> validate[['Path']]()",{
     
     # Then
     actual.path |> expect.equal(expect.path)
+  })
+  it("then an exception should be thrown if path is not a valid unix style path.",{
+    # Given
+    validate <- Path.Utility.Validation()
+
+    path <- "/home/username\\Documents"
+    expected.error <- paste0("Invalid path: ", "/home/username\\\\Documents", ".")
+
+    # Then
+    path |> validate[["Path"]]() |> expect.error(expected.error)
   })
 })
