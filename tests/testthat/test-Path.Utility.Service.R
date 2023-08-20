@@ -206,6 +206,18 @@ describe("When path |> service[['CombinePath']](filename)",{
     # Then
     input.path |> service[["CombinePath"]](filename) |> expect.error(expected.error)
   })
+  it("then an exception is thrown if filename is invalid.",{
+    # Given
+    broker  <- Path.Utility.Broker()
+    service <- broker |> Path.Utility.Service()
+
+    input.path     <- "C:/Users/username/Documents"
+    input.filename <- "file."
+    expected.error <- paste0("Invalid filename: ", "file.", ".")
+
+    # Then
+    input.path |> service[["CombinePath"]](input.filename) |> expect.error(expected.error)
+  })
 })
 
 describe("When filepath |> service[['FilepathExists']]()",{
