@@ -1,5 +1,7 @@
-Session.Utility.Service <- \() {
+Session.Utility.Service <- \(broker) {
   services <- list()
-  services[['HasRStudioAPI']] <- \() {}
+  services[['HasRStudioAPI']] <- \() {
+    broker[["HasRStudioAPI"]]()
+  }
   return(services)
 }
