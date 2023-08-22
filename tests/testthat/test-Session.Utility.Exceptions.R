@@ -47,4 +47,17 @@ describe("When input |> exception[['PathNotFound']](path)",{
     # Then
     validation.input |> exception[["PathNotFound"]]() |> expect.no.error()
   })
+  it("then an exception should be thrown if input is TRUE.",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    random.path    <- "random.path"
+    expected.error <- paste0("Path not found: ", random.path, ".")
+
+    # When
+    validation.input <- TRUE
+
+    # Then
+    validation.input |> exception[["PathNotFound"]](random.path) |> expect.error(expected.error)
+  })
 })
