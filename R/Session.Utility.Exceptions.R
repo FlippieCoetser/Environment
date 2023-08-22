@@ -1,1 +1,4 @@
-Session.Utility.Exceptions <- \() {}
+Session.Utility.Exceptions <- \() {
+  exceptions <- list()
+  return(exceptions)
+}
