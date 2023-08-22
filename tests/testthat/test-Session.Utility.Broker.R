@@ -55,4 +55,11 @@ describe("When operations <- Session.Utility.Broker()", {
     # Then
     operations[["GetEnvVariable"]] |> expect.exist()
   })
+  it("then operations should contains CacheEnvVariable operation.", {
+    # Given
+    operations <- Session.Utility.Broker()
+
+    # Then
+    operations[["CacheEnvVariable"]] |> expect.exist()
+  })
 })
