@@ -94,3 +94,19 @@ describe("When variable |> operation[['GetEnvVariable']]()",{
     actual.value |> expect.equal(expected.value)
   })
 })
+
+describe("When variable |> operation[['CacheEnvVariable']](value)",{
+  it("then the value for variable is cached.", {
+    # Given
+    operations <- Session.Utility.Broker()
+
+    variable <- "NEW_VARIABLE"
+    value    <- "new_value"
+
+    # When
+    variable |> operations[["CacheEnvVariable"]](value)
+
+    # Then
+    variable |> Sys.getenv() |> expect.equal(value)
+  })
+})
