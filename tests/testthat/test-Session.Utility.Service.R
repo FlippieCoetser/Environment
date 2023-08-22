@@ -27,6 +27,13 @@ describe("When services <- Session.Utility.Service()",{
     # Then
     services[["HasNavigateToFile"]] |> expect.exist()
   })
+  it("then services should contain NavigateToFile service.", {
+    # Given
+    services <- Session.Utility.Service()
+
+    # Then
+    services[["NavigateToFile"]] |> expect.exist()
+  })
 })
 
 describe("When service[['HasRStudioAPI']]()",{
