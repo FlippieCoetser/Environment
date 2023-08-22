@@ -27,4 +27,11 @@ describe("When exceptions <- Session.Utility.Exceptions()",{
     # Then
     exceptions[["PathNotFound"]] |> expect.exist()
   })
+  it("then exceptions should contain FileNotFound Exception.", {
+    # Given
+    exceptions <- Session.Utility.Exceptions()
+
+    # Then
+    exceptions[["FileNotFound"]] |> expect.exist()
+  })
 })
