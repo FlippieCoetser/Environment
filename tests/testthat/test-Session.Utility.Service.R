@@ -29,29 +29,29 @@ describe("When services <- Session.Utility.Service()",{
   })
 })
 
-describe("When services[['HasRStudioAPI']]()",{
-  it("then TRUE should be returned if RStudioAPI is available.", {
+describe("When service[['HasRStudioAPI']]()",{
+  it("then TRUE is returned if RStudioAPI is available.", {
     # Given
     broker   <- Session.Utility.Broker()
     broker[['HasRStudioAPI']] <- \() { TRUE }
 
-    services <- broker |> Session.Utility.Service()
+    service <- broker |> Session.Utility.Service()
 
     # When
-    result <- services[["HasRStudioAPI"]]()
+    result <- service[["HasRStudioAPI"]]()
 
     # Then
     result |> expect.true()
   })
-  it("then FALSE should be returned if RStudioAPI is not available.", {
+  it("then FALSE is returned if RStudioAPI is not available.", {
     # Given
     broker   <- Session.Utility.Broker()
     broker[['HasRStudioAPI']] <- \() { FALSE }
 
-    services <- broker |> Session.Utility.Service()
+    service <- broker |> Session.Utility.Service()
 
     # When
-    result <- services[["HasRStudioAPI"]]()
+    result <- service[["HasRStudioAPI"]]()
 
     # Then
     result |> expect.false()
@@ -64,10 +64,10 @@ describe("When service[['HasNavigateToFile']]()",{
     broker   <- Session.Utility.Broker()
     broker[['HasNavigateToFile']] <- \() { TRUE }
 
-    services <- broker |> Session.Utility.Service()
+    service <- broker |> Session.Utility.Service()
 
     # When
-    result <- services[["HasNavigateToFile"]]()
+    result <- service[["HasNavigateToFile"]]()
 
     # Then
     result |> expect.true()
@@ -77,10 +77,10 @@ describe("When service[['HasNavigateToFile']]()",{
     broker   <- Session.Utility.Broker()
     broker[['HasNavigateToFile']] <- \() { FALSE }
 
-    services <- broker |> Session.Utility.Service()
+    service <- broker |> Session.Utility.Service()
 
     # When
-    result <- services[["HasNavigateToFile"]]()
+    result <- service[["HasNavigateToFile"]]()
 
     # Then
     result |> expect.false()
