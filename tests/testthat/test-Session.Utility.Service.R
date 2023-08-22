@@ -13,4 +13,11 @@ describe("When services <- Session.Utility.Service()",{
     # Then
     services |> expect.list()
   })
+  it("then services should contain HasRStudioAPI service.", {
+    # Given
+    services <- Session.Utility.Service()
+
+    # Then
+    services[["HasRStudioAPI"]] |> expect.exist()
+  })
 })
