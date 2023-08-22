@@ -79,4 +79,18 @@ describe("When variable |> operation[['GetEnvVariable']]()",{
     # Then
     actual.value |> expect.equal(expected.value)
   })
+  it("then an empty string is returned if the variable is not defined in .Renviron file.", {
+    skip_if_not(environment == 'local')
+    # Given
+    operations <- Session.Utility.Broker()
+
+    variable       <- "NOT_DEFINED"
+    expected.value <- ""
+
+    # When
+    actual.value <- variable |> operations[["GetEnvVariable"]]()
+
+    # Then
+    actual.value |> expect.equal(expected.value)
+  })
 })
