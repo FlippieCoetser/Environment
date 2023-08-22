@@ -57,3 +57,32 @@ describe("When services[['HasRStudioAPI']]()",{
     result |> expect.false()
   })
 })
+
+describe("When service[['HasNavigateToFile']]()",{
+  it("then TRUE is returned if navigateToFile function is available.", {
+    # Given
+    broker   <- Session.Utility.Broker()
+    broker[['HasNavigateToFile']] <- \() { TRUE }
+
+    services <- broker |> Session.Utility.Service()
+
+    # When
+    result <- services[["HasNavigateToFile"]]()
+
+    # Then
+    result |> expect.true()
+  })
+  it("then FALSE is returned if navigateToFile function is not available.", {
+    # Given
+    broker   <- Session.Utility.Broker()
+    broker[['HasNavigateToFile']] <- \() { FALSE }
+
+    services <- broker |> Session.Utility.Service()
+
+    # When
+    result <- services[["HasNavigateToFile"]]()
+
+    # Then
+    result |> expect.false()
+  })
+})
