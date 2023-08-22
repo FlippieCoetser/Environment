@@ -13,4 +13,11 @@ describe("When exceptions <- Session.Utility.Exceptions()",{
     # Then
     exceptions |> expect.list()
   })
+  it("then exceptions should contain NavigateToFileExceptions.", {
+    # Given
+    exceptions <- Session.Utility.Exceptions()
+
+    # Then
+    exceptions[["NavigateToFileExceptions"]] |> expect.exist()
+  })
 })
