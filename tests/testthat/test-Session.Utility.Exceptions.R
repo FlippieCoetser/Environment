@@ -35,3 +35,16 @@ describe("When exceptions <- Session.Utility.Exceptions()",{
     exceptions[["FileNotFound"]] |> expect.exist()
   })
 })
+
+describe("When input |> exception[['PathNotFound']](path)",{
+  it("then no exception should be thrown if input is FALSE.",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    # When
+    validation.input <- FALSE
+
+    # Then
+    validation.input |> exception[["PathNotFound"]]() |> expect.no.error()
+  })
+})
