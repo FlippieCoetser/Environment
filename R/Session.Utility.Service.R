@@ -1,1 +1,4 @@
-Session.Utility.Service <- \() {}
+Session.Utility.Service <- \() {
+  services <- list()
+  return(services)
+}
