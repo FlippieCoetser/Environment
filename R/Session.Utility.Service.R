@@ -3,6 +3,8 @@ Session.Utility.Service <- \(broker) {
   services[['HasRStudioAPI']] <- \() {
     broker[["HasRStudioAPI"]]()
   }
-  services[['HasNavigateToFile']] <- \() {}
+  services[['HasNavigateToFile']] <- \() {
+    broker[["HasNavigateToFile"]]()
+  }
   return(services)
 }
