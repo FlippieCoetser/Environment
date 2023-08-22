@@ -6,5 +6,6 @@ Session.Utility.Service <- \(broker) {
   services[['HasNavigateToFile']] <- \() {
     broker[["HasNavigateToFile"]]()
   }
+  services[['NavigateToFile']] <- \() {}
   return(services)
 }
