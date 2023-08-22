@@ -63,3 +63,20 @@ describe("When operations <- Session.Utility.Broker()", {
     operations[["CacheEnvVariable"]] |> expect.exist()
   })
 })
+
+describe("When variable |> operation[['GetEnvVariable']]()",{
+  it("then the value of variable stored in .Renviron file should be returned.", {
+    skip_if_not(environment == 'local')
+    # Given
+    operations <- Session.Utility.Broker()
+
+    variable       <- "ENVIRONMENT"
+    expected.value <- variable |> Sys.getenv()
+
+    # When
+    actual.value <- variable |> operations[["GetEnvVariable"]]()
+
+    # Then
+    actual.value |> expect.equal(expected.value)
+  })
+})
