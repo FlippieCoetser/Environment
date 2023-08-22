@@ -16,5 +16,6 @@ Session.Utility.Broker <- \() {
     Sys.getenv("TERM_PROGRAM") == "vscode"
   }
   operations[['GetEnvVariable']]    <- \() {}
+  operations[['CacheEnvVariable']]  <- \() {}
   return(operations)
 }
