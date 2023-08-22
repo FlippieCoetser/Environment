@@ -61,3 +61,29 @@ describe("When input |> exception[['PathNotFound']](path)",{
     validation.input |> exception[["PathNotFound"]](random.path) |> expect.error(expected.error)
   })
 })
+
+describe("When input |> exception[['FileNotFound']](file)",{
+  it("then no exception should be thrown if input is FALSE.",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    # When
+    validation.input <- FALSE
+
+    # Then
+    validation.input |> exception[["FileNotFound"]]() |> expect.no.error()
+  })
+  it("then an exception should be thrown if input is TRUE.",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    random.file    <- "random.file"
+    expected.error <- paste0("File not found: ", random.file, ".")
+
+    # When
+    validation.input <- TRUE
+
+    # Then
+    validation.input |> exception[["FileNotFound"]](random.file) |> expect.error(expected.error)
+  })
+})
