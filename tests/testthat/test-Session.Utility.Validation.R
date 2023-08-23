@@ -21,3 +21,18 @@ describe("When validators <- Session.Utility.Validation()",{
     validators[["NavigationResponse"]] |> expect.exist()
   })
 })
+
+describe("When response |> validate[['NavigationResponse']]()",{
+  it("then a PathNotFound exception should be thrown is response throws a warning containing path not found",{
+    # Given
+    validate <- Session.Utility.Validation()
+    response <- \() {
+      warning('path[1]="C:/Users/InvalidPath/Documents/.Renviron": The system cannot find the path specified.')
+    }
+
+    expected.error <- "Path not found: C:/Users/InvalidPath/Documents/.Renviron."
+    
+    # Then
+    response() |> validate[["NavigationResponse"]]() |> expect.error(expected.error)
+  })
+})
