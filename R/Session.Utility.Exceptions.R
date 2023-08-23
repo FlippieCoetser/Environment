@@ -21,5 +21,6 @@ Session.Utility.Exceptions <- \() {
       stop("Invalid filepath: ", filepath, ".", call. = FALSE)
     }
   }
+  exceptions[['NameIsNull']] <- \() {}
   return(exceptions)
 }
