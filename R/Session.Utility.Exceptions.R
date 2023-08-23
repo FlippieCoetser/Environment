@@ -2,8 +2,9 @@ Session.Utility.Exceptions <- \() {
   exceptions <- list()
   exceptions[['NavigateToFileExceptions']] <- \(error) {
     filepath <- sub('.*?"(.*?)":.*', '\\1', error[['message']])
-    
+
     'cannot find the path' |> grepl(error) |> exceptions[['PathNotFound']](filepath) 
+    'cannot find the file' |> grepl(error) |> exceptions[['FileNotFound']](filepath)
   }
   exceptions[['PathNotFound']] <- \(invoke, path = NULL) {
     if (invoke) {
