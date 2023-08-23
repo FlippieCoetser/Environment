@@ -41,6 +41,13 @@ describe("When exceptions <- Session.Utility.Exceptions()",{
     # Then
     exceptions[["InvalidFilepath"]] |> expect.exist()
   })
+  it("then exceptions should contain NameIsNull Exception",{
+    # Given
+    exceptions <- Session.Utility.Exceptions()
+
+    # Then
+    exceptions[["NameIsNull"]] |> expect.exist()
+  })
 })
 
 describe("When input |> exception[['PathNotFound']](path)",{
