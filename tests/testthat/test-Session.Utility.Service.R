@@ -146,3 +146,32 @@ describe("When filepath |> service[['NavigateToFile']]()",{
     input.filepath |> service[['NavigateToFile']]() |> expect.error(expected.error)
   })
 })
+
+describe("When service[['IDEInUse']]()",{
+  it("then TRUE is returned if IDE is in use.", {
+    # Given
+    broker   <- Session.Utility.Broker()
+    broker[['IDEInUse']] <- \() { TRUE }
+
+    service <- broker |> Session.Utility.Service()
+
+    # When
+    result <- service[["IDEInUse"]]()
+
+    # Then
+    result |> expect.true()
+  })
+  it("then FALSE is returned if IDE is not in use.", {
+    # Given
+    broker   <- Session.Utility.Broker()
+    broker[['IDEInUse']] <- \() { FALSE }
+
+    service <- broker |> Session.Utility.Service()
+
+    # When
+    result <- service[["IDEInUse"]]()
+
+    # Then
+    result |> expect.false()
+  })
+})
