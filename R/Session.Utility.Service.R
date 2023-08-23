@@ -15,6 +15,8 @@ Session.Utility.Service <- \(broker) {
   services[['IDEInUse']] <- \() { 
     broker[["IDEInUse"]]()
   }
-  services[['VSCodeInUse']] <- \() {}
+  services[['VSCodeInUse']] <- \() {
+    broker[["VSCodeInUse"]]()
+  }
   return(services)
 }
