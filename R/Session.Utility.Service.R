@@ -1,4 +1,5 @@
 Session.Utility.Service <- \(broker) {
+  exception <- Session.Utility.Exceptions()
   services <- list()
   services[['HasRStudioAPI']] <- \() {
     broker[["HasRStudioAPI"]]()
@@ -6,6 +7,10 @@ Session.Utility.Service <- \(broker) {
   services[['HasNavigateToFile']] <- \() {
     broker[["HasNavigateToFile"]]()
   }
-  services[['NavigateToFile']] <- \() {}
+  services[['NavigateToFile']] <- \(filepath) {
+    tryCatch({
+      filepath |> broker[["NavigateToFile"]]()
+    }, warning = exception[['NavigateToFileExceptions']])
+  }
   return(services)
 }
