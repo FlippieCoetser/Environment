@@ -18,5 +18,6 @@ Session.Utility.Service <- \(broker) {
   services[['VSCodeInUse']] <- \() {
     broker[["VSCodeInUse"]]()
   }
+  services[['GetEnvVariable']] <- \() {}
   return(services)
 }
