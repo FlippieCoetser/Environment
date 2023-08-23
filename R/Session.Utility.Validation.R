@@ -1,1 +1,4 @@
-Session.Utility.Validation <- \() {}
+Session.Utility.Validation <- \() {
+  validations <- list()
+  return(validations)
+}
