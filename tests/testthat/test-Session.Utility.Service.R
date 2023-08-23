@@ -182,3 +182,32 @@ describe("When service[['IDEInUse']]()",{
     result |> expect.false()
   })
 })
+
+describe("When service[['VSCodeInUse']]()",{
+  it("then TRUE is returned if VS Code is in use.", {
+    # Given
+    broker   <- Session.Utility.Broker()
+    broker[['VSCodeInUse']] <- \() { TRUE }
+
+    service <- broker |> Session.Utility.Service()
+
+    # When
+    result <- service[["VSCodeInUse"]]()
+
+    # Then
+    result |> expect.true()
+  })
+  it("then FALSE is returned if VS Code is not in use.", {
+    # Given
+    broker   <- Session.Utility.Broker()
+    broker[['VSCodeInUse']] <- \() { FALSE }
+
+    service <- broker |> Session.Utility.Service()
+
+    # When
+    result <- service[["VSCodeInUse"]]()
+
+    # Then
+    result |> expect.false()
+  })
+})
