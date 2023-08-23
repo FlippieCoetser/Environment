@@ -48,6 +48,13 @@ describe("When services <- Session.Utility.Service()",{
     # Then
     services[["VSCodeInUse"]] |> expect.exist()
   })
+  it("then services should contain GetEnvVariable service.", {
+    # Given
+    services <- Session.Utility.Service()
+
+    # Then
+    services[["GetEnvVariable"]] |> expect.exist()
+  })
 })
 
 describe("When service[['HasRStudioAPI']]()",{
