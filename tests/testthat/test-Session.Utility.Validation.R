@@ -55,3 +55,29 @@ describe("When response |> validate[['NavigationResponse']]()",{
     throw.warning() |> validate[["NavigationResponse"]]() |> expect.error(expected.error)
   })
 })
+
+describe("When filepath |> validate[['Filepath']]()",{
+  it("then filepath should be returned if filepath is valid.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    input.filepath <- "C:/Users/username/Documents/.Renviron"
+    expect.filepath <- input.filepath
+
+    # When
+    actual.filepath <-  input.filepath |> validate[["Filepath"]]()
+    
+    # Then
+    actual.filepath |> expect.equal(expect.filepath)
+  })
+  it("then an exception should be thrown if filepath is invalid.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    filepath <- "C:\\Users\\username\\Documents\\.Renviron"
+    expected.error <- paste0("Invalid filepath: ", "C:\\\\Users\\\\username\\\\Documents\\\\.Renviron", ".")
+
+    # Then
+    filepath |> validate[["Filepath"]]() |> expect.error(expected.error)
+  })
+})
