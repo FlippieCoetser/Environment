@@ -12,6 +12,8 @@ Session.Utility.Service <- \(broker) {
     filepath |> validate[['Filepath']]()
     filepath |> broker[["NavigateToFile"]]() |> validate[["NavigationResponse"]]()  
   }
-  services[['IDEInUse']] <- \() { }
+  services[['IDEInUse']] <- \() { 
+    broker[["IDEInUse"]]()
+  }
   return(services)
 }
