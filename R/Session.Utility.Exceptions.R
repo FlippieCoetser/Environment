@@ -21,6 +21,10 @@ Session.Utility.Exceptions <- \() {
       stop("Invalid filepath: ", filepath, ".", call. = FALSE)
     }
   }
-  exceptions[['NameIsNull']] <- \() {}
+  exceptions[['NameIsNull']]      <- \(invoke) {
+    if (invoke) {
+      stop("Name is null. Expected a name for the environment to retrieve its value.")
+    }
+  }
   return(exceptions)
 }
