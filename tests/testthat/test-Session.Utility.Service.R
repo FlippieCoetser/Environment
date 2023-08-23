@@ -111,4 +111,20 @@ describe("When filepath |> service[['NavigateToFile']]()",{
     # Then
     invalid.path |> service[["NavigateToFile"]]() |> expect.error(expected.error)
   })
+  it("then an exception is thrown if file not found.",{
+    # Given
+    broker  <- Session.Utility.Broker()
+    broker[['NavigateToFile']] <- \(filepath) {
+      warning('path[1]="C:/Users/Analyst/Documents/check.txt": The system cannot find the file specified.')
+    }
+    service <- broker |> Session.Utility.Service()
+
+    expected.error <- "File not found: C:/Users/Analyst/Documents/check.txt."
+
+    # When
+    invalid.file <- "C:/Users/Analyst/Documents/check.txt"
+
+    # Then
+    invalid.file |> service[["NavigateToFile"]]() |> expect.error(expected.error)
+  })
 })
