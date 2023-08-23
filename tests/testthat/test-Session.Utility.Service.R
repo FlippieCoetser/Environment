@@ -127,4 +127,15 @@ describe("When filepath |> service[['NavigateToFile']]()",{
     # Then
     invalid.file |> service[["NavigateToFile"]]() |> expect.error(expected.error)
   })
+  it("then an exception is thrown if filepath is invalid.",{
+    # Given
+    broker  <- Session.Utility.Broker()
+    service <- broker |> Session.Utility.Service()
+
+    input.filepath <- "C:\\Users\\username\\Documents\\.Renviron"
+    expected.error <- paste0("Invalid filepath: ", "C:\\\\Users\\\\username\\\\Documents\\\\.Renviron", ".")
+
+    # Then
+    input.filepath |> service[['NavigateToFile']]() |> expect.error(expected.error)
+  })
 })
