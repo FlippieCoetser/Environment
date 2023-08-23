@@ -93,3 +93,22 @@ describe("When service[['HasNavigateToFile']]()",{
     result |> expect.false()
   })
 })
+
+describe("When filepath |> service[['NavigateToFile']]()",{
+  it("then an exception is thrown if path not found.", {
+    # Given
+    broker  <- Session.Utility.Broker()
+    broker[['NavigateToFile']] <- \(filepath) {
+      warning('path[1]="C:/Users/InvalidPath/Documents/.Renviron": The system cannot find the path specified.')
+    }
+    service <- broker |> Session.Utility.Service()
+
+    expected.error <- "Path not found: C:/Users/InvalidPath/Documents/.Renviron."
+
+    # When
+    invalid.path <- "C:/Users/InvalidPath/Documents/.Renviron"
+
+    # Then
+    invalid.path |> service[["NavigateToFile"]]() |> expect.error(expected.error)
+  })
+})
