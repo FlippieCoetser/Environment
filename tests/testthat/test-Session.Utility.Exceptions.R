@@ -123,3 +123,16 @@ describe("When error |> exception[['NavigateToFileExceptions']]()",{
     warning |> exception[["NavigateToFileExceptions"]]() |> expect.error(excepted.error)
   })
 })
+
+describe("When input |> exception[['InvalidFilepath']]()",{
+  it("then no exception should be thrown if input is FALSE.",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    # When
+    validation.input <- FALSE
+
+    # Then
+    validation.input |> exception[["InvalidFilepath"]]() |> expect.no.error()
+  })
+})
