@@ -48,6 +48,13 @@ describe("When exceptions <- Session.Utility.Exceptions()",{
     # Then
     exceptions[["NameIsNull"]] |> expect.exist()
   })
+  it("then exceptions should contain ValueIsEmpty Exception",{
+    # Given
+    exceptions <- Session.Utility.Exceptions()
+
+    # Then
+    exceptions[["ValueIsEmpty"]] |> expect.exist()
+  })
 })
 
 describe("When input |> exception[['PathNotFound']](path)",{
