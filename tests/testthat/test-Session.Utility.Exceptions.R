@@ -87,3 +87,19 @@ describe("When input |> exception[['FileNotFound']](file)",{
     validation.input |> exception[["FileNotFound"]](random.file) |> expect.error(expected.error)
   })
 })
+
+describe("When error |> exception[['NavigateToFileExceptions']]()",{
+  it("then an PathNotFound exception should be thrown in error message contain cannot find the path.",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    excepted.error <- "Path not found: C:/Users/InvalidPath/Documents/.Renviron."
+
+    # When
+    warning <- list()
+    warning[['message']] <- 'path[1]="C:/Users/InvalidPath/Documents/.Renviron": The system cannot find the path specified.'
+
+    # Then
+    warning |> exception[["NavigateToFileExceptions"]]() |> expect.error(excepted.error)
+  })
+})
