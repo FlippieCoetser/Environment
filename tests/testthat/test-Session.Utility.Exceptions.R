@@ -102,4 +102,17 @@ describe("When error |> exception[['NavigateToFileExceptions']]()",{
     # Then
     warning |> exception[["NavigateToFileExceptions"]]() |> expect.error(excepted.error)
   })
+  it("then an FileNotFound exception should be thrown if error message contain cannot find the file.",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    excepted.error <- "File not found: C:/Users/Analyst/Documents/check.txt."
+
+    # When
+    warning <- list()
+    warning[['message']] <- 'path[1]="C:/Users/Analyst/Documents/check.txt": The system cannot find the file specified.'
+
+    # Then
+    warning |> exception[["NavigateToFileExceptions"]]() |> expect.error(excepted.error)
+  })
 })
