@@ -5,5 +5,6 @@ Session.Utility.Validation <- \() {
   validations[['NavigationResponse']] <- \(response) {
     response |> tryCatch(warning = exception[['NavigateToFileExceptions']])
   }
+  validations[['Filepath']] <- \() {}
   return(validations)
 }
