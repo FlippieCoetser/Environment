@@ -188,3 +188,31 @@ describe("When input |> exception[['NameIsNull']]()",{
     input |> exception[["NameIsNull"]]() |> expect.error(expected.error)
   })
 })
+
+describe("When input |> exception[['ValueIsEmpty']](name)",{
+  it("Then no exception is thrown if input is FALSE",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    variable.name  <- "name"
+
+    # When
+    input <- FALSE
+
+    # Then
+    input |> exception[["ValueIsEmpty"]](variable.name) |> expect.no.error()
+  })
+  it("Then an exception is thrown if input is TRUE",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    variable.name  <- "name"
+    expected.error <- paste0("No value found for provided environment variable:", variable.name, ". Please check .Renviron configuration file.")
+
+    # When
+    input <- TRUE
+
+    # Then
+    input |> exception[["ValueIsEmpty"]](variable.name) |> expect.error(expected.error)
+  })
+})
