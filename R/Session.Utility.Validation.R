@@ -5,6 +5,10 @@ Session.Utility.Validation <- \() {
   validations[['NavigationResponse']] <- \(response) {
     response |> tryCatch(warning = exception[['NavigateToFileExceptions']])
   }
-  validations[['Filepath']] <- \() {}
+  validations[['Filepath']]  <- \(filepath) {
+    pattern <- "^(([a-zA-Z]:)(/[a-zA-Z0-9_.-]+)+/[a-zA-Z0-9_.-]*[a-zA-Z0-9])|(/([a-zA-Z0-9_.-]*/?)*[a-zA-Z0-9_.-]*[a-zA-Z0-9])$"
+    pattern |> grepl(filepath) |> isFALSE() |> exception[['InvalidFilepath']](filepath)
+    return(filepath)
+  }
   return(validations)
 }
