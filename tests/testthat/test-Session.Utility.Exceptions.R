@@ -156,3 +156,28 @@ describe("When input |> exception[['InvalidFilepath']]()",{
     validation.input |> exception[["InvalidFilepath"]](random.filepath) |> expect.error(expected.error)
   })
 })
+
+describe("When input |> exception[['NameIsNull']]()",{
+  it("then no exception is thrown if input is FALSE",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    # When
+    input <- FALSE
+
+    # Then
+    input |> exception[["NameIsNull"]]() |> expect.no.error()
+  })
+  it("then an exception is thrown if input is TRUE",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
+
+    # When
+    input <- TRUE
+
+    # Then
+    input |> exception[["NameIsNull"]]() |> expect.error(expected.error)
+  })
+})
