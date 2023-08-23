@@ -41,6 +41,13 @@ describe("When services <- Session.Utility.Service()",{
     # Then
     services[["IDEInUse"]] |> expect.exist()
   })
+  it("then services should contain VSCodeInUse service.", {
+    # Given
+    services <- Session.Utility.Service()
+
+    # Then
+    services[["VSCodeInUse"]] |> expect.exist()
+  })
 })
 
 describe("When service[['HasRStudioAPI']]()",{
