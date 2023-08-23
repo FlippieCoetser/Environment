@@ -34,12 +34,12 @@ describe("When exceptions <- Session.Utility.Exceptions()",{
     # Then
     exceptions[["FileNotFound"]] |> expect.exist()
   })
-  it("then exceptions should contain InvalidFilePath Exception",{
+  it("then exceptions should contain InvalidFilepath Exception",{
     # Given
     exceptions <- Session.Utility.Exceptions()
 
     # Then
-    exceptions[["InvalidFilePath"]] |> expect.exist()
+    exceptions[["InvalidFilepath"]] |> expect.exist()
   })
 })
 
