@@ -16,6 +16,10 @@ Session.Utility.Exceptions <- \() {
       stop("File not found: ", file, ".", call. = FALSE)
     } 
   }
-  exceptions[['InvalidFilepath']] <- \() {}
+  exceptions[['InvalidFilepath']]  <- \(invoke, filepath = NULL) {
+    if (invoke) {
+      stop("Invalid filepath: ", filepath, ".", call. = FALSE)
+    }
+  }
   return(exceptions)
 }
