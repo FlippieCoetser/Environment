@@ -135,4 +135,17 @@ describe("When input |> exception[['InvalidFilepath']]()",{
     # Then
     validation.input |> exception[["InvalidFilepath"]]() |> expect.no.error()
   })
+  it("then an exception should be thrown if input is TRUE.",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    random.filepath <- "filepath"
+    expected.error  <- paste0("Invalid filepath: ", random.filepath, ".")
+
+    # When
+    validation.input <- TRUE
+
+    # Then
+    validation.input |> exception[["InvalidFilepath"]](random.filepath) |> expect.error(expected.error)
+  })
 })
