@@ -26,5 +26,6 @@ Session.Utility.Exceptions <- \() {
       stop("Name is null. Expected a name for the environment to retrieve its value.")
     }
   }
+  exceptions[['ValueIsEmpty']]    <- \() {}
   return(exceptions)
 }
