@@ -6,17 +6,17 @@ Session.Utility.Exceptions <- \() {
     'cannot find the path' |> grepl(error) |> exceptions[['PathNotFound']](filepath) 
     'cannot find the file' |> grepl(error) |> exceptions[['FileNotFound']](filepath)
   }
-  exceptions[['PathNotFound']] <- \(invoke, path = NULL) {
+  exceptions[['PathNotFound']]    <- \(invoke, path = NULL) {
     if (invoke) {
       stop("Path not found: ", path, ".", call. = FALSE)
     } 
   }
-  exceptions[['FileNotFound']] <- \(invoke, file = NULL) {
+  exceptions[['FileNotFound']]    <- \(invoke, file = NULL) {
     if (invoke) {
       stop("File not found: ", file, ".", call. = FALSE)
     } 
   }
-  exceptions[['InvalidFilepath']]  <- \(invoke, filepath = NULL) {
+  exceptions[['InvalidFilepath']] <- \(invoke, filepath = NULL) {
     if (invoke) {
       stop("Invalid filepath: ", filepath, ".", call. = FALSE)
     }
