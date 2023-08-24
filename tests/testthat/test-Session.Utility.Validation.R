@@ -118,3 +118,26 @@ describe("When value |> validate[['IsEmpty']]()",{
     value |> validate[["IsEmpty"]]() |> expect.false()
   })
 })
+
+describe("When value |> validate[['IsNull']]()",{
+  it("then True is return if value is NULL.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    # When
+    value <- NULL
+
+    # Then
+    value |> validate[["IsNull"]]() |> expect.true()
+  })
+  it("then False is return if value is not NULL.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    # When
+    value <- "value"
+
+    # Then
+    value |> validate[["IsNull"]]() |> expect.false()
+  })
+})
