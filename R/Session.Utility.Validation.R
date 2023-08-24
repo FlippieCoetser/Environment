@@ -20,5 +20,6 @@ Session.Utility.Validation <- \() {
     name |> validations[['IsNull']]() |> exception[['NameIsNull']]()
     return(name)
   }
+  validations[['Value']] <- \() {}
   return(validations)
 }
