@@ -10,5 +10,6 @@ Session.Utility.Validation <- \() {
     pattern |> grepl(filepath) |> isFALSE() |> exception[['InvalidFilepath']](filepath)
     return(filepath)
   }
+  validations[['IsEmpty']] <- \() {}
   return(validations)
 }
