@@ -11,6 +11,8 @@ Session.Utility.Validation <- \() {
     return(filepath)
   }
   validations[['IsEmpty']] <- \(value) value |> (\(x){ x == "" })()
-  validations[['IsNull']] <- \() {}
+  validations[['IsNull']] <- \(value) {
+    value |> is.null()
+  }
   return(validations)
 }
