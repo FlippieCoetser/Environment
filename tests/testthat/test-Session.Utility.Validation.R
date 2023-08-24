@@ -88,3 +88,26 @@ describe("When filepath |> validate[['Filepath']]()",{
     filepath |> validate[["Filepath"]]() |> expect.error(expected.error)
   })
 })
+
+describe("When value |> validate[['IsEmpty']]()",{
+  it("then True is return if value is empty.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    # When
+    value <- ""
+
+    # Then
+    value |> validate[["IsEmpty"]]() |> expect.true()
+  })
+  it("then False is return if value is not empty.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    # When
+    value <- "value"
+
+    # Then
+    value |> validate[["IsEmpty"]]() |> expect.false()
+  })
+})
