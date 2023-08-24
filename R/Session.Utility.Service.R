@@ -2,22 +2,22 @@ Session.Utility.Service <- \(broker) {
   validate <- Session.Utility.Validation()
   exception <- Session.Utility.Exceptions()
   services <- list()
-  services[['HasRStudioAPI']] <- \() {
+  services[['HasRStudioAPI']]     <- \() {
     broker[["HasRStudioAPI"]]()
   }
   services[['HasNavigateToFile']] <- \() {
     broker[["HasNavigateToFile"]]()
   }
-  services[['NavigateToFile']] <- \(filepath) {
+  services[['NavigateToFile']]    <- \(filepath) {
     filepath |> validate[['Filepath']]()
     filepath |> broker[["NavigateToFile"]]() |> validate[["NavigationResponse"]]()  
   }
-  services[['IDEInUse']] <- \() { 
+  services[['IDEInUse']]          <- \() { 
     broker[["IDEInUse"]]()
   }
-  services[['VSCodeInUse']] <- \() {
+  services[['VSCodeInUse']]       <- \() {
     broker[["VSCodeInUse"]]()
   }
-  services[['GetEnvVariable']] <- \() {}
+  services[['GetEnvVariable']]    <- \() {}
   return(services)
 }
