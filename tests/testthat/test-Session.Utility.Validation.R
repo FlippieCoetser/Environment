@@ -41,6 +41,13 @@ describe("When validators <- Session.Utility.Validation()",{
     # Then
     validators[["IsNull"]] |> expect.exist()
   })
+  it("then validators should contain Name validator.",{
+    # Given
+    validators <- Session.Utility.Validation()
+
+    # Then
+    validators[["Name"]] |> expect.exist()
+  })
 })
 
 describe("When response |> validate[['NavigationResponse']]()",{
