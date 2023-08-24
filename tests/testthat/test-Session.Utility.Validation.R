@@ -148,3 +148,38 @@ describe("When value |> validate[['IsNull']]()",{
     value |> validate[["IsNull"]]() |> expect.false()
   })
 })
+
+describe("When name |> validate[['Name']]()",{
+  it("then name is returned when name is not null",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    # When
+    name  <- "name" 
+
+    # Then
+    name |> validate[["Name"]]() |> expect.equal(name)
+  })
+  it("then no exception is thrown when name is not null",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    # When
+    name  <- "name" 
+
+    # Then
+    name |> validate[["Name"]]() |> expect.no.error()
+  })
+  it("then an exception is thrown when name is null",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
+
+    # When
+    name  <- NULL 
+
+    # Then
+    name |> validate[["Name"]]() |> expect.error(expected.error)
+  })
+})
