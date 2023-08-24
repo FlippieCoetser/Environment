@@ -190,3 +190,41 @@ describe("When name |> validate[['Name']]()",{
     name |> validate[["Name"]]() |> expect.error(expected.error)
   })
 })
+
+describe("When value |> validate[['Value']](name)",{
+  it("then value is returned when value is not empty",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    # When
+    name  <- "name" 
+    value <- "value"
+
+    # Then
+    value |> validate[["Value"]](name) |> expect.equal(value)
+  })
+  it("then no exception is thrown when value is not empty",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    # When
+    name  <- "name" 
+    value <- "value"
+
+    # Then
+    value |> validate[["Value"]](name) |> expect.no.error()
+  })
+  it("then an exception is thrown when value is empty",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    # When
+    name  <- "name" 
+    value <- ""
+
+    expected.error <- paste0("No value found for provided environment variable:", name, ". Please check .Renviron configuration file.")
+
+    # Then
+    value |> validate[["Value"]](name) |> expect.error(expected.error)
+  })
+})
