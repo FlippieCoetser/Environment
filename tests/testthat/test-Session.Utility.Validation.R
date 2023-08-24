@@ -27,6 +27,13 @@ describe("When validators <- Session.Utility.Validation()",{
     # Then
     validators[["Filepath"]] |> expect.exist()
   })
+  it("then validators should contain IsEmpty validator.", {
+    # Given
+    validators <- Session.Utility.Validation()
+
+    # Then
+    validators[["IsEmpty"]] |> expect.exist()
+  })
 })
 
 describe("When response |> validate[['NavigationResponse']]()",{
