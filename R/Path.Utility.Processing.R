@@ -1,1 +1,4 @@
-Path.Utility.Processing <- \() {}
+Path.Utility.Processing <- \() {
+  processors <- list()
+  return(processors)
+}
