@@ -7,6 +7,12 @@ Path.Utility.Processing <- \(service) {
     service[['NormalizePath']]()   |> 
     service[['CombinePath']](filename)
   }
-  processors[['EnsureFilepathExist']] <- \() {}
+  processors[['EnsureFilepathExist']] <- \(filepath) {
+    filepath.exists <- filepath |> service[['FilepathExists']]()
+
+    if(!filepath.exists) {
+      filepath |> service[['CreateFilepath']]()
+    }
+  }
   return(processors)
 }
