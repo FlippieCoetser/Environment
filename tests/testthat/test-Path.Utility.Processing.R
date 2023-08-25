@@ -4,3 +4,13 @@ describe('Path.Utility.Processing', {
     Path.Utility.Processing |> expect.exist()
   })
 })
+
+describe("When processors <- Path.Utility.Processing()",{
+  it("then processors should be a list.", {
+    # Given
+    processors <- Path.Utility.Processing()
+
+    # Then
+    processors |> expect.list()
+  })
+})
