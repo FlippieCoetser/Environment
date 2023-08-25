@@ -281,4 +281,18 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
     # Then
     name |> Sys.getenv() |> expect.equal(value)
   })
+  it("then an exception is thrown if name is NULL",{
+    # Given
+    broker  <- Session.Utility.Broker()
+    service <- broker |> Session.Utility.Service()
+
+    expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
+
+    # When
+    name  <- NULL
+    value <- "new_value"
+
+    # Then
+    name |> service[["CacheEnvVariable"]](value) |> expect.error(expected.error)
+  })
 })
