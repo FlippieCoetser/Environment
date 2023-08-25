@@ -295,4 +295,18 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
     # Then
     name |> service[["CacheEnvVariable"]](value) |> expect.error(expected.error)
   })
+  it("then an exception is thrown if value is NULL",{
+    # Given
+    broker  <- Session.Utility.Broker()
+    service <- broker |> Session.Utility.Service()
+
+    expected.error <- "Value is null. Expected a value for the environment to cache."
+
+    # When
+    name  <- "NEW_VARIABLE"
+    value <- NULL
+
+    # Then
+    name |> service[["CacheEnvVariable"]](value) |> expect.error(expected.error)
+  })
 })
