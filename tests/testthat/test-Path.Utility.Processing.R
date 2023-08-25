@@ -21,3 +21,25 @@ describe("When processors <- Path.Utility.Processing()",{
     processors[['GetConfigFilepath']] |> expect.exist()
   })
 })
+
+describe("When process[['GetConfigFilepath']]()",{
+  it("then the filepath to the users .Renviron file should be returned.", {
+    # Given
+    broker  <- Path.Utility.Broker()
+    service <- broker |> Path.Utility.Service()
+    process <- service |> Path.Utility.Processing()
+
+    path     <- service[['GetUserHomePath']]()
+    filename <- service[['GetConfigFilename']]()
+
+    expected.filepath <- path |> 
+      service[['NormalizePath']]() |> 
+      service[['CombinePath']](filename)
+
+    # When
+    actual.filepath <- process[['GetConfigFilepath']]()
+
+    # Then
+    actual.filepath |> expect.equal(expected.filepath)
+  })
+})
