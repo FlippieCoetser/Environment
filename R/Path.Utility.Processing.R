@@ -1,5 +1,11 @@
-Path.Utility.Processing <- \() {
+Path.Utility.Processing <- \(service) {
   processors <- list()
-  processors[['GetConfigFilepath']] <- \() {}
+  processors[['GetConfigFilepath']] <- \() {
+    filename <- service[['GetConfigFilename']]()
+
+    service[['GetUserHomePath']]() |> 
+    service[['NormalizePath']]()   |> 
+    service[['CombinePath']](filename)
+  }
   return(processors)
 }
