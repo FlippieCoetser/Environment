@@ -246,4 +246,15 @@ describe("When name |> service[['GetEnvVariable']]()",{
     # Then
     name |> service[["GetEnvVariable"]]() |> expect.error(expected.error)
   })
+  it("then an exception is thrown if no value for variable is found",{
+    # Given
+    broker  <- Session.Utility.Broker()
+    service <- broker |> Session.Utility.Service()
+
+    name           <- "INVALID"
+    expected.error <- "No value found for provided environment variable:INVALID. Please check .Renviron configuration file."
+
+    # Then
+    name |> service[["GetEnvVariable"]]() |> expect.error(expected.error)
+  })
 })
