@@ -64,49 +64,49 @@ describe("When operations <- Session.Utility.Broker()", {
   })
 })
 
-describe("When variable |> operation[['GetEnvVariable']]()",{
-  it("then the value of variable stored in .Renviron file should be returned.", {
+describe("When name |> operation[['GetEnvVariable']]()",{
+  it("then the value of name stored in .Renviron file should be returned.", {
     skip_if_not(environment == 'local')
     # Given
     operations <- Session.Utility.Broker()
 
-    variable       <- "ENVIRONMENT"
-    expected.value <- variable |> Sys.getenv()
+    name           <- "ENVIRONMENT"
+    expected.value <- name |> Sys.getenv()
 
     # When
-    actual.value <- variable |> operations[["GetEnvVariable"]]()
+    actual.value <- name |> operations[["GetEnvVariable"]]()
 
     # Then
     actual.value |> expect.equal(expected.value)
   })
-  it("then an empty string is returned if the variable is not defined in .Renviron file.", {
+  it("then an empty string is returned if the name is not defined in .Renviron file.", {
     skip_if_not(environment == 'local')
     # Given
     operations <- Session.Utility.Broker()
 
-    variable       <- "NOT_DEFINED"
+    name           <- "NOT_DEFINED"
     expected.value <- ""
 
     # When
-    actual.value <- variable |> operations[["GetEnvVariable"]]()
+    actual.value <- name |> operations[["GetEnvVariable"]]()
 
     # Then
     actual.value |> expect.equal(expected.value)
   })
 })
 
-describe("When variable |> operation[['CacheEnvVariable']](value)",{
-  it("then the value for variable is cached.", {
+describe("When name |> operation[['CacheEnvVariable']](value)",{
+  it("then the value for name is cached.", {
     # Given
     operations <- Session.Utility.Broker()
 
-    variable <- "NEW_VARIABLE"
-    value    <- "new_value"
+    name  <- "NEW_VARIABLE"
+    value <- "new_value"
 
     # When
-    variable |> operations[["CacheEnvVariable"]](value)
+    name |> operations[["CacheEnvVariable"]](value)
 
     # Then
-    variable |> Sys.getenv() |> expect.equal(value)
+    name |> Sys.getenv() |> expect.equal(value)
   })
 })
