@@ -31,6 +31,10 @@ Session.Utility.Exceptions <- \() {
       stop("No value found for provided environment variable:", name, ". Please check .Renviron configuration file.")
     }
   }
-  exceptions[['ValueIsNull']]     <- \() {}
+  exceptions[['ValueIsNull']]     <- \(invoke) {
+    if (invoke) {
+      stop("Value is null. Expected a value for the environment to cache.")
+    }
+  }
   return(exceptions)
 }
