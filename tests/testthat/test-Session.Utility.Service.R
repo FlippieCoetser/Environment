@@ -218,3 +218,19 @@ describe("When service[['VSCodeInUse']]()",{
     result |> expect.false()
   })
 })
+
+describe("When name |> service[['GetEnvVariable']]()",{
+  it("then the value for name is cached.", {
+    # Given
+    broker  <- Session.Utility.Broker()
+    service <- broker |> Session.Utility.Service()
+
+    name  <- "ENVIRONMENT"
+
+    # When
+    value <- name |> service[["GetEnvVariable"]]()
+
+    # Then
+    name |> Sys.getenv() |> expect.equal(value)
+  })
+})
