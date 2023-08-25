@@ -20,6 +20,13 @@ describe("When processors <- Path.Utility.Processing()",{
     # Then
     processors[['GetConfigFilepath']] |> expect.exist()
   })
+  it("then processors contains EnsureFilepathExist", {
+    # Given
+    processors <- Path.Utility.Processing()
+
+    # Then
+    processors[['EnsureFilepathExist']] |> expect.exist()
+  })
 })
 
 describe("When process[['GetConfigFilepath']]()",{
