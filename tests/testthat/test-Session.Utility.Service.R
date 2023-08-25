@@ -55,6 +55,13 @@ describe("When services <- Session.Utility.Service()",{
     # Then
     services[["GetEnvVariable"]] |> expect.exist()
   })
+  it("then services should contain CacheEnvVariable service.", {
+    # Given
+    services <- Session.Utility.Service()
+
+    # Then
+    services[["CacheEnvVariable"]] |> expect.exist()
+  })
 })
 
 describe("When service[['HasRStudioAPI']]()",{
