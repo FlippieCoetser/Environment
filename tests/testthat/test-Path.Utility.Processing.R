@@ -50,3 +50,29 @@ describe("When process[['GetConfigFilepath']]()",{
     actual.filepath |> expect.equal(expected.filepath)
   })
 })
+
+describe("When filepath |> process[['EnsureFilepathExist']]()",{
+  it("then file created in path if not exist.", {
+    # Given
+    broker  <- Path.Utility.Broker()
+    service <- broker |> Path.Utility.Service()
+    process <- service |> Path.Utility.Processing()
+
+    path     <- service[['GetUserHomePath']]()
+    filename <- 'new.file'
+
+    filepath <- path |> 
+      service[['NormalizePath']]() |> 
+      service[['CombinePath']](filename)
+
+    if(filepath |> service[['FilepathExists']]()) {
+      filepath |> file.remove()
+    }
+
+    # When
+    filepath |> process[['EnsureFilepathExist']]()
+
+    # Then
+    filepath |> service[['FilepathExists']]() |> expect.true()
+  })
+})
