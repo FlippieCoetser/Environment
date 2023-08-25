@@ -22,5 +22,6 @@ Session.Utility.Service <- \(broker) {
     name |> validate[['Name']]()
     name |> broker[["GetEnvVariable"]]() |> validate[['Value']](name)
   }
+  services[['CacheEnvVariable']]  <- \() {}
   return(services)
 }
