@@ -233,4 +233,17 @@ describe("When name |> service[['GetEnvVariable']]()",{
     # Then
     name |> Sys.getenv() |> expect.equal(value)
   })
+  it("then an exception is thrown is name is NULL",{
+    # Given
+    broker  <- Session.Utility.Broker()
+    service <- broker |> Session.Utility.Service()
+
+    expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
+
+    # When
+    name <- NULL
+
+    # Then
+    name |> service[["GetEnvVariable"]]() |> expect.error(expected.error)
+  })
 })
