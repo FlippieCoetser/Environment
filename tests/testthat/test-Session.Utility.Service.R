@@ -220,7 +220,7 @@ describe("When service[['VSCodeInUse']]()",{
 })
 
 describe("When name |> service[['GetEnvVariable']]()",{
-  it("then the value for name is cached.", {
+  it("then the value for variable with name is returned.", {
     # Given
     broker  <- Session.Utility.Broker()
     service <- broker |> Session.Utility.Service()
