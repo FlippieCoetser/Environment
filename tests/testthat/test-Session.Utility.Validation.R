@@ -227,4 +227,16 @@ describe("When value |> validate[['Value']](name)",{
     # Then
     value |> validate[["Value"]](name) |> expect.error(expected.error)
   })
+  it("then an exception is thrown when value is Null",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    # When
+    value <- NULL
+
+    expected.error <- "Value is null. Expected a value for the environment to cache."
+
+    # Then
+    value |> validate[["Value"]]() |> expect.error(expected.error)
+  })
 })
