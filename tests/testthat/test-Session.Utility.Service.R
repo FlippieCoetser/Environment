@@ -265,3 +265,20 @@ describe("When name |> service[['GetEnvVariable']]()",{
     name |> service[["GetEnvVariable"]]() |> expect.error(expected.error)
   })
 })
+
+describe("When name |> service[['CacheEnvVariable']](value)",{
+  it("then the value of variable with name is cached.", {
+    # Given
+    broker  <- Session.Utility.Broker()
+    service <- broker |> Session.Utility.Service()
+
+    name  <- "NEW_VARIABLE"
+    value <- "new_value"
+
+    # When
+    name |> service[["CacheEnvVariable"]](value)
+
+    # Then
+    name |> Sys.getenv() |> expect.equal(value)
+  })
+})
