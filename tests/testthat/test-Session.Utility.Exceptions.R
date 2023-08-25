@@ -223,3 +223,28 @@ describe("When input |> exception[['ValueIsEmpty']](name)",{
     input |> exception[["ValueIsEmpty"]](variable.name) |> expect.error(expected.error)
   })
 })
+
+describe("When input |> exception[['ValueIsNull']]()",{
+  it("then no exception is thrown if input is FALSE",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    # When
+    input <- FALSE
+
+    # Then
+    input |> exception[["ValueIsNull"]]() |> expect.no.error()
+  })
+  it("then an exception is thrown if input is TRUE",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    expected.error <- "Value is null. Expected a value for the environment to cache."
+
+    # When
+    input <- TRUE
+
+    # Then
+    input |> exception[["ValueIsNull"]]() |> expect.error(expected.error)
+  })
+})
