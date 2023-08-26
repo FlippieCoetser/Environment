@@ -1,6 +1,9 @@
 Session.Utility.Processing <- \(service) {
   processors <- list()
   processors[['GetIDEInUse']] <- \() {
+    if(service[["IDEInUse"]]() |> isFALSE()) {
+      return("None")
+    }
     if(service[["VSCodeInUse"]]() |> isFALSE()) {
       return("RStudio")
     }
