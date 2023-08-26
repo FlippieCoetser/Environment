@@ -62,6 +62,13 @@ describe("When validators <- Session.Utility.Validation()",{
     # Then
     validators[["IDE"]] |> expect.exist()
   })
+  it("then validators should contain APICapability Validator.",{
+    # Given
+    validators <- Session.Utility.Validation()
+
+    # Then
+    validators[["APICapability"]] |> expect.exist()
+  })
 })
 
 describe("When response |> validate[['NavigationResponse']]()",{
