@@ -103,3 +103,38 @@ describe("When process[['OpenConfigFile']]()",{
     filepath |> process[['OpenConfigFile']]() |> expect.error(expected.error)
   })
 })
+
+describe("When ide |> process[['CheckIDEInUse']]()",{
+  it("then an exception should be thrown if RStudioAPI is unavailable in RStudio.",{
+    # Given
+    broker <- Session.Utility.Broker()
+    broker[['HasRStudioAPI']]     <- \() FALSE
+    broker[['HasNavigateToFile']] <- \() TRUE
+
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    ide <- "RStudio"
+
+    expected.error <- "RStudio API is unavailable in RStudio."
+
+    # Then
+    ide |> process[['CheckIDEInUse']]() |> expect.error(expected.error)
+  })
+  it("then an exception should be thrown if RStudioAPI is unavailable in VSCode.",{
+    # Given
+    broker <- Session.Utility.Broker()
+    broker[['HasRStudioAPI']]     <- \() FALSE
+    broker[['HasNavigateToFile']] <- \() TRUE
+
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    ide <- "VSCode"
+
+    expected.error <- "RStudio API is unavailable in VSCode."
+
+    # Then
+    ide |> process[['CheckIDEInUse']]() |> expect.error(expected.error)
+  })
+})
