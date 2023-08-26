@@ -86,7 +86,7 @@ describe("When process[['GetIDEInUse']]()",{
   })
 })
 
-describe("When filepath |> process[['OpenConfigFile']]()",{
+describe("When filepath |> process[['OpenFilePath']]()",{
   it("then an exception should be thrown if no IDE in use.",{
     # Given
     broker <- Session.Utility.Broker()
@@ -100,7 +100,7 @@ describe("When filepath |> process[['OpenConfigFile']]()",{
     expected.error <- "No IDE in use but required."
     
     # Then
-    filepath |> process[['OpenConfigFile']]() |> expect.error(expected.error)
+    filepath |> process[['OpenFilePath']]() |> expect.error(expected.error)
   })
   it("then an exception should be thrown if RStudio API is unavailable in RStudio.",{
     # Given
@@ -117,7 +117,7 @@ describe("When filepath |> process[['OpenConfigFile']]()",{
     expected.error <- "RStudio API is unavailable in RStudio."
 
     # Then
-    filepath |> process[['OpenConfigFile']]() |> expect.error(expected.error)
+    filepath |> process[['OpenFilePath']]() |> expect.error(expected.error)
   })
   it("then an exception should be thrown if RStudio API is unavailable in VSCode.",{
     # Given
@@ -135,7 +135,7 @@ describe("When filepath |> process[['OpenConfigFile']]()",{
     expected.error <- "RStudio API is unavailable in VSCode."
 
     # Then
-    filepath |> process[['OpenConfigFile']]() |> expect.error(expected.error)
+    filepath |> process[['OpenFilePath']]() |> expect.error(expected.error)
   })
   it("then an exception should be thrown if Navigate To File function is unavailable in RStudio.",{
     # Given
@@ -152,7 +152,7 @@ describe("When filepath |> process[['OpenConfigFile']]()",{
     expected.error <- "Navigate to File function is unavailable in RStudio."
 
     # Then
-    filepath |> process[['OpenConfigFile']]() |> expect.error(expected.error)
+    filepath |> process[['OpenFilePath']]() |> expect.error(expected.error)
   })
   it("then an exception should be thrown if Navigate To File function is unavailable in VSCode.",{
     # Given
@@ -170,7 +170,7 @@ describe("When filepath |> process[['OpenConfigFile']]()",{
     expected.error <- "Navigate to File function is unavailable in VSCode."
 
     # Then
-    filepath |> process[['OpenConfigFile']]() |> expect.error(expected.error)
+    filepath |> process[['OpenFilePath']]() |> expect.error(expected.error)
   })
 })
 
