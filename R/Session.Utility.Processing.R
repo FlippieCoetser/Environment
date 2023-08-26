@@ -15,6 +15,7 @@ Session.Utility.Processing <- \(service) {
   }
   processors[['CheckIDEInUse']] <- \(ide) {
     service[['HasRStudioAPI']]() |> validate[['APIAvailability']](ide)
+    service[['HasNavigateToFile']]() |> validate[['APICapability']](ide)
   }
   processors[['OpenConfigFile']] <- \(filepath) {
     ide <- processors[['GetIDEInUse']]()
