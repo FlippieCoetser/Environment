@@ -31,6 +31,8 @@ Session.Utility.Validation <- \() {
   validations[['APIAvailability']]    <- \(available, ide) {
     available |> isFALSE() |> exception[['RStudioAPIUnavailable']](ide)
   }
-  validations[['APICapability']]      <- \() {}
+  validations[['APICapability']]      <- \(capable, ide) {
+    capable |> isFALSE() |> exception[['NavigateToFileUnavailable']](ide)
+  }
   return(validations)
 }
