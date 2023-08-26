@@ -13,6 +13,7 @@ Session.Utility.Processing <- \(service) {
       return("VSCode")
     }
   }
+  processors[['CheckIDEInUse']] <- \() {}
   processors[['OpenConfigFile']] <- \(filepath) {
     ide <- processors[['GetIDEInUse']]()
     ide |> validate[['IDE']]()
