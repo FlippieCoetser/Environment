@@ -25,6 +25,8 @@ Session.Utility.Validation <- \() {
     value |> validations[['IsEmpty']]() |> exception[['ValueIsEmpty']](name)
     return(value)
   }
-  validations[['IDE']]                <- \() {}
+  validations[['IDE']]                <- \(ide) {
+    'None' |> grepl(ide) |> exception[['NoIDEInUse']]()
+  }
   return(validations)
 }
