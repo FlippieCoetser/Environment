@@ -102,6 +102,76 @@ describe("When filepath |> process[['OpenConfigFile']]()",{
     # Then
     filepath |> process[['OpenConfigFile']]() |> expect.error(expected.error)
   })
+  it("then an exception should be thrown if RStudio API is unavailable in RStudio.",{
+    # Given
+    broker <- Session.Utility.Broker()
+    broker[['IDEInUse']]          <- \() TRUE
+    broker[['HasRStudioAPI']]     <- \() FALSE
+    broker[['HasNavigateToFile']] <- \() FALSE
+
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    filepath <- "C:/Users/username/Documents/.Renviron"
+
+    expected.error <- "RStudio API is unavailable in RStudio."
+
+    # Then
+    filepath |> process[['OpenConfigFile']]() |> expect.error(expected.error)
+  })
+  it("then an exception should be thrown if RStudio API is unavailable in VSCode.",{
+    # Given
+    broker <- Session.Utility.Broker()
+    broker[['IDEInUse']]          <- \() TRUE
+    broker[['VSCodeInUse']]       <- \() TRUE
+    broker[['HasRStudioAPI']]     <- \() FALSE
+    broker[['HasNavigateToFile']] <- \() FALSE
+
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    filepath <- "C:/Users/username/Documents/.Renviron"
+
+    expected.error <- "RStudio API is unavailable in VSCode."
+
+    # Then
+    filepath |> process[['OpenConfigFile']]() |> expect.error(expected.error)
+  })
+  it("then an exception should be thrown if Navigate To File function is unavailable in RStudio.",{
+    # Given
+    broker <- Session.Utility.Broker()
+    broker[['IDEInUse']]          <- \() TRUE
+    broker[['HasRStudioAPI']]     <- \() TRUE
+    broker[['HasNavigateToFile']] <- \() FALSE
+
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    filepath <- "C:/Users/username/Documents/.Renviron"
+
+    expected.error <- "Navigate to File function is unavailable in RStudio."
+
+    # Then
+    filepath |> process[['OpenConfigFile']]() |> expect.error(expected.error)
+  })
+  it("then an exception should be thrown if Navigate To File function is unavailable in VSCode.",{
+    # Given
+    broker <- Session.Utility.Broker()
+    broker[['IDEInUse']]          <- \() TRUE
+    broker[['VSCodeInUse']]       <- \() TRUE
+    broker[['HasRStudioAPI']]     <- \() TRUE
+    broker[['HasNavigateToFile']] <- \() FALSE
+
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    filepath <- "C:/Users/username/Documents/.Renviron"
+
+    expected.error <- "Navigate to File function is unavailable in VSCode."
+
+    # Then
+    filepath |> process[['OpenConfigFile']]() |> expect.error(expected.error)
+  })
 })
 
 describe("When ide |> process[['CheckIDEInUse']]()",{
