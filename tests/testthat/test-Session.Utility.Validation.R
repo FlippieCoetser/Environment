@@ -276,3 +276,43 @@ describe("When ide |> validate[['IDE']]()",{
     ide |> validate[["IDE"]]() |> expect.error(expected.error)
   })
 })
+
+describe("When availability |> validate[['APIAvailability']](ide)",{
+  it("then no exception should be thrown if RStudio API is available",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    # When
+    availability <- TRUE
+
+    # Then
+    availability |> validate[["APIAvailability"]]() |> expect.no.error()
+  })
+  })
+  it("then an exception should be thrown if RStudio API is unavailable in RStudio.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    expected.error <- "RStudio API is unavailable in RStudio."
+
+    # When
+    availability <- FALSE
+    ide <- "RStudio"
+
+    # Then
+    availability |> validate[["APIAvailability"]](ide) |> expect.error(expected.error)
+  })
+  it("then an exception should be thrown if RStudio API is unavailable in VSCode.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    expected.error <- "RStudio API is unavailable in VSCode."
+
+    # When
+    availability <- FALSE
+    ide <- "VSCode"
+
+    # Then
+    availability |> validate[["APIAvailability"]](ide) |> expect.error(expected.error)
+  })
+})
