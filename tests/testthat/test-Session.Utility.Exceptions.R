@@ -311,7 +311,7 @@ describe("When input |> exception[['RStudioAPIUnavailable']](ide)",{
     exception <- Session.Utility.Exceptions()
     
     ide <- "ide.name"
-    expected.error <- paste0("RStudio API is unavailable for IDE: ",ide,".")
+    expected.error <- paste0("RStudio API is unavailable in IDE: ",ide,".")
 
     # When
     input <- TRUE
