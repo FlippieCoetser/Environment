@@ -294,3 +294,29 @@ describe("When input |> exception[['NoIDEInUse']]()",{
     input |> exception[["NoIDEInUse"]]() |> expect.error(expected.error)
   })
 })
+
+describe("When input |> exception[['RStudioAPIUnavailable']](ide)",{
+  it("then no exception is thrown if input is FALSE",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    # When
+    input <- FALSE
+
+    # Then
+    input |> exception[["RStudioAPIUnavailable"]]() |> expect.no.error()
+  })
+  it("then an exception is thrown if input is TRUE",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+    
+    ide <- "ide.name"
+    expected.error <- paste0("RStudio API is unavailable for IDE: ",ide,".")
+
+    # When
+    input <- TRUE
+
+    # Then
+    input |> exception[["RStudioAPIUnavailable"]](ide) |> expect.error(expected.error)
+  })
+})
