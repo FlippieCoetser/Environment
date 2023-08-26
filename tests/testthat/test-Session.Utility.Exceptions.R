@@ -255,3 +255,28 @@ describe("When input |> exception[['ValueIsNull']]()",{
     input |> exception[["ValueIsNull"]]() |> expect.error(expected.error)
   })
 })
+
+describe("When input |> exception[['NoIDEInUse']]()",{
+  it("then no exception is thrown if input is FALSE",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    # When
+    input <- FALSE
+
+    # Then
+    input |> exception[["NoIDEInUse"]]() |> expect.no.error()
+  })
+  it("then an exception is thrown if input is TRUE",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    expected.error <- "No IDE in use but required."
+
+    # When
+    input <- TRUE
+
+    # Then
+    input |> exception[["NoIDEInUse"]]() |> expect.error(expected.error)
+  })
+})
