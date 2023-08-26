@@ -36,5 +36,6 @@ Session.Utility.Exceptions <- \() {
       stop("Value is null. Expected a value for the environment to cache.")
     }
   }
+  exceptions[['NoIDEInUse']]      <- \() {}
   return(exceptions)
 }
