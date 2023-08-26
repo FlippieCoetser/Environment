@@ -55,6 +55,13 @@ describe("When validators <- Session.Utility.Validation()",{
     # Then
     validators[["Value"]] |> expect.exist()
   })
+  it("then validators should contain IDE Validator.",{
+    # Given
+    validators <- Session.Utility.Validation()
+
+    # Then
+    validators[["IDE"]] |> expect.exist()
+  })
 })
 
 describe("When response |> validate[['NavigationResponse']]()",{
