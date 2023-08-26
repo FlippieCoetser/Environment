@@ -20,8 +20,7 @@ Session.Utility.Processing <- \(service) {
     service[['HasNavigateToFile']]() |> validate[['APICapability']](ide)
   }
   processors[['OpenConfigFile']] <- \(filepath) {
-    ide <- processors[['GetIDEInUse']]()
-    ide |> validate[['IDE']]()
+    processors[['GetIDEInUse']]() |> processors[['CheckIDEInUse']]()
 
   }
   return(processors)
