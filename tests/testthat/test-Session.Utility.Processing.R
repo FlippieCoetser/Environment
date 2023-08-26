@@ -38,4 +38,20 @@ describe("When process[['GetIDEInUse']]()",{
     # Then
     result |> expect.equal(expected.result)
   })
+  it("then VSCode should be returned if VSCode is in use.", {
+    # Given
+    broker <- Session.Utility.Broker()
+    broker[['VSCodeInUse']] <- \() TRUE
+
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    expected.result <- "VSCode"
+
+    # When
+    result <- process[["GetIDEInUse"]]()
+
+    # Then
+    result |> expect.equal(expected.result)
+  })
 })
