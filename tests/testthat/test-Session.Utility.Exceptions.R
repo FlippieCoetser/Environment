@@ -62,6 +62,13 @@ describe("When exceptions <- Session.Utility.Exceptions()",{
     # Then
     exceptions[["ValueIsNull"]] |> expect.exist()
   })
+  it("then exceptions should contain NoIDEInUse Exception",{
+    # Given
+    exceptions <- Session.Utility.Exceptions()
+
+    # Then
+    exceptions[["NoIDEInUse"]] |> expect.exist()
+  })
 })
 
 describe("When input |> exception[['PathNotFound']](path)",{
