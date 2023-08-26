@@ -36,6 +36,10 @@ Session.Utility.Exceptions <- \() {
       stop("Value is null. Expected a value for the environment to cache.")
     }
   }
-  exceptions[['NoIDEInUse']]      <- \() {}
+  exceptions[['NoIDEInUse']]      <- \(invoke) {
+    if (invoke) {
+      stop("No IDE in use but required.")
+    }
+  }
   return(exceptions)
 }
