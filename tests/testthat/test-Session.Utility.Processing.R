@@ -86,7 +86,7 @@ describe("When process[['GetIDEInUse']]()",{
   })
 })
 
-describe("When process[['OpenConfigFile']]()",{
+describe("When filepath |> process[['OpenConfigFile']]()",{
   it("then an exception should be thrown if no IDE in use.",{
     # Given
     broker <- Session.Utility.Broker()
