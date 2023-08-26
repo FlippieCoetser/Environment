@@ -315,3 +315,42 @@ describe("When availability |> validate[['APIAvailability']](ide)",{
     availability |> validate[["APIAvailability"]](ide) |> expect.error(expected.error)
   })
 })
+
+describe("When capable |> validate[['APICapability']](ide)",{
+  it("then no exception should be thrown if Navigate To File function is available.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    # When
+    capable <- TRUE
+
+    # Then
+    capable |> validate[["APICapability"]](ide) |> expect.no.error()
+  })
+  it("then an exception should be thrown if Navigate To File function is not available in RStudio.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    expected.error <- "Navigate to File function is unavailable in RStudio."
+
+    # When
+    capable <- FALSE
+    ide <- "RStudio"
+
+    # Then
+    capable |> validate[["APICapability"]](ide) |> expect.error(expected.error)
+  })
+  it("then an exception should be thrown if Navigate To File function is not available in VSCode.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    expected.error <- "Navigate to File function is unavailable in VSCode."
+
+    # When
+    capable <- FALSE
+    ide <- "VSCode"
+
+    # Then
+    capable |> validate[["APICapability"]](ide) |> expect.error(expected.error)
+  })
+})
