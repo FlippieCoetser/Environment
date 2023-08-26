@@ -76,6 +76,13 @@ describe("When exceptions <- Session.Utility.Exceptions()",{
     # Then
     exceptions[["RStudioAPIUnavailable"]] |> expect.exist()
   })
+  it("then exceptions should contain NavigateToFileUnavailable Exception",{
+    # Given
+    exceptions <- Session.Utility.Exceptions()
+
+    # Then
+    exceptions[["NavigateToFileUnavailable"]] |> expect.exist()
+  })
 })
 
 describe("When input |> exception[['PathNotFound']](path)",{
