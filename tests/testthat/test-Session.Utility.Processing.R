@@ -78,3 +78,21 @@ describe("When process[['GetIDEInUse']]()",{
     result |> expect.equal(expected.result)
   })
 })
+
+describe("When process[['OpenConfigFile']]()",{
+  it("then an exception should be thrown if no IDE in use.",{
+    # Given
+    broker <- Session.Utility.Broker()
+    broker[['IDEInUse']] <- \() FALSE
+
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    filepath <- "C:/Users/username/Documents/.Renviron"
+
+    expected.error <- "No IDE in use but required."
+    
+    # Then
+    filepath |> process[['OpenConfigFile']]() |> expect.error(expected.error)
+  })
+})
