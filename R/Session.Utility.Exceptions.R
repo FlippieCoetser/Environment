@@ -41,5 +41,6 @@ Session.Utility.Exceptions <- \() {
       stop("No IDE in use but required.")
     }
   }
+  exceptions[['RStudioAPIUnavailable']] <- \() {}
   return(exceptions)
 }
