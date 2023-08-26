@@ -4,6 +4,9 @@ Session.Utility.Processing <- \(service) {
     if(service[["VSCodeInUse"]]() |> isFALSE()) {
       return("RStudio")
     }
+    if(service[['VSCodeInUse']]()) {
+      return("VSCode")
+    }
   }
   return(processors)
 }
