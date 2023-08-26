@@ -247,3 +247,18 @@ describe("When value |> validate[['Value']](name)",{
     value |> validate[["Value"]]() |> expect.error(expected.error)
   })
 })
+
+describe("When ide |> validate[['IDE']]()",{
+  it("then an exception should be thrown if no IDE in use.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    expected.error <- "No IDE in use but required."
+
+    # When
+    ide <- "None"
+
+    # Then
+    ide |> validate[["IDE"]]() |> expect.error(expected.error)
+  })
+})
