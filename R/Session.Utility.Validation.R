@@ -28,5 +28,6 @@ Session.Utility.Validation <- \() {
   validations[['IDE']]                <- \(ide) {
     'None' |> grepl(ide) |> exception[['NoIDEInUse']]()
   }
+  validations[['APICapability']]      <- \() {}
   return(validations)
 }
