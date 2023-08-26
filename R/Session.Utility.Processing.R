@@ -1,1 +1,4 @@
-Session.Utility.Processing <- \() {}
+Session.Utility.Processing <- \() {
+  processors <- list()
+  return(processors)
+}
