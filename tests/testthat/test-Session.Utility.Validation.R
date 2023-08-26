@@ -288,7 +288,6 @@ describe("When availability |> validate[['APIAvailability']](ide)",{
     # Then
     availability |> validate[["APIAvailability"]]() |> expect.no.error()
   })
-  })
   it("then an exception should be thrown if RStudio API is unavailable in RStudio.",{
     # Given
     validate <- Session.Utility.Validation()
