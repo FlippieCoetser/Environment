@@ -137,4 +137,36 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
     # Then
     ide |> process[['CheckIDEInUse']]() |> expect.error(expected.error)
   })
+  it("then an exception should be thrown if Navigate To File function is unavailable in RStudio.",{
+    # Given
+    broker <- Session.Utility.Broker()
+    broker[['HasRStudioAPI']]     <- \() TRUE
+    broker[['HasNavigateToFile']] <- \() FALSE
+
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    ide <- "RStudio"
+
+    expected.error <- "Navigate to File function is unavailable in RStudio."
+
+    # Then
+    ide |> process[['CheckIDEInUse']]() |> expect.error(expected.error)
+  })
+  it("then an exception should be thrown if Navigate To File function is unavailable in VSCode.",{
+    # Given
+    broker <- Session.Utility.Broker()
+    broker[['HasRStudioAPI']]     <- \() TRUE
+    broker[['HasNavigateToFile']] <- \() FALSE
+
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    ide <- "VSCode"
+
+    expected.error <- "Navigate to File function is unavailable in VSCode."
+
+    # Then
+    ide |> process[['CheckIDEInUse']]() |> expect.error(expected.error)
+  })
 })
