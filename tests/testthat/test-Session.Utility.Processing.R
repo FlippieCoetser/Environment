@@ -22,6 +22,22 @@ describe("When processors <- Session.Utility.Processing()",{
 })
 
 describe("When process[['GetIDEInUse']]()",{
+  it("then None should be returned in no IDE is in use.", {
+    # Given
+    broker <- Session.Utility.Broker()
+    broker[['IDEInUse']] <- \() FALSE
+
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    expected.result <- "None"
+
+    # When
+    result <- process[["GetIDEInUse"]]()
+
+    # Then
+    result |> expect.equal(expected.result)
+  })
   it("then RStudio should be returned is RStudio is in use.", {
     # Given
     broker <- Session.Utility.Broker()
