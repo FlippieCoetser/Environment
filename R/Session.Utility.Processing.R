@@ -11,5 +11,6 @@ Session.Utility.Processing <- \(service) {
       return("VSCode")
     }
   }
+  processors[['OpenConfigFile']] <- \() {}
   return(processors)
 }
