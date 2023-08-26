@@ -12,4 +12,11 @@ describe("When processors <- Session.Utility.Processing()",{
     # Then
     processors |> expect.list()
   })
+  it("then processors should contain GetIDEInUse.", {
+    # Given
+    processors <- Session.Utility.Processing()
+
+    # Then
+    processors[["GetIDEInUse"]] |> expect.exist()
+  })
 })
