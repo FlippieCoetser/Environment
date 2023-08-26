@@ -311,7 +311,7 @@ describe("When input |> exception[['RStudioAPIUnavailable']](ide)",{
     exception <- Session.Utility.Exceptions()
     
     ide <- "ide.name"
-    expected.error <- paste0("RStudio API is unavailable in IDE: ",ide,".")
+    expected.error <- paste0("RStudio API is unavailable in ",ide,".")
 
     # When
     input <- TRUE
@@ -337,7 +337,7 @@ describe("When input |> exception[['NavigateToFileUnavailable']](ide)",{
     exception <- Session.Utility.Exceptions()
     
     ide <- "ide.name"
-    expected.error <- paste0("Navigate to File function is unavailable in IDE: ",ide,".")
+    expected.error <- paste0("Navigate to File function is unavailable in ",ide,".")
 
     # When
     input <- TRUE

@@ -43,12 +43,12 @@ Session.Utility.Exceptions <- \() {
   }
   exceptions[['RStudioAPIUnavailable']]     <- \(invoke, ide = NULL) {
     if (invoke) {
-      stop("RStudio API is unavailable in IDE: ", ide, ".", call. = FALSE)
+      stop("RStudio API is unavailable in ", ide, ".", call. = FALSE)
     }
   }
   exceptions[['NavigateToFileUnavailable']] <- \(invoke, ide = NULL) {
     if (invoke) {
-      stop("Navigate to File function is unavailable in IDE: ",ide,".", call. = FALSE)
+      stop("Navigate to File function is unavailable in ",ide,".", call. = FALSE)
     }
   }
   return(exceptions)
