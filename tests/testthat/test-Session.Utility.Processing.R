@@ -105,6 +105,19 @@ describe("When process[['OpenConfigFile']]()",{
 })
 
 describe("When ide |> process[['CheckIDEInUse']]()",{
+  it("then an exception should be thrown if no IDE in use.",{
+    # Given
+    broker <- Session.Utility.Broker()
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    ide <- "None"
+
+    expected.error <- "No IDE in use but required."
+
+    # Then
+    ide |> process[['CheckIDEInUse']]() |> expect.error(expected.error)
+  })
   it("then an exception should be thrown if RStudioAPI is unavailable in RStudio.",{
     # Given
     broker <- Session.Utility.Broker()
