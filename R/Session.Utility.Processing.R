@@ -1,4 +1,6 @@
 Session.Utility.Processing <- \(service) {
+  validate <- Session.Utility.Validation()
+
   processors <- list()
   processors[['GetIDEInUse']] <- \() {
     if(service[["IDEInUse"]]() |> isFALSE()) {
@@ -11,6 +13,10 @@ Session.Utility.Processing <- \(service) {
       return("VSCode")
     }
   }
-  processors[['OpenConfigFile']] <- \() {}
+  processors[['OpenConfigFile']] <- \(filepath) {
+    ide <- processors[['GetIDEInUse']]()
+    ide |> validate[['IDE']]()
+
+  }
   return(processors)
 }
