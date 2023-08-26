@@ -42,5 +42,6 @@ Session.Utility.Exceptions <- \() {
     }
   }
   exceptions[['RStudioAPIUnavailable']] <- \() {}
+  exceptions[['NavigateToFileUnavailable']] <- \() {}
   return(exceptions)
 }
