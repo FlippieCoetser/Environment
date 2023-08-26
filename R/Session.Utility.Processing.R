@@ -13,7 +13,9 @@ Session.Utility.Processing <- \(service) {
       return("VSCode")
     }
   }
-  processors[['CheckIDEInUse']] <- \() {}
+  processors[['CheckIDEInUse']] <- \(ide) {
+    service[['HasRStudioAPI']]() |> validate[['APIAvailability']](ide)
+  }
   processors[['OpenConfigFile']] <- \(filepath) {
     ide <- processors[['GetIDEInUse']]()
     ide |> validate[['IDE']]()
