@@ -14,7 +14,6 @@
 #' * `OpenConfigFile()`
 #' * `GetEnvVariable(name)`
 #' * `CacheEnvVariable(name, value)`
-#' @export
 Environment.Orchestrator <- \(...) {
   path <- 
     Path.Broker()  |> 
