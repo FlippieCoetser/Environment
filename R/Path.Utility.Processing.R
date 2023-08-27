@@ -13,6 +13,7 @@ Path.Utility.Processing <- \(service) {
     if(!filepath.exists) {
       filepath |> service[['CreateFilepath']]()
     }
+    return(filepath)
   }
   return(processors)
 }

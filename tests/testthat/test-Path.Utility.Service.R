@@ -71,6 +71,26 @@ describe("When service[['GetUserHomePath']]()", {
     # Then
     expected.path |> expect.equal(expected.path)
   })
+  it("then no exception is thrown if returned path is valid normalized windows style path",{
+    # Given
+    broker  <- Path.Utility.Broker()
+    broker[['GetUserHomePath']] <- \() "C:/Users/Analyst/Documents"
+
+    service <- broker |> Path.Utility.Service()
+
+    # Then
+    service[['GetUserHomePath']]() |> expect.no.error()
+  })
+  it("then on exception is thrown if returned path is valid normalized unix style path",{
+    # Given
+    broker  <- Path.Utility.Broker()
+    broker[['GetUserHomePath']] <- \() "/home/username/Documents"
+
+    service <- broker |> Path.Utility.Service()
+
+    # Then
+    service[['GetUserHomePath']]() |> expect.no.error()
+  })
   it("then an exception is thrown if returned path is invalid windows style path.", {
     # Given
     broker  <- Path.Utility.Broker()

@@ -57,6 +57,26 @@ describe("When path |> validate[['Path']]()",{
     # Then
     actual.path |> expect.equal(expect.path)
   })
+  it("then no exception is thrown if returned path is valid normalized windows style path",{
+    # Given
+    validate <- Path.Utility.Validation()
+
+    input.path <- "C:/Users/Analyst/Documents"
+    expect.path <- input.path
+
+    # Then
+    input.path |> validate[["Path"]]() |> expect.no.error()
+  })
+  it("then on exception is thrown if returned path is valid normalized unix style path",{
+    # Given
+    validate <- Path.Utility.Validation()
+
+    input.path <- "/home/username/Documents"
+    expect.path <- input.path
+
+    # Then
+    input.path |> validate[["Path"]]() |> expect.no.error()
+  })
   it("then an exception should be thrown if path is not a valid windows style path.",{
     # Given
     validate <- Path.Utility.Validation()

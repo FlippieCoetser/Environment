@@ -28,10 +28,10 @@ Session.Utility.Validation <- \() {
   validations[['IDE']]                <- \(ide) {
     'None' |> grepl(ide) |> exception[['NoIDEInUse']]()
   }
-  validations[['APIAvailability']]    <- \(available, ide) {
+  validations[['APIAvailability']]    <- \(available, ide = NULL) {
     available |> isFALSE() |> exception[['RStudioAPIUnavailable']](ide)
   }
-  validations[['APICapability']]      <- \(capable, ide) {
+  validations[['APICapability']]      <- \(capable, ide = NULL) {
     capable |> isFALSE() |> exception[['NavigateToFileUnavailable']](ide)
   }
   return(validations)
