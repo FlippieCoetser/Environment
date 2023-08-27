@@ -33,6 +33,13 @@ describe("When processors <- Session.Utility.Processing()",{
     # Then
     processors[["CheckIDEInUse"]] |> expect.exist()
   })
+  it("then processors should contain GetEnvVariable.", {
+    # Given
+    processors <- Session.Utility.Processing()
+
+    # Then
+    processors[["GetEnvVariable"]] |> expect.exist()
+  })
 })
 
 describe("When process[['GetIDEInUse']]()",{
