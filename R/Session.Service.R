@@ -1,4 +1,4 @@
-Session.Utility.Service <- \(broker) {
+Session.Service <- \(broker) {
   validate <- Session.Validation()
   
   services <- list()

@@ -46,7 +46,7 @@ describe("When orchestrate[['OpenConfigFile']]()",{
 
     session <- 
       Session.Broker()  |> 
-      Session.Utility.Service() |> 
+      Session.Service() |> 
       Session.Utility.Processing()
 
     session[['OpenFilepath']] <- \(filepath) TRUE
