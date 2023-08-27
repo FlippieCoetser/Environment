@@ -1,52 +1,52 @@
-describe('Path.Validation', {
+describe('Path.Validator', {
   it('Exist',{
     # Then
-    Path.Validation |> expect.exist()
+    Path.Validator |> expect.exist()
   })
 })
 
-describe("When validators <- Path.Validation()", {
-  it("then validators should be a list.", {
+describe("When validations <- Path.Validator()", {
+  it("then validations should be a list.", {
     # Given
-    validators <- Path.Validation()
+    validations <- Path.Validator()
 
     # Then
-    validators |> expect.list()
+    validations |> expect.list()
   })
-  it("then validators should contain Path service.", {
+  it("then validations should contain Path service.", {
     # Given
-    validators <- Path.Validation()
+    validations <- Path.Validator()
 
     # Then
-    validators[["Path"]] |> expect.exist()
+    validations[["Path"]] |> expect.exist()
   })
-  it("then validators should contain Filename validator.", {
+  it("then validations should contain Filename validator.", {
     # Given
-    validators <- Path.Validation()
+    validations <- Path.Validator()
 
     # Then
-    validators[["Filename"]] |> expect.exist()
+    validations[["Filename"]] |> expect.exist()
   })
-  it("then validators should contain Normalized validator.", {
+  it("then validations should contain Normalized validator.", {
     # Given
-    validators <- Path.Validation()
+    validations <- Path.Validator()
 
     # Then
-    validators[["Normalized"]] |> expect.exist()
+    validations[["Normalized"]] |> expect.exist()
   })
-  it("then validators should contain Filepath validator.", {
+  it("then validations should contain Filepath validator.", {
     # Given
-    validators <- Path.Validation()
+    validations <- Path.Validator()
 
     # Then
-    validators[["Filepath"]] |> expect.exist()
+    validations[["Filepath"]] |> expect.exist()
   })
 })
 
 describe("When path |> validate[['Path']]()",{
   it("then path should be returned if path is a valid windows style path.",{
     # Given
-    validate <- Path.Validation()
+    validate <- Path.Validator()
 
     input.path <- "C:\\Users\\username\\Documents"
     expect.path <- input.path
@@ -59,7 +59,7 @@ describe("When path |> validate[['Path']]()",{
   })
   it("then no exception is thrown if returned path is valid normalized windows style path",{
     # Given
-    validate <- Path.Validation()
+    validate <- Path.Validator()
 
     input.path <- "C:/Users/Analyst/Documents"
     expect.path <- input.path
@@ -69,7 +69,7 @@ describe("When path |> validate[['Path']]()",{
   })
   it("then on exception is thrown if returned path is valid normalized unix style path",{
     # Given
-    validate <- Path.Validation()
+    validate <- Path.Validator()
 
     input.path <- "/home/username/Documents"
     expect.path <- input.path
@@ -79,7 +79,7 @@ describe("When path |> validate[['Path']]()",{
   })
   it("then an exception should be thrown if path is not a valid windows style path.",{
     # Given
-    validate <- Path.Validation()
+    validate <- Path.Validator()
 
     path <- "C:\\Users\\username/Documents"
     expected.error <- paste0("Invalid path: ", "C:\\\\Users\\\\username/Documents", ".")
@@ -90,7 +90,7 @@ describe("When path |> validate[['Path']]()",{
   })
   it("then path should be returned if path is a valid unix style path.",{
     # Given
-    validate <- Path.Validation()
+    validate <- Path.Validator()
 
     input.path <- "/home/username/Documents"
     expect.path <- input.path
@@ -103,7 +103,7 @@ describe("When path |> validate[['Path']]()",{
   })
   it("then an exception should be thrown if path is not a valid unix style path.",{
     # Given
-    validate <- Path.Validation()
+    validate <- Path.Validator()
 
     path <- "/home/username\\Documents"
     expected.error <- paste0("Invalid path: ", "/home/username\\\\Documents", ".")
@@ -116,7 +116,7 @@ describe("When path |> validate[['Path']]()",{
 describe("When filename |> validate[['Filename']]()",{
   it("then filename should be returned if filename is valid.",{
     # Given
-    validate <- Path.Validation()
+    validate <- Path.Validator()
 
     input.filename <- ".Renviron"
     expect.filename <- input.filename
@@ -129,7 +129,7 @@ describe("When filename |> validate[['Filename']]()",{
   })
   it("then an exception should be thrown if filename is not valid.",{
     # Given
-    validate <- Path.Validation()
+    validate <- Path.Validator()
 
     filename <- "filename."
     expected.error <- paste0("Invalid filename: ", filename, ".")
@@ -142,7 +142,7 @@ describe("When filename |> validate[['Filename']]()",{
 describe("When path |> validate[['Normalized']]()",{
   it("then path should be returned if path is valid.",{
     # Given
-    validate <- Path.Validation()
+    validate <- Path.Validator()
 
     input.path <- "C:/Users/username/Documents"
     expect.path <- input.path
@@ -155,7 +155,7 @@ describe("When path |> validate[['Normalized']]()",{
   })
   it("then an exception should be thrown if path is invalid path.",{
     # Given
-    validate <- Path.Validation()
+    validate <- Path.Validator()
 
     path <- "C:\\Users\\username\\Documents"
     expected.error <- paste0("Invalid normalized path: ", "C:\\\\Users\\\\username\\\\Documents", ".")
@@ -168,7 +168,7 @@ describe("When path |> validate[['Normalized']]()",{
 describe("When filepath |> validate[['Filepath']]()",{
   it("then filepath should be returned if filepath is valid.",{
     # Given
-    validate <- Path.Validation()
+    validate <- Path.Validator()
 
     input.filepath <- "C:/Users/username/Documents/.Renviron"
     expect.filepath <- input.filepath
@@ -181,7 +181,7 @@ describe("When filepath |> validate[['Filepath']]()",{
   })
   it("then an exception should be thrown if filepath is invalid.",{
     # Given
-    validate <- Path.Validation()
+    validate <- Path.Validator()
 
     filepath <- "C:\\Users\\username\\Documents\\.Renviron"
     expected.error <- paste0("Invalid filepath: ", "C:\\\\Users\\\\username\\\\Documents\\\\.Renviron", ".")
