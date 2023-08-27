@@ -14,17 +14,14 @@
 #' * `GetVariableByName(name)`
 #' @export
 Utility.Service <- \() {
-  validate <- Utility.Validation()
+  orchestrator <- Environment.Orchestrator()
 
   service <- list()
   service[["OpenConfigurationFile"]] <- \() {
-      usethis::edit_r_environ()
+    orchestrator[["OpenConfigFile"]]()
   }
   service[["GetVariableByName"]]     <- \(name) {
-    name |>
-      validate[["Name"]]() |>
-      Sys.getenv()         |>
-      validate[["Value"]](name)
+    name |> orchestrator[['GetEnvVariable']]()
   }
   return(service)
 }
