@@ -55,6 +55,7 @@ describe("When process[['GetIDEInUse']]()",{
   it("then RStudio should be returned is RStudio is in use.", {
     # Given
     broker <- Session.Utility.Broker()
+    broker[['IDEInUse']]    <- \() TRUE
     broker[['VSCodeInUse']] <- \() FALSE
 
     service <- broker |> Session.Utility.Service()
@@ -71,6 +72,7 @@ describe("When process[['GetIDEInUse']]()",{
   it("then VSCode should be returned if VSCode is in use.", {
     # Given
     broker <- Session.Utility.Broker()
+    broker[['IDEInUse']]    <- \() TRUE
     broker[['VSCodeInUse']] <- \() TRUE
 
     service <- broker |> Session.Utility.Service()
