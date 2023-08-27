@@ -1,13 +1,13 @@
-Path.Utility.Processing <- \(service) {
-  processors <- list()
-  processors[['GetConfigFilepath']]   <- \() {
+Path.Processor <- \(service) {
+  processes <- list()
+  processes[['GetConfigFilepath']]   <- \() {
     filename <- service[['GetConfigFilename']]()
 
     service[['GetUserHomePath']]() |> 
     service[['NormalizePath']]()   |> 
     service[['CombinePath']](filename)
   }
-  processors[['EnsureFilepathExist']] <- \(filepath) {
+  processes[['EnsureFilepathExist']] <- \(filepath) {
     filepath.exists <- filepath |> service[['FilepathExists']]()
 
     if(!filepath.exists) {
@@ -15,5 +15,5 @@ Path.Utility.Processing <- \(service) {
     }
     return(filepath)
   }
-  return(processors)
+  return(processes)
 }

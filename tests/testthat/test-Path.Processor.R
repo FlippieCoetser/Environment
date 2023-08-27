@@ -1,40 +1,40 @@
-describe('Path.Utility.Processing', {
+describe('Path.Processor', {
   it('Exist',{
     # Then
-    Path.Utility.Processing |> expect.exist()
+    Path.Processor |> expect.exist()
   })
 })
 
-describe("When processors <- Path.Utility.Processing()",{
-  it("then processors should be a list.", {
+describe("When processes <- Path.Processor()",{
+  it("then processes is a list.", {
     # Given
-    processors <- Path.Utility.Processing()
+    processes <- Path.Processor()
 
     # Then
-    processors |> expect.list()
+    processes |> expect.list()
   })
-  it("then processors contains GetConfigFilepath", {
+  it("then processes contains GetConfigFilepath process.", {
     # Given
-    processors <- Path.Utility.Processing()
+    processes <- Path.Processor()
 
     # Then
-    processors[['GetConfigFilepath']] |> expect.exist()
+    processes[['GetConfigFilepath']] |> expect.exist()
   })
-  it("then processors contains EnsureFilepathExist", {
+  it("then processes contains EnsureFilepathExist process.", {
     # Given
-    processors <- Path.Utility.Processing()
+    processes <- Path.Processor()
 
     # Then
-    processors[['EnsureFilepathExist']] |> expect.exist()
+    processes[['EnsureFilepathExist']] |> expect.exist()
   })
 })
 
 describe("When process[['GetConfigFilepath']]()",{
-  it("then the filepath to the users .Renviron file should be returned.", {
+  it("then the filepath to the users .Renviron file is returned.", {
     # Given
-    broker  <- Path.Utility.Broker()
-    service <- broker |> Path.Utility.Service()
-    process <- service |> Path.Utility.Processing()
+    broker  <- Path.Broker()
+    service <- broker |> Path.Service()
+    process <- service |> Path.Processor()
 
     path     <- service[['GetUserHomePath']]()
     filename <- service[['GetConfigFilename']]()
@@ -54,9 +54,9 @@ describe("When process[['GetConfigFilepath']]()",{
 describe("When filepath |> process[['EnsureFilepathExist']]()",{
   it("then filepath is returned",{
     # Given
-    broker  <- Path.Utility.Broker()
-    service <- broker |> Path.Utility.Service()
-    process <- service |> Path.Utility.Processing()
+    broker  <- Path.Broker()
+    service <- broker |> Path.Service()
+    process <- service |> Path.Processor()
 
     path     <- service[['GetUserHomePath']]()
     filename <- 'new.file'
@@ -73,11 +73,11 @@ describe("When filepath |> process[['EnsureFilepathExist']]()",{
     # Then
     actual.filepath |> expect.equal(expected.filepath)
   })
-  it("then file created in path if not exist.", {
+  it("then a file is created in path if not exist.", {
     # Given
-    broker  <- Path.Utility.Broker()
-    service <- broker |> Path.Utility.Service()
-    process <- service |> Path.Utility.Processing()
+    broker  <- Path.Broker()
+    service <- broker |> Path.Service()
+    process <- service |> Path.Processor()
 
     path     <- service[['GetUserHomePath']]()
     filename <- 'new.file'

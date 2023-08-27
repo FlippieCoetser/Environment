@@ -1,5 +1,5 @@
-Session.Utility.Validation <- \() {
-  exception <- Session.Utility.Exceptions()
+Session.Validator <- \() {
+  exception <- Session.Exceptions()
   
   validations <- list()
   validations[['NavigationResponse']] <- \(response) {

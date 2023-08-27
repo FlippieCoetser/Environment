@@ -1,4 +1,4 @@
-Session.Utility.Broker <- \() {
+Session.Broker <- \() {
   operations <- list()
   operations[['HasRStudioAPI']]     <- \() {
     rstudioapi::isAvailable()

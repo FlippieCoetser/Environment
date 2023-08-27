@@ -1,5 +1,5 @@
-Session.Utility.Service <- \(broker) {
-  validate <- Session.Utility.Validation()
+Session.Service <- \(broker) {
+  validate <- Session.Validator()
   
   services <- list()
   services[['HasRStudioAPI']]     <- \() {

@@ -6,21 +6,21 @@ describe('Utility.Service', {
 })
 
 describe("When services <- Utility.Service()", {
-  it("then services should be a list.", {
+  it("then services is a list.", {
     # Given
     services <- Utility.Service()
 
     # Then
     services |> expect.list()
   })
-  it("then services should contain OpenConfigurationFile service.", {
+  it("then services contains OpenConfigurationFile service.", {
     # Given
     services <- Utility.Service()
 
     # Then
     services[["OpenConfigurationFile"]] |> expect.exist()
   })
-  it("then services should contain GetVariableByName service.", {
+  it("then services contains GetVariableByName service.", {
     # Given
     services <- Utility.Service()
 

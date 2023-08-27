@@ -1,5 +1,5 @@
-Path.Utility.Service <- \(broker) {
-  validate <- Path.Utility.Validation()
+Path.Service <- \(broker) {
+  validate <- Path.Validator()
 
   services <- list()
   services[['GetUserHomePath']]   <- \() {

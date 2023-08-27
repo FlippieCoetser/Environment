@@ -1,4 +1,4 @@
-Path.Utility.Exceptions <- \() {
+Path.Exceptions <- \() {
   exceptions <- list()
   exceptions[['InvalidPath']]       <- \(invoke, path = NULL) {
     if (invoke) {
