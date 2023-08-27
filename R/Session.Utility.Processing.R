@@ -24,6 +24,8 @@ Session.Utility.Processing <- \(service) {
 
     filepath |> service[['NavigateToFile']]()
   }
-  processors[['GetEnvVariable']] <- \() {}
+  processors[['GetEnvVariable']] <- \(name) {
+    name |> service[['GetEnvVariable']]()
+  }
   return(processors)
 }
