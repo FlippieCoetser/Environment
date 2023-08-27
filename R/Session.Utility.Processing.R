@@ -2,7 +2,7 @@ Session.Utility.Processing <- \(service) {
   validate <- Session.Utility.Validation()
 
   processors <- list()
-  processors[['GetIDEInUse']] <- \() {
+  processors[['GetIDEInUse']]      <- \() {
     if(service[["IDEInUse"]]() |> isFALSE()) {
       return("None")
     }
@@ -13,18 +13,18 @@ Session.Utility.Processing <- \(service) {
       return("VSCode")
     }
   }
-  processors[['CheckIDEInUse']] <- \(ide) {
+  processors[['CheckIDEInUse']]    <- \(ide) {
     ide |> validate[['IDE']]()
     
     service[['HasRStudioAPI']]() |> validate[['APIAvailability']](ide)
     service[['HasNavigateToFile']]() |> validate[['APICapability']](ide)
   }
-  processors[['OpenFilepath']] <- \(filepath) {
+  processors[['OpenFilepath']]     <- \(filepath) {
     processors[['GetIDEInUse']]() |> processors[['CheckIDEInUse']]()
 
     filepath |> service[['NavigateToFile']]()
   }
-  processors[['GetEnvVariable']] <- \(name) {
+  processors[['GetEnvVariable']]   <- \(name) {
     name |> service[['GetEnvVariable']]()
   }
   processors[['CacheEnvVariable']] <- \(name, value) {  
