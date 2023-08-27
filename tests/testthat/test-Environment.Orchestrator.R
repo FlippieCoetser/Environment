@@ -37,7 +37,7 @@ describe("When orchestrations <- Environment.Orchestrator()", {
 })
 
 describe("When orchestrate[['OpenConfigFile']]()",{
-  it("Then the .Renviron opens in IDE", {
+  it("Then the .Renviron configuration file opens in IDE", {
     # Given
     path <- 
       Path.Broker()  |> 

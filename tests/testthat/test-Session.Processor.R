@@ -50,7 +50,7 @@ describe("When processes <- Session.Processor()",{
 })
 
 describe("When process[['GetIDEInUse']]()",{
-  it("then None should be returned in no IDE is in use.", {
+  it("then None is returned in no IDE is in use.", {
     # Given
     broker <- Session.Broker()
     broker[['IDEInUse']] <- \() FALSE
@@ -66,7 +66,7 @@ describe("When process[['GetIDEInUse']]()",{
     # Then
     result |> expect.equal(expected.result)
   })
-  it("then RStudio should be returned is RStudio is in use.", {
+  it("then RStudio is returned if RStudio is in use.", {
     # Given
     broker <- Session.Broker()
     broker[['IDEInUse']]    <- \() TRUE
@@ -83,7 +83,7 @@ describe("When process[['GetIDEInUse']]()",{
     # Then
     result |> expect.equal(expected.result)
   })
-  it("then VSCode should be returned if VSCode is in use.", {
+  it("then VSCode is returned if VSCode is in use.", {
     # Given
     broker <- Session.Broker()
     broker[['IDEInUse']]    <- \() TRUE
@@ -103,7 +103,7 @@ describe("When process[['GetIDEInUse']]()",{
 })
 
 describe("When filepath |> process[['OpenFilepath']]()",{
-  it("then the filepath should be opened in the IDE in use.",{
+  it("then the filepath is opened in the IDE in use.",{
     # Given
     expected.filepath <- NULL
 
@@ -128,7 +128,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     # Then
     actual.filepath |> expect.equal(expected.filepath)
   })
-  it("then an exception should be thrown if no IDE in use.",{
+  it("then an exception is thrown if no IDE in use.",{
     # Given
     broker <- Session.Broker()
     broker[['IDEInUse']] <- \() FALSE
@@ -143,7 +143,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     # Then
     filepath |> process[['OpenFilepath']]() |> expect.error(expected.error)
   })
-  it("then an exception should be thrown if RStudio API is unavailable in RStudio.",{
+  it("then an exception is thrown if RStudio API is unavailable in RStudio.",{
     # Given
     broker <- Session.Broker()
     broker[['IDEInUse']]          <- \() TRUE
@@ -161,7 +161,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     # Then
     filepath |> process[['OpenFilepath']]() |> expect.error(expected.error)
   })
-  it("then an exception should be thrown if RStudio API is unavailable in VSCode.",{
+  it("then an exception is thrown if RStudio API is unavailable in VSCode.",{
     # Given
     broker <- Session.Broker()
     broker[['IDEInUse']]          <- \() TRUE
@@ -179,7 +179,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     # Then
     filepath |> process[['OpenFilepath']]() |> expect.error(expected.error)
   })
-  it("then an exception should be thrown if Navigate To File function is unavailable in RStudio.",{
+  it("then an exception is thrown if Navigate To File function is unavailable in RStudio.",{
     # Given
     broker <- Session.Broker()
     broker[['IDEInUse']]          <- \() TRUE
@@ -197,7 +197,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     # Then
     filepath |> process[['OpenFilepath']]() |> expect_error(expected.error)
   })
-  it("then an exception should be thrown if Navigate To File function is unavailable in VSCode.",{
+  it("then an exception is thrown if Navigate To File function is unavailable in VSCode.",{
     # Given
     broker <- Session.Broker()
     broker[['IDEInUse']]          <- \() TRUE
@@ -218,7 +218,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
 })
 
 describe("When ide |> process[['CheckIDEInUse']]()",{
-  it("then an exception should be thrown if no IDE in use.",{
+  it("then an exception is thrown if no IDE in use.",{
     # Given
     broker <- Session.Broker()
     service <- broker |> Session.Service()
@@ -231,7 +231,7 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
     # Then
     ide |> process[['CheckIDEInUse']]() |> expect.error(expected.error)
   })
-  it("then an exception should be thrown if RStudioAPI is unavailable in RStudio.",{
+  it("then an exception is thrown if RStudioAPI is unavailable in RStudio.",{
     # Given
     broker <- Session.Broker()
     broker[['HasRStudioAPI']]     <- \() FALSE
@@ -247,7 +247,7 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
     # Then
     ide |> process[['CheckIDEInUse']]() |> expect.error(expected.error)
   })
-  it("then an exception should be thrown if RStudioAPI is unavailable in VSCode.",{
+  it("then an exception is thrown if RStudioAPI is unavailable in VSCode.",{
     # Given
     broker <- Session.Broker()
     broker[['HasRStudioAPI']]     <- \() FALSE
@@ -263,7 +263,7 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
     # Then
     ide |> process[['CheckIDEInUse']]() |> expect.error(expected.error)
   })
-  it("then an exception should be thrown if Navigate To File function is unavailable in RStudio.",{
+  it("then an exception is thrown if Navigate To File function is unavailable in RStudio.",{
     # Given
     broker <- Session.Broker()
     broker[['HasRStudioAPI']]     <- \() TRUE
@@ -279,7 +279,7 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
     # Then
     ide |> process[['CheckIDEInUse']]() |> expect.error(expected.error)
   })
-  it("then an exception should be thrown if Navigate To File function is unavailable in VSCode.",{
+  it("then an exception is thrown if Navigate To File function is unavailable in VSCode.",{
     # Given
     broker <- Session.Broker()
     broker[['HasRStudioAPI']]     <- \() TRUE

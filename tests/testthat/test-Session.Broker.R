@@ -65,7 +65,7 @@ describe("When operations <- Session.Broker()", {
 })
 
 describe("When name |> operation[['GetEnvVariable']]()",{
-  it("then the value of name stored in .Renviron file should be returned.", {
+  it("then the value of name stored in .Renviron file is returned.", {
     skip_if_not(environment == 'local')
     # Given
     operations <- Session.Broker()

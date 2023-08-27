@@ -44,7 +44,7 @@ describe("When exceptions <- Path.Exceptions()",{
 })
 
 describe("When input |> exception[['InvalidPath']](path)",{
-  it("then no exception should be thrown if input is FALSE.",{
+  it("then no exception is thrown if input is FALSE.",{
     # Given
     exception <- Path.Exceptions()
 
@@ -54,7 +54,7 @@ describe("When input |> exception[['InvalidPath']](path)",{
     # Then
     validation.input |> exception[["InvalidPath"]]() |> expect.no.error()
   })
-  it("then an exception should be thrown if input is TRUE.",{
+  it("then an exception is thrown if input is TRUE.",{
     # Given
     exception <- Path.Exceptions()
 
@@ -70,7 +70,7 @@ describe("When input |> exception[['InvalidPath']](path)",{
 })
 
 describe("When input |> exception[['InvalidFilename']](filename)",{
-  it("then no exception should be thrown if input is FALSE.",{
+  it("then no exception is thrown if input is FALSE.",{
     # Given
     exception <- Path.Exceptions()
 
@@ -80,7 +80,7 @@ describe("When input |> exception[['InvalidFilename']](filename)",{
     # Then
     validation.input |> exception[["InvalidFilename"]]() |> expect.no.error()
   })
-  it("then an exception should be thrown if input is TRUE.",{
+  it("then an exception is thrown if input is TRUE.",{
     # Given
     exception <- Path.Exceptions()
 
@@ -96,7 +96,7 @@ describe("When input |> exception[['InvalidFilename']](filename)",{
 })
 
 describe("When input |> exception[['InvalidNormalized']](path)",{
-  it("then no exception should be thrown if input is FALSE.",{
+  it("then no exception is thrown if input is FALSE.",{
     # Given
     exception <- Path.Exceptions()
 
@@ -106,7 +106,7 @@ describe("When input |> exception[['InvalidNormalized']](path)",{
     # Then
     validation.input |> exception[["InvalidNormalized"]]() |> expect.no.error()
   })
-  it("then an exception should be thrown if input is TRUE.",{
+  it("then an exception is thrown if input is TRUE.",{
     # Given
     exception <- Path.Exceptions()
 
@@ -122,7 +122,7 @@ describe("When input |> exception[['InvalidNormalized']](path)",{
 })
 
 describe("When input |> exception[['InvalidFilepath']]()",{
-  it("then no exception should be thrown if input is FALSE.",{
+  it("then no exception is thrown if input is FALSE.",{
     # Given
     exception <- Path.Exceptions()
 
@@ -132,7 +132,7 @@ describe("When input |> exception[['InvalidFilepath']]()",{
     # Then
     validation.input |> exception[["InvalidFilepath"]]() |> expect.no.error()
   })
-  it("then an exception should be thrown if input is TRUE.",{
+  it("then an exception is thrown if input is TRUE.",{
     # Given
     exception <- Path.Exceptions()
 

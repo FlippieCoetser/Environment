@@ -58,7 +58,7 @@ describe("When services <- Path.Service()", {
 })
 
 describe("When service[['GetUserHomePath']]()", {
-  it("then broker[['GetUserHomePath']]() should be returned.", {
+  it("then broker[['GetUserHomePath']]() is returned.", {
     # Given
     broker  <- Path.Broker()
     service <- broker |> Path.Service()
@@ -118,7 +118,7 @@ describe("When service[['GetUserHomePath']]()", {
 })
 
 describe("When service[['GetConfigFilename']]()", {
-  it("then broker[['GetConfigFilename']]() should be returned.", {
+  it("then broker[['GetConfigFilename']]() is returned.", {
     # Given
     broker  <- Path.Broker()
     service <- broker |> Path.Service()
@@ -160,7 +160,7 @@ describe("When path |> service[['NormalizePath']]()",{
     # Then
     actual.path |> expect.equal(expected.path)
   })
-  it("then an exception should be thrown if path is invalid windows style path.",{
+  it("then an exception is thrown if path is invalid windows style path.",{
     # Given
     broker  <- Path.Broker()
     service <- broker |> Path.Service()
@@ -171,7 +171,7 @@ describe("When path |> service[['NormalizePath']]()",{
     # Then
     input.path |> service[["NormalizePath"]]() |> expect.error(expected.error)
   })
-  it("then an exception should be thrown if path is invalid unix style path.",{
+  it("then an exception is thrown if path is invalid unix style path.",{
     # Given
     broker  <- Path.Broker()
     service <- broker |> Path.Service()
@@ -182,7 +182,7 @@ describe("When path |> service[['NormalizePath']]()",{
     # Then
     input.path |> service[["NormalizePath"]]() |> expect.error(expected.error)
   })
-  it("then an exception should be thrown if returned path is not normalized.",{
+  it("then an exception is thrown if returned path is not normalized.",{
     # Given
     broker  <- Path.Broker()
     broker[['NormalizePath']] <- \(...) "C:\\Users\\username\\Documents"

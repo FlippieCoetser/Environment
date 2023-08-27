@@ -86,7 +86,7 @@ describe("When exceptions <- Session.Exceptions()",{
 })
 
 describe("When input |> exception[['PathNotFound']](path)",{
-  it("then no exception should be thrown if input is FALSE.",{
+  it("then no exception is thrown if input is FALSE.",{
     # Given
     exception <- Session.Exceptions()
 
@@ -96,7 +96,7 @@ describe("When input |> exception[['PathNotFound']](path)",{
     # Then
     validation.input |> exception[["PathNotFound"]]() |> expect.no.error()
   })
-  it("then an exception should be thrown if input is TRUE.",{
+  it("then an exception is thrown if input is TRUE.",{
     # Given
     exception <- Session.Exceptions()
 
@@ -112,7 +112,7 @@ describe("When input |> exception[['PathNotFound']](path)",{
 })
 
 describe("When input |> exception[['FileNotFound']](file)",{
-  it("then no exception should be thrown if input is FALSE.",{
+  it("then no exception is thrown if input is FALSE.",{
     # Given
     exception <- Session.Exceptions()
 
@@ -122,7 +122,7 @@ describe("When input |> exception[['FileNotFound']](file)",{
     # Then
     validation.input |> exception[["FileNotFound"]]() |> expect.no.error()
   })
-  it("then an exception should be thrown if input is TRUE.",{
+  it("then an exception is thrown if input is TRUE.",{
     # Given
     exception <- Session.Exceptions()
 
@@ -138,7 +138,7 @@ describe("When input |> exception[['FileNotFound']](file)",{
 })
 
 describe("When error |> exception[['NavigateToFileExceptions']]()",{
-  it("then an PathNotFound exception should be thrown in error message contain cannot find the path.",{
+  it("then an PathNotFound exception is thrown if error message contain cannot find the path.",{
     # Given
     exception <- Session.Exceptions()
 
@@ -151,7 +151,7 @@ describe("When error |> exception[['NavigateToFileExceptions']]()",{
     # Then
     warning |> exception[["NavigateToFileExceptions"]]() |> expect.error(excepted.error)
   })
-  it("then an FileNotFound exception should be thrown if error message contain cannot find the file.",{
+  it("then an FileNotFound exception is thrown if error message contain cannot find the file.",{
     # Given
     exception <- Session.Exceptions()
 
@@ -167,7 +167,7 @@ describe("When error |> exception[['NavigateToFileExceptions']]()",{
 })
 
 describe("When input |> exception[['InvalidFilepath']]()",{
-  it("then no exception should be thrown if input is FALSE.",{
+  it("then no exception is thrown if input is FALSE.",{
     # Given
     exception <- Session.Exceptions()
 
@@ -177,7 +177,7 @@ describe("When input |> exception[['InvalidFilepath']]()",{
     # Then
     validation.input |> exception[["InvalidFilepath"]]() |> expect.no.error()
   })
-  it("then an exception should be thrown if input is TRUE.",{
+  it("then an exception is thrown if input is TRUE.",{
     # Given
     exception <- Session.Exceptions()
 

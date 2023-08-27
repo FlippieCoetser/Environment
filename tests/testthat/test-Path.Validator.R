@@ -44,7 +44,7 @@ describe("When validations <- Path.Validator()", {
 })
 
 describe("When path |> validate[['Path']]()",{
-  it("then path should be returned if path is a valid windows style path.",{
+  it("then path is returned if path is a valid windows style path.",{
     # Given
     validate <- Path.Validator()
 
@@ -77,7 +77,7 @@ describe("When path |> validate[['Path']]()",{
     # Then
     input.path |> validate[["Path"]]() |> expect.no.error()
   })
-  it("then an exception should be thrown if path is not a valid windows style path.",{
+  it("then an exception is thrown if path is not a valid windows style path.",{
     # Given
     validate <- Path.Validator()
 
@@ -88,7 +88,7 @@ describe("When path |> validate[['Path']]()",{
     path |> validate[["Path"]]() |> expect.error(expected.error)
 
   })
-  it("then path should be returned if path is a valid unix style path.",{
+  it("then path is returned if path is a valid unix style path.",{
     # Given
     validate <- Path.Validator()
 
@@ -101,7 +101,7 @@ describe("When path |> validate[['Path']]()",{
     # Then
     actual.path |> expect.equal(expect.path)
   })
-  it("then an exception should be thrown if path is not a valid unix style path.",{
+  it("then an exception is thrown if path is not a valid unix style path.",{
     # Given
     validate <- Path.Validator()
 
@@ -114,7 +114,7 @@ describe("When path |> validate[['Path']]()",{
 })
 
 describe("When filename |> validate[['Filename']]()",{
-  it("then filename should be returned if filename is valid.",{
+  it("then filename is returned if filename is valid.",{
     # Given
     validate <- Path.Validator()
 
@@ -127,7 +127,7 @@ describe("When filename |> validate[['Filename']]()",{
     # Then
     actual.filename |> expect.equal(expect.filename)
   })
-  it("then an exception should be thrown if filename is not valid.",{
+  it("then an exception is thrown if filename is not valid.",{
     # Given
     validate <- Path.Validator()
 
@@ -140,7 +140,7 @@ describe("When filename |> validate[['Filename']]()",{
 })
 
 describe("When path |> validate[['Normalized']]()",{
-  it("then path should be returned if path is valid.",{
+  it("then path is returned if path is valid.",{
     # Given
     validate <- Path.Validator()
 
@@ -153,7 +153,7 @@ describe("When path |> validate[['Normalized']]()",{
     # Then
     actual.path |> expect.equal(expect.path)
   })
-  it("then an exception should be thrown if path is invalid path.",{
+  it("then an exception is thrown if path is invalid path.",{
     # Given
     validate <- Path.Validator()
 
@@ -166,7 +166,7 @@ describe("When path |> validate[['Normalized']]()",{
 })
 
 describe("When filepath |> validate[['Filepath']]()",{
-  it("then filepath should be returned if filepath is valid.",{
+  it("then filepath is returned if filepath is valid.",{
     # Given
     validate <- Path.Validator()
 
@@ -179,7 +179,7 @@ describe("When filepath |> validate[['Filepath']]()",{
     # Then
     actual.filepath |> expect.equal(expect.filepath)
   })
-  it("then an exception should be thrown if filepath is invalid.",{
+  it("then an exception is thrown if filepath is invalid.",{
     # Given
     validate <- Path.Validator()
 

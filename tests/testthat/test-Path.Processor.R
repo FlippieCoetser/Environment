@@ -30,7 +30,7 @@ describe("When processes <- Path.Processor()",{
 })
 
 describe("When process[['GetConfigFilepath']]()",{
-  it("then the filepath to the users .Renviron file should be returned.", {
+  it("then the filepath to the users .Renviron file is returned.", {
     # Given
     broker  <- Path.Broker()
     service <- broker |> Path.Service()
@@ -73,7 +73,7 @@ describe("When filepath |> process[['EnsureFilepathExist']]()",{
     # Then
     actual.filepath |> expect.equal(expected.filepath)
   })
-  it("then file created in path if not exist.", {
+  it("then a file is created in path if not exist.", {
     # Given
     broker  <- Path.Broker()
     service <- broker |> Path.Service()

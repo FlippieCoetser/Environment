@@ -73,7 +73,7 @@ describe("When operation[['GetUserHomePath']]()",{
 })
 
 describe("When operation[['GetConfigFilename']]()",{
-  it("then the config filename is returned.",{
+  it("then the configuration filename is returned.",{
     # Given
     operation <- Path.Broker()
 
@@ -88,7 +88,7 @@ describe("When operation[['GetConfigFilename']]()",{
 })
 
 describe("When path |> operation[['NormalizePath']]()",{
-  it("then all double backslashes are replaced with single forwardslash.",{
+  it("then all double backslashes are replaced with a single forwardslash.",{
     # Given
     operation <- Path.Broker()
 
@@ -152,7 +152,7 @@ describe("When filepath |> operation[['FilepathExists']]()",{
 })
 
 describe("When filepath |> operation[['CreateFilepath']]()",{
-  it("then the filepath is created if the path is valid.",{
+  it("then the filepath is created if filepath is valid.",{
     skip_if_not(environment == 'local')
     # Given
     operation <- Path.Broker()

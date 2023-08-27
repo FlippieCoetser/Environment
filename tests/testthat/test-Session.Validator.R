@@ -79,7 +79,7 @@ describe("When validations <- Session.Validator()",{
 })
 
 describe("When response |> validate[['NavigationResponse']]()",{
-  it("then a PathNotFound exception should be thrown is response throws a warning containing path not found",{
+  it("then a PathNotFound exception is thrown if response throws a warning containing path not found",{
     # Given
     validate <- Session.Validator()
     throw.warning <- \() {
@@ -91,7 +91,7 @@ describe("When response |> validate[['NavigationResponse']]()",{
     # Then
     throw.warning() |> validate[["NavigationResponse"]]() |> expect.error(expected.error)
   })
-  it("then a FileNotFound exception should be thrown if response throws a warning containing file not found",{
+  it("then a FileNotFound exception is thrown if response throws a warning containing file not found",{
     # Given
     validate <- Session.Validator()
     throw.warning <- \() {
@@ -106,7 +106,7 @@ describe("When response |> validate[['NavigationResponse']]()",{
 })
 
 describe("When filepath |> validate[['Filepath']]()",{
-  it("then filepath should be returned if filepath is valid.",{
+  it("then filepath is returned if filepath is valid.",{
     # Given
     validate <- Session.Validator()
 
@@ -119,7 +119,7 @@ describe("When filepath |> validate[['Filepath']]()",{
     # Then
     actual.filepath |> expect.equal(expect.filepath)
   })
-  it("then an exception should be thrown if filepath is invalid.",{
+  it("then an exception is thrown if filepath is invalid.",{
     # Given
     validate <- Session.Validator()
 
@@ -263,7 +263,7 @@ describe("When value |> validate[['Value']](name)",{
 })
 
 describe("When ide |> validate[['IDE']]()",{
-  it("then an exception should be thrown if no IDE in use.",{
+  it("then an exception is thrown if no IDE in use.",{
     # Given
     validate <- Session.Validator()
 
@@ -278,7 +278,7 @@ describe("When ide |> validate[['IDE']]()",{
 })
 
 describe("When availability |> validate[['APIAvailability']](ide)",{
-  it("then no exception should be thrown if RStudio API is available",{
+  it("then no exception is thrown if RStudio API is available",{
     # Given
     validate <- Session.Validator()
 
@@ -288,7 +288,7 @@ describe("When availability |> validate[['APIAvailability']](ide)",{
     # Then
     availability |> validate[["APIAvailability"]]() |> expect.no.error()
   })
-  it("then an exception should be thrown if RStudio API is unavailable in RStudio.",{
+  it("then an exception is thrown if RStudio API is unavailable in RStudio.",{
     # Given
     validate <- Session.Validator()
 
@@ -301,7 +301,7 @@ describe("When availability |> validate[['APIAvailability']](ide)",{
     # Then
     availability |> validate[["APIAvailability"]](ide) |> expect.error(expected.error)
   })
-  it("then an exception should be thrown if RStudio API is unavailable in VSCode.",{
+  it("then an exception is thrown if RStudio API is unavailable in VSCode.",{
     # Given
     validate <- Session.Validator()
 
@@ -317,7 +317,7 @@ describe("When availability |> validate[['APIAvailability']](ide)",{
 })
 
 describe("When capable |> validate[['APICapability']](ide)",{
-  it("then no exception should be thrown if Navigate To File function is available.",{
+  it("then no exception is thrown if Navigate To File function is available.",{
     # Given
     validate <- Session.Validator()
 
@@ -327,7 +327,7 @@ describe("When capable |> validate[['APICapability']](ide)",{
     # Then
     capable |> validate[["APICapability"]](ide) |> expect.no.error()
   })
-  it("then an exception should be thrown if Navigate To File function is not available in RStudio.",{
+  it("then an exception is thrown if Navigate To File function is not available in RStudio.",{
     # Given
     validate <- Session.Validator()
 
@@ -340,7 +340,7 @@ describe("When capable |> validate[['APICapability']](ide)",{
     # Then
     capable |> validate[["APICapability"]](ide) |> expect.error(expected.error)
   })
-  it("then an exception should be thrown if Navigate To File function is not available in VSCode.",{
+  it("then an exception is thrown if Navigate To File function is not available in VSCode.",{
     # Given
     validate <- Session.Validator()
 

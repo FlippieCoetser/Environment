@@ -240,7 +240,7 @@ describe("When name |> service[['GetEnvVariable']]()",{
     # Then
     name |> Sys.getenv() |> expect.equal(value)
   })
-  it("then an exception is thrown is name is NULL",{
+  it("then an exception is thrown if name is NULL",{
     # Given
     broker  <- Session.Broker()
     service <- broker |> Session.Service()
