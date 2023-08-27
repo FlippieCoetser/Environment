@@ -1,77 +1,77 @@
-describe('Session.Utility.Validation', {
+describe('Session.Validation', {
   it('Exist',{
     # Then
-    Session.Utility.Validation |> expect.exist()
+    Session.Validation |> expect.exist()
   })
 })
 
-describe("When validators <- Session.Utility.Validation()",{
+describe("When validators <- Session.Validation()",{
   it("then validators should be a list.", {
     # Given
-    validators <- Session.Utility.Validation()
+    validators <- Session.Validation()
 
     # Then
     validators |> expect.list()
   })
   it("then validators should contain NavigationResponse validator.", {
     # Given
-    validators <- Session.Utility.Validation()
+    validators <- Session.Validation()
 
     # Then
     validators[["NavigationResponse"]] |> expect.exist()
   })
   it("then validators should contain Filepath validator.", {
     # Given
-    validators <- Session.Utility.Validation()
+    validators <- Session.Validation()
 
     # Then
     validators[["Filepath"]] |> expect.exist()
   })
   it("then validators should contain IsEmpty validator.", {
     # Given
-    validators <- Session.Utility.Validation()
+    validators <- Session.Validation()
 
     # Then
     validators[["IsEmpty"]] |> expect.exist()
   })
   it("then validators should contain IsNull validator.", {
     # Given
-    validators <- Session.Utility.Validation()
+    validators <- Session.Validation()
 
     # Then
     validators[["IsNull"]] |> expect.exist()
   })
   it("then validators should contain Name validator.",{
     # Given
-    validators <- Session.Utility.Validation()
+    validators <- Session.Validation()
 
     # Then
     validators[["Name"]] |> expect.exist()
   })
   it("then validators should contain Value validator.",{
     # Given
-    validators <- Session.Utility.Validation()
+    validators <- Session.Validation()
 
     # Then
     validators[["Value"]] |> expect.exist()
   })
   it("then validators should contain IDE Validator.",{
     # Given
-    validators <- Session.Utility.Validation()
+    validators <- Session.Validation()
 
     # Then
     validators[["IDE"]] |> expect.exist()
   })
   it("then validators should contain APIAvailability Validator.",{
     # Given
-    validators <- Session.Utility.Validation()
+    validators <- Session.Validation()
 
     # Then
     validators[["APIAvailability"]] |> expect.exist()
   })
   it("then validators should contain APICapability Validator.",{
     # Given
-    validators <- Session.Utility.Validation()
+    validators <- Session.Validation()
 
     # Then
     validators[["APICapability"]] |> expect.exist()
@@ -81,7 +81,7 @@ describe("When validators <- Session.Utility.Validation()",{
 describe("When response |> validate[['NavigationResponse']]()",{
   it("then a PathNotFound exception should be thrown is response throws a warning containing path not found",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
     throw.warning <- \() {
       warning('path[1]="C:/Users/InvalidPath/Documents/.Renviron": The system cannot find the path specified.')
     }
@@ -93,7 +93,7 @@ describe("When response |> validate[['NavigationResponse']]()",{
   })
   it("then a FileNotFound exception should be thrown if response throws a warning containing file not found",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
     throw.warning <- \() {
       warning('path[1]="C:/Users/Analyst/Documents/check.txt": The system cannot find the file specified.')
     }
@@ -108,7 +108,7 @@ describe("When response |> validate[['NavigationResponse']]()",{
 describe("When filepath |> validate[['Filepath']]()",{
   it("then filepath should be returned if filepath is valid.",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     input.filepath <- "C:/Users/username/Documents/.Renviron"
     expect.filepath <- input.filepath
@@ -121,7 +121,7 @@ describe("When filepath |> validate[['Filepath']]()",{
   })
   it("then an exception should be thrown if filepath is invalid.",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     filepath <- "C:\\Users\\username\\Documents\\.Renviron"
     expected.error <- paste0("Invalid filepath: ", "C:\\\\Users\\\\username\\\\Documents\\\\.Renviron", ".")
@@ -134,7 +134,7 @@ describe("When filepath |> validate[['Filepath']]()",{
 describe("When value |> validate[['IsEmpty']]()",{
   it("then True is return if value is empty.",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     # When
     value <- ""
@@ -144,7 +144,7 @@ describe("When value |> validate[['IsEmpty']]()",{
   })
   it("then False is return if value is not empty.",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     # When
     value <- "value"
@@ -157,7 +157,7 @@ describe("When value |> validate[['IsEmpty']]()",{
 describe("When value |> validate[['IsNull']]()",{
   it("then True is return if value is NULL.",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     # When
     value <- NULL
@@ -167,7 +167,7 @@ describe("When value |> validate[['IsNull']]()",{
   })
   it("then False is return if value is not NULL.",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     # When
     value <- "value"
@@ -180,7 +180,7 @@ describe("When value |> validate[['IsNull']]()",{
 describe("When name |> validate[['Name']]()",{
   it("then name is returned when name is not null",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     # When
     name  <- "name" 
@@ -190,7 +190,7 @@ describe("When name |> validate[['Name']]()",{
   })
   it("then no exception is thrown when name is not null",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     # When
     name  <- "name" 
@@ -200,7 +200,7 @@ describe("When name |> validate[['Name']]()",{
   })
   it("then an exception is thrown when name is null",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
 
@@ -215,7 +215,7 @@ describe("When name |> validate[['Name']]()",{
 describe("When value |> validate[['Value']](name)",{
   it("then value is returned when value is not empty",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     # When
     name  <- "name" 
@@ -226,7 +226,7 @@ describe("When value |> validate[['Value']](name)",{
   })
   it("then no exception is thrown when value is not empty",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     # When
     name  <- "name" 
@@ -237,7 +237,7 @@ describe("When value |> validate[['Value']](name)",{
   })
   it("then an exception is thrown when value is empty",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     # When
     name  <- "name" 
@@ -250,7 +250,7 @@ describe("When value |> validate[['Value']](name)",{
   })
   it("then an exception is thrown when value is Null",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     # When
     value <- NULL
@@ -265,7 +265,7 @@ describe("When value |> validate[['Value']](name)",{
 describe("When ide |> validate[['IDE']]()",{
   it("then an exception should be thrown if no IDE in use.",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     expected.error <- "No IDE in use but required."
 
@@ -280,7 +280,7 @@ describe("When ide |> validate[['IDE']]()",{
 describe("When availability |> validate[['APIAvailability']](ide)",{
   it("then no exception should be thrown if RStudio API is available",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     # When
     availability <- TRUE
@@ -290,7 +290,7 @@ describe("When availability |> validate[['APIAvailability']](ide)",{
   })
   it("then an exception should be thrown if RStudio API is unavailable in RStudio.",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     expected.error <- "RStudio API is unavailable in RStudio."
 
@@ -303,7 +303,7 @@ describe("When availability |> validate[['APIAvailability']](ide)",{
   })
   it("then an exception should be thrown if RStudio API is unavailable in VSCode.",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     expected.error <- "RStudio API is unavailable in VSCode."
 
@@ -319,7 +319,7 @@ describe("When availability |> validate[['APIAvailability']](ide)",{
 describe("When capable |> validate[['APICapability']](ide)",{
   it("then no exception should be thrown if Navigate To File function is available.",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     # When
     capable <- TRUE
@@ -329,7 +329,7 @@ describe("When capable |> validate[['APICapability']](ide)",{
   })
   it("then an exception should be thrown if Navigate To File function is not available in RStudio.",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     expected.error <- "Navigate to File function is unavailable in RStudio."
 
@@ -342,7 +342,7 @@ describe("When capable |> validate[['APICapability']](ide)",{
   })
   it("then an exception should be thrown if Navigate To File function is not available in VSCode.",{
     # Given
-    validate <- Session.Utility.Validation()
+    validate <- Session.Validation()
 
     expected.error <- "Navigate to File function is unavailable in VSCode."
 
