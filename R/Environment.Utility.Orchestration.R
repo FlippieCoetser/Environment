@@ -23,5 +23,6 @@ Environment.Utility.Orchestration <- \(...) {
     path[['EnsureFilepathExist']]() |>
     session[['OpenFilepath']]()
   }
+  orchestrations[['GetEnvVariable']] <- \() {}
   return(orchestrations)
 }
