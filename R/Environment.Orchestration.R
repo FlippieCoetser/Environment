@@ -4,7 +4,7 @@
 #' `.Renviron` configuration file is well suited to management sensitive information. 
 #' This `Environment` package makes defining and reading environment variables straightforward.
 #' 
-#' `Environment.Utility.Orchestration()` returns a set of utility functions that can be used to interact with `.Renviron` files:
+#' `Environment.Orchestration()` returns a set of utility functions that can be used to interact with `.Renviron` files:
 #' * The first function: `OpenConfigFile`, will open an existing or a new empty `.Renviron` configuration file.
 #' Users can then add environment variables by defining `'key'='value'` pairs.
 #' * The second function: `GetEnvVariable`, will read the value of the matching key (name) from the configuration file.
@@ -15,7 +15,7 @@
 #' * `GetEnvVariable(name)`
 #' * `CacheEnvVariable(name, value)`
 #' @export
-Environment.Utility.Orchestration <- \(...) {
+Environment.Orchestration <- \(...) {
   path <- 
     Path.Broker()  |> 
     Path.Service() |> 
