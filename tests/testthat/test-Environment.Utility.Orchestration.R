@@ -13,4 +13,11 @@ describe("When orchestrations <- Environment.Utility.Orchestration()", {
     # Then
     orchestrations |> expect.list()
   })
+  it("then orchestrations contains OpenConfigFile orchestration", {
+    # Given
+    orchestrations <- Environment.Utility.Orchestration()
+
+    # Then
+    orchestrations[['OpenConfigFile']] |> expect.exist()
+  })
 })
