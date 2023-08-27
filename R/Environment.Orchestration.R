@@ -19,7 +19,7 @@ Environment.Orchestration <- \(...) {
   path <- 
     Path.Broker()  |> 
     Path.Service() |> 
-    Path.Processing()
+    Path.Processor()
 
   session <- 
     Session.Broker()  |> 

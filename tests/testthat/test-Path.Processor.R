@@ -1,31 +1,31 @@
-describe('Path.Processing', {
+describe('Path.Processor', {
   it('Exist',{
     # Then
-    Path.Processing |> expect.exist()
+    Path.Processor |> expect.exist()
   })
 })
 
-describe("When processors <- Path.Processing()",{
-  it("then processors should be a list.", {
+describe("When processes <- Path.Processor()",{
+  it("then processes should be a list.", {
     # Given
-    processors <- Path.Processing()
+    processes <- Path.Processor()
 
     # Then
-    processors |> expect.list()
+    processes |> expect.list()
   })
-  it("then processors contains GetConfigFilepath", {
+  it("then processes contains GetConfigFilepath", {
     # Given
-    processors <- Path.Processing()
+    processes <- Path.Processor()
 
     # Then
-    processors[['GetConfigFilepath']] |> expect.exist()
+    processes[['GetConfigFilepath']] |> expect.exist()
   })
-  it("then processors contains EnsureFilepathExist", {
+  it("then processes contains EnsureFilepathExist", {
     # Given
-    processors <- Path.Processing()
+    processes <- Path.Processor()
 
     # Then
-    processors[['EnsureFilepathExist']] |> expect.exist()
+    processes[['EnsureFilepathExist']] |> expect.exist()
   })
 })
 
@@ -34,7 +34,7 @@ describe("When process[['GetConfigFilepath']]()",{
     # Given
     broker  <- Path.Broker()
     service <- broker |> Path.Service()
-    process <- service |> Path.Processing()
+    process <- service |> Path.Processor()
 
     path     <- service[['GetUserHomePath']]()
     filename <- service[['GetConfigFilename']]()
@@ -56,7 +56,7 @@ describe("When filepath |> process[['EnsureFilepathExist']]()",{
     # Given
     broker  <- Path.Broker()
     service <- broker |> Path.Service()
-    process <- service |> Path.Processing()
+    process <- service |> Path.Processor()
 
     path     <- service[['GetUserHomePath']]()
     filename <- 'new.file'
@@ -77,7 +77,7 @@ describe("When filepath |> process[['EnsureFilepathExist']]()",{
     # Given
     broker  <- Path.Broker()
     service <- broker |> Path.Service()
-    process <- service |> Path.Processing()
+    process <- service |> Path.Processor()
 
     path     <- service[['GetUserHomePath']]()
     filename <- 'new.file'
