@@ -53,3 +53,40 @@ describe("When orchestrate[['OpenConfigFile']]()",{
     result |> expect.true()
   })
 })
+
+describe("When name |> orchestrate[['GetEnvVariable']]()",{
+  it("then the value for variable with name is returned.", {
+    # Given
+    orchestrate <- Environment.Utility.Orchestration()
+
+    name  <- "ENVIRONMENT"
+
+    # When
+    value <- name |> orchestrate[["GetEnvVariable"]]()
+
+    # Then
+    name |> Sys.getenv() |> expect.equal(value)
+  })
+  it("then an exception is thrown is name is NULL",{
+    # Given
+    orchestrate <- Environment.Utility.Orchestration()
+
+    expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
+
+    # When
+    name <- NULL
+
+    # Then
+    name |> orchestrate[["GetEnvVariable"]]() |> expect.error(expected.error)
+  })
+  it("then an exception is thrown if no value for variable is found",{
+    # Given
+    orchestrate <- Environment.Utility.Orchestration()
+
+    name           <- "INVALID"
+    expected.error <- "No value found for provided environment variable:INVALID. Please check .Renviron configuration file."
+
+    # Then
+    name |> orchestrate[["GetEnvVariable"]]() |> expect.error(expected.error)
+  })
+})
