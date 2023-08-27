@@ -1,4 +1,4 @@
-Session.Utility.Exceptions <- \() {
+Session.Exceptions <- \() {
   exceptions <- list()
   exceptions[['NavigateToFileExceptions']]  <- \(error) {
     filepath <- sub('.*?"(.*?)":.*', '\\1', error[['message']])

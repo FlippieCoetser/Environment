@@ -1,84 +1,84 @@
-describe('Session.Utility.Exceptions', {
+describe('Session.Exceptions', {
   it('Exist',{
     # Then
-    Session.Utility.Exceptions |> expect.exist()
+    Session.Exceptions |> expect.exist()
   })
 })
 
-describe("When exceptions <- Session.Utility.Exceptions()",{
+describe("When exceptions <- Session.Exceptions()",{
   it("then exceptions should be a list.", {
     # Given
-    exceptions <- Session.Utility.Exceptions()
+    exceptions <- Session.Exceptions()
 
     # Then
     exceptions |> expect.list()
   })
   it("then exceptions should contain NavigateToFileExceptions.", {
     # Given
-    exceptions <- Session.Utility.Exceptions()
+    exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["NavigateToFileExceptions"]] |> expect.exist()
   })
   it("then exceptions should contain PathNotFound Exception.", {
     # Given
-    exceptions <- Session.Utility.Exceptions()
+    exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["PathNotFound"]] |> expect.exist()
   })
   it("then exceptions should contain FileNotFound Exception.", {
     # Given
-    exceptions <- Session.Utility.Exceptions()
+    exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["FileNotFound"]] |> expect.exist()
   })
   it("then exceptions should contain InvalidFilepath Exception",{
     # Given
-    exceptions <- Session.Utility.Exceptions()
+    exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["InvalidFilepath"]] |> expect.exist()
   })
   it("then exceptions should contain NameIsNull Exception",{
     # Given
-    exceptions <- Session.Utility.Exceptions()
+    exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["NameIsNull"]] |> expect.exist()
   })
   it("then exceptions should contain ValueIsEmpty Exception",{
     # Given
-    exceptions <- Session.Utility.Exceptions()
+    exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["ValueIsEmpty"]] |> expect.exist()
   })
   it("then exceptions should contain ValueIsNull Exception",{
     # Given
-    exceptions <- Session.Utility.Exceptions()
+    exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["ValueIsNull"]] |> expect.exist()
   })
   it("then exceptions should contain NoIDEInUse Exception",{
     # Given
-    exceptions <- Session.Utility.Exceptions()
+    exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["NoIDEInUse"]] |> expect.exist()
   })
   it("then exceptions should contain RStudioAPIUnavailable Exception",{
     # Given
-    exceptions <- Session.Utility.Exceptions()
+    exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["RStudioAPIUnavailable"]] |> expect.exist()
   })
   it("then exceptions should contain NavigateToFileUnavailable Exception",{
     # Given
-    exceptions <- Session.Utility.Exceptions()
+    exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["NavigateToFileUnavailable"]] |> expect.exist()
@@ -88,7 +88,7 @@ describe("When exceptions <- Session.Utility.Exceptions()",{
 describe("When input |> exception[['PathNotFound']](path)",{
   it("then no exception should be thrown if input is FALSE.",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     # When
     validation.input <- FALSE
@@ -98,7 +98,7 @@ describe("When input |> exception[['PathNotFound']](path)",{
   })
   it("then an exception should be thrown if input is TRUE.",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     random.path    <- "random.path"
     expected.error <- paste0("Path not found: ", random.path, ".")
@@ -114,7 +114,7 @@ describe("When input |> exception[['PathNotFound']](path)",{
 describe("When input |> exception[['FileNotFound']](file)",{
   it("then no exception should be thrown if input is FALSE.",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     # When
     validation.input <- FALSE
@@ -124,7 +124,7 @@ describe("When input |> exception[['FileNotFound']](file)",{
   })
   it("then an exception should be thrown if input is TRUE.",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     random.file    <- "random.file"
     expected.error <- paste0("File not found: ", random.file, ".")
@@ -140,7 +140,7 @@ describe("When input |> exception[['FileNotFound']](file)",{
 describe("When error |> exception[['NavigateToFileExceptions']]()",{
   it("then an PathNotFound exception should be thrown in error message contain cannot find the path.",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     excepted.error <- "Path not found: C:/Users/InvalidPath/Documents/.Renviron."
 
@@ -153,7 +153,7 @@ describe("When error |> exception[['NavigateToFileExceptions']]()",{
   })
   it("then an FileNotFound exception should be thrown if error message contain cannot find the file.",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     excepted.error <- "File not found: C:/Users/Analyst/Documents/check.txt."
 
@@ -169,7 +169,7 @@ describe("When error |> exception[['NavigateToFileExceptions']]()",{
 describe("When input |> exception[['InvalidFilepath']]()",{
   it("then no exception should be thrown if input is FALSE.",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     # When
     validation.input <- FALSE
@@ -179,7 +179,7 @@ describe("When input |> exception[['InvalidFilepath']]()",{
   })
   it("then an exception should be thrown if input is TRUE.",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     random.filepath <- "filepath"
     expected.error  <- paste0("Invalid filepath: ", random.filepath, ".")
@@ -195,7 +195,7 @@ describe("When input |> exception[['InvalidFilepath']]()",{
 describe("When input |> exception[['NameIsNull']]()",{
   it("then no exception is thrown if input is FALSE",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     # When
     input <- FALSE
@@ -205,7 +205,7 @@ describe("When input |> exception[['NameIsNull']]()",{
   })
   it("then an exception is thrown if input is TRUE",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
 
@@ -220,7 +220,7 @@ describe("When input |> exception[['NameIsNull']]()",{
 describe("When input |> exception[['ValueIsEmpty']](name)",{
   it("Then no exception is thrown if input is FALSE",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     variable.name  <- "name"
 
@@ -232,7 +232,7 @@ describe("When input |> exception[['ValueIsEmpty']](name)",{
   })
   it("Then an exception is thrown if input is TRUE",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     variable.name  <- "name"
     expected.error <- paste0("No value found for provided environment variable:", variable.name, ". Please check .Renviron configuration file.")
@@ -248,7 +248,7 @@ describe("When input |> exception[['ValueIsEmpty']](name)",{
 describe("When input |> exception[['ValueIsNull']]()",{
   it("then no exception is thrown if input is FALSE",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     # When
     input <- FALSE
@@ -258,7 +258,7 @@ describe("When input |> exception[['ValueIsNull']]()",{
   })
   it("then an exception is thrown if input is TRUE",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     expected.error <- "Value is null. Expected a value for the environment to cache."
 
@@ -273,7 +273,7 @@ describe("When input |> exception[['ValueIsNull']]()",{
 describe("When input |> exception[['NoIDEInUse']]()",{
   it("then no exception is thrown if input is FALSE",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     # When
     input <- FALSE
@@ -283,7 +283,7 @@ describe("When input |> exception[['NoIDEInUse']]()",{
   })
   it("then an exception is thrown if input is TRUE",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     expected.error <- "No IDE in use but required."
 
@@ -298,7 +298,7 @@ describe("When input |> exception[['NoIDEInUse']]()",{
 describe("When input |> exception[['RStudioAPIUnavailable']](ide)",{
   it("then no exception is thrown if input is FALSE",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     # When
     input <- FALSE
@@ -308,7 +308,7 @@ describe("When input |> exception[['RStudioAPIUnavailable']](ide)",{
   })
   it("then an exception is thrown if input is TRUE",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
     
     ide <- "ide.name"
     expected.error <- paste0("RStudio API is unavailable in ",ide,".")
@@ -324,7 +324,7 @@ describe("When input |> exception[['RStudioAPIUnavailable']](ide)",{
 describe("When input |> exception[['NavigateToFileUnavailable']](ide)",{
   it("then no exception is thrown if input is FALSE",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
 
     # When
     input <- FALSE
@@ -334,7 +334,7 @@ describe("When input |> exception[['NavigateToFileUnavailable']](ide)",{
   })
   it("then an exception is thrown if input is TRUE",{
     # Given
-    exception <- Session.Utility.Exceptions()
+    exception <- Session.Exceptions()
     
     ide <- "ide.name"
     expected.error <- paste0("Navigate to File function is unavailable in ",ide,".")
