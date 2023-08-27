@@ -27,5 +27,6 @@ Session.Utility.Processing <- \(service) {
   processors[['GetEnvVariable']] <- \(name) {
     name |> service[['GetEnvVariable']]()
   }
+  processors[['CacheEnvVariable']] <- \() {}
   return(processors)
 }
