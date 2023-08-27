@@ -62,6 +62,27 @@ describe("When exceptions <- Session.Utility.Exceptions()",{
     # Then
     exceptions[["ValueIsNull"]] |> expect.exist()
   })
+  it("then exceptions should contain NoIDEInUse Exception",{
+    # Given
+    exceptions <- Session.Utility.Exceptions()
+
+    # Then
+    exceptions[["NoIDEInUse"]] |> expect.exist()
+  })
+  it("then exceptions should contain RStudioAPIUnavailable Exception",{
+    # Given
+    exceptions <- Session.Utility.Exceptions()
+
+    # Then
+    exceptions[["RStudioAPIUnavailable"]] |> expect.exist()
+  })
+  it("then exceptions should contain NavigateToFileUnavailable Exception",{
+    # Given
+    exceptions <- Session.Utility.Exceptions()
+
+    # Then
+    exceptions[["NavigateToFileUnavailable"]] |> expect.exist()
+  })
 })
 
 describe("When input |> exception[['PathNotFound']](path)",{
@@ -246,5 +267,82 @@ describe("When input |> exception[['ValueIsNull']]()",{
 
     # Then
     input |> exception[["ValueIsNull"]]() |> expect.error(expected.error)
+  })
+})
+
+describe("When input |> exception[['NoIDEInUse']]()",{
+  it("then no exception is thrown if input is FALSE",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    # When
+    input <- FALSE
+
+    # Then
+    input |> exception[["NoIDEInUse"]]() |> expect.no.error()
+  })
+  it("then an exception is thrown if input is TRUE",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    expected.error <- "No IDE in use but required."
+
+    # When
+    input <- TRUE
+
+    # Then
+    input |> exception[["NoIDEInUse"]]() |> expect.error(expected.error)
+  })
+})
+
+describe("When input |> exception[['RStudioAPIUnavailable']](ide)",{
+  it("then no exception is thrown if input is FALSE",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    # When
+    input <- FALSE
+
+    # Then
+    input |> exception[["RStudioAPIUnavailable"]]() |> expect.no.error()
+  })
+  it("then an exception is thrown if input is TRUE",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+    
+    ide <- "ide.name"
+    expected.error <- paste0("RStudio API is unavailable in ",ide,".")
+
+    # When
+    input <- TRUE
+
+    # Then
+    input |> exception[["RStudioAPIUnavailable"]](ide) |> expect.error(expected.error)
+  })
+})
+
+describe("When input |> exception[['NavigateToFileUnavailable']](ide)",{
+  it("then no exception is thrown if input is FALSE",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+
+    # When
+    input <- FALSE
+
+    # Then
+    input |> exception[["NavigateToFileUnavailable"]]() |> expect.no.error()
+  })
+  it("then an exception is thrown if input is TRUE",{
+    # Given
+    exception <- Session.Utility.Exceptions()
+    
+    ide <- "ide.name"
+    expected.error <- paste0("Navigate to File function is unavailable in ",ide,".")
+
+    # When
+    input <- TRUE
+
+    # Then
+    input |> exception[["NavigateToFileUnavailable"]](ide) |> expect.error(expected.error)
   })
 })

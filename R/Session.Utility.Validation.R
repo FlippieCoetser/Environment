@@ -25,5 +25,14 @@ Session.Utility.Validation <- \() {
     value |> validations[['IsEmpty']]() |> exception[['ValueIsEmpty']](name)
     return(value)
   }
+  validations[['IDE']]                <- \(ide) {
+    'None' |> grepl(ide) |> exception[['NoIDEInUse']]()
+  }
+  validations[['APIAvailability']]    <- \(available, ide) {
+    available |> isFALSE() |> exception[['RStudioAPIUnavailable']](ide)
+  }
+  validations[['APICapability']]      <- \(capable, ide) {
+    capable |> isFALSE() |> exception[['NavigateToFileUnavailable']](ide)
+  }
   return(validations)
 }

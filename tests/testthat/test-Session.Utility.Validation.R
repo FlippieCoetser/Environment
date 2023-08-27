@@ -55,6 +55,27 @@ describe("When validators <- Session.Utility.Validation()",{
     # Then
     validators[["Value"]] |> expect.exist()
   })
+  it("then validators should contain IDE Validator.",{
+    # Given
+    validators <- Session.Utility.Validation()
+
+    # Then
+    validators[["IDE"]] |> expect.exist()
+  })
+  it("then validators should contain APIAvailability Validator.",{
+    # Given
+    validators <- Session.Utility.Validation()
+
+    # Then
+    validators[["APIAvailability"]] |> expect.exist()
+  })
+  it("then validators should contain APICapability Validator.",{
+    # Given
+    validators <- Session.Utility.Validation()
+
+    # Then
+    validators[["APICapability"]] |> expect.exist()
+  })
 })
 
 describe("When response |> validate[['NavigationResponse']]()",{
@@ -238,5 +259,98 @@ describe("When value |> validate[['Value']](name)",{
 
     # Then
     value |> validate[["Value"]]() |> expect.error(expected.error)
+  })
+})
+
+describe("When ide |> validate[['IDE']]()",{
+  it("then an exception should be thrown if no IDE in use.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    expected.error <- "No IDE in use but required."
+
+    # When
+    ide <- "None"
+
+    # Then
+    ide |> validate[["IDE"]]() |> expect.error(expected.error)
+  })
+})
+
+describe("When availability |> validate[['APIAvailability']](ide)",{
+  it("then no exception should be thrown if RStudio API is available",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    # When
+    availability <- TRUE
+
+    # Then
+    availability |> validate[["APIAvailability"]]() |> expect.no.error()
+  })
+  it("then an exception should be thrown if RStudio API is unavailable in RStudio.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    expected.error <- "RStudio API is unavailable in RStudio."
+
+    # When
+    availability <- FALSE
+    ide <- "RStudio"
+
+    # Then
+    availability |> validate[["APIAvailability"]](ide) |> expect.error(expected.error)
+  })
+  it("then an exception should be thrown if RStudio API is unavailable in VSCode.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    expected.error <- "RStudio API is unavailable in VSCode."
+
+    # When
+    availability <- FALSE
+    ide <- "VSCode"
+
+    # Then
+    availability |> validate[["APIAvailability"]](ide) |> expect.error(expected.error)
+  })
+})
+
+describe("When capable |> validate[['APICapability']](ide)",{
+  it("then no exception should be thrown if Navigate To File function is available.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    # When
+    capable <- TRUE
+
+    # Then
+    capable |> validate[["APICapability"]](ide) |> expect.no.error()
+  })
+  it("then an exception should be thrown if Navigate To File function is not available in RStudio.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    expected.error <- "Navigate to File function is unavailable in RStudio."
+
+    # When
+    capable <- FALSE
+    ide <- "RStudio"
+
+    # Then
+    capable |> validate[["APICapability"]](ide) |> expect.error(expected.error)
+  })
+  it("then an exception should be thrown if Navigate To File function is not available in VSCode.",{
+    # Given
+    validate <- Session.Utility.Validation()
+
+    expected.error <- "Navigate to File function is unavailable in VSCode."
+
+    # When
+    capable <- FALSE
+    ide <- "VSCode"
+
+    # Then
+    capable |> validate[["APICapability"]](ide) |> expect.error(expected.error)
   })
 })
