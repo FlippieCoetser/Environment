@@ -287,3 +287,46 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
     ide |> process[['CheckIDEInUse']]() |> expect.error(expected.error)
   })
 })
+
+describe("When name |> process[['GetEnvVariable']]()",{
+  it("then the value for variable with name is returned.", {
+    # Given
+    broker <- Session.Utility.Broker()
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    name  <- "ENVIRONMENT"
+
+    # When
+    value <- name |> process[["GetEnvVariable"]]()
+
+    # Then
+    name |> Sys.getenv() |> expect.equal(value)
+  })
+  it("then an exception is thrown is name is NULL",{
+    # Given
+    broker <- Session.Utility.Broker()
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
+
+    # When
+    name <- NULL
+
+    # Then
+    name |> process[["GetEnvVariable"]]() |> expect.error(expected.error)
+  })
+  it("then an exception is thrown if no value for variable is found",{
+    # Given
+    broker <- Session.Utility.Broker()
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    name           <- "INVALID"
+    expected.error <- "No value found for provided environment variable:INVALID. Please check .Renviron configuration file."
+
+    # Then
+    name |> process[["GetEnvVariable"]]() |> expect.error(expected.error)
+  })
+})
