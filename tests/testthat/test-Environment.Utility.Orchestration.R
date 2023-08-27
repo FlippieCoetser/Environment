@@ -20,6 +20,13 @@ describe("When orchestrations <- Environment.Utility.Orchestration()", {
     # Then
     orchestrations[['OpenConfigFile']] |> expect.exist()
   })
+  it("then orchestrations contains GetEnvVariable orchestration", {
+    # Given
+    orchestrations <- Environment.Utility.Orchestration()
+
+    # Then
+    orchestrations[['GetEnvVariable']] |> expect.exist()
+  })
 })
 
 describe("When orchestrate[['OpenConfigFile']]()",{
