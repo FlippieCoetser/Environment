@@ -6,35 +6,35 @@ describe('Path.Validator', {
 })
 
 describe("When validations <- Path.Validator()", {
-  it("then validations should be a list.", {
+  it("then validations is a list.", {
     # Given
     validations <- Path.Validator()
 
     # Then
     validations |> expect.list()
   })
-  it("then validations should contain Path service.", {
+  it("then validations contains Path validator.", {
     # Given
     validations <- Path.Validator()
 
     # Then
     validations[["Path"]] |> expect.exist()
   })
-  it("then validations should contain Filename validator.", {
+  it("then validations contains Filename validator.", {
     # Given
     validations <- Path.Validator()
 
     # Then
     validations[["Filename"]] |> expect.exist()
   })
-  it("then validations should contain Normalized validator.", {
+  it("then validations contains Normalized validator.", {
     # Given
     validations <- Path.Validator()
 
     # Then
     validations[["Normalized"]] |> expect.exist()
   })
-  it("then validations should contain Filepath validator.", {
+  it("then validations contains Filepath validator.", {
     # Given
     validations <- Path.Validator()
 

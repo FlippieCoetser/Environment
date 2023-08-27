@@ -6,77 +6,77 @@ describe('Session.Exceptions', {
 })
 
 describe("When exceptions <- Session.Exceptions()",{
-  it("then exceptions should be a list.", {
+  it("then exceptions is a list.", {
     # Given
     exceptions <- Session.Exceptions()
 
     # Then
     exceptions |> expect.list()
   })
-  it("then exceptions should contain NavigateToFileExceptions.", {
+  it("then exceptions contains NavigateToFileExceptions exception.", {
     # Given
     exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["NavigateToFileExceptions"]] |> expect.exist()
   })
-  it("then exceptions should contain PathNotFound Exception.", {
+  it("then exceptions contains PathNotFound exception.", {
     # Given
     exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["PathNotFound"]] |> expect.exist()
   })
-  it("then exceptions should contain FileNotFound Exception.", {
+  it("then exceptions contains FileNotFound exception.", {
     # Given
     exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["FileNotFound"]] |> expect.exist()
   })
-  it("then exceptions should contain InvalidFilepath Exception",{
+  it("then exceptions contains InvalidFilepath exception.",{
     # Given
     exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["InvalidFilepath"]] |> expect.exist()
   })
-  it("then exceptions should contain NameIsNull Exception",{
+  it("then exceptions contains NameIsNull exception.",{
     # Given
     exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["NameIsNull"]] |> expect.exist()
   })
-  it("then exceptions should contain ValueIsEmpty Exception",{
+  it("then exceptions contains ValueIsEmpty exception.",{
     # Given
     exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["ValueIsEmpty"]] |> expect.exist()
   })
-  it("then exceptions should contain ValueIsNull Exception",{
+  it("then exceptions contains ValueIsNull exception.",{
     # Given
     exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["ValueIsNull"]] |> expect.exist()
   })
-  it("then exceptions should contain NoIDEInUse Exception",{
+  it("then exceptions contains NoIDEInUse exception.",{
     # Given
     exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["NoIDEInUse"]] |> expect.exist()
   })
-  it("then exceptions should contain RStudioAPIUnavailable Exception",{
+  it("then exceptions contains RStudioAPIUnavailable exception.",{
     # Given
     exceptions <- Session.Exceptions()
 
     # Then
     exceptions[["RStudioAPIUnavailable"]] |> expect.exist()
   })
-  it("then exceptions should contain NavigateToFileUnavailable Exception",{
+  it("then exceptions contains NavigateToFileUnavailable exception.",{
     # Given
     exceptions <- Session.Exceptions()
 

@@ -6,21 +6,21 @@ describe('Utility.Exceptions', {
 })
 
 describe("When exceptions <- Utility.Exceptions()", {
-  it("then exceptions should be a list.", {
+  it("then exceptions is a list.", {
     # Given
     exceptions <- Utility.Exceptions()
 
     # Then
     exceptions |> expect.list()
   })
-  it("then exceptions should contain NameIsNull exception.", {
+  it("then exceptions contains NameIsNull exception.", {
     # Given
     exceptions <- Utility.Exceptions()
 
     # Then
     exceptions[["NameIsNull"]] |> expect.exist()
   })
-  it("then exceptions should contain ValueIsEmpty exception.", {
+  it("then exceptions contains ValueIsEmpty exception.", {
     # Given
     exceptions <- Utility.Exceptions()
 

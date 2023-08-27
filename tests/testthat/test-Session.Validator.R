@@ -6,70 +6,70 @@ describe('Session.Validator', {
 })
 
 describe("When validations <- Session.Validator()",{
-  it("then validators should be a list.", {
+  it("then validators is a list.", {
     # Given
     validations <- Session.Validator()
 
     # Then
     validations |> expect.list()
   })
-  it("then validations should contain NavigationResponse validator.", {
+  it("then validations contains NavigationResponse validator.", {
     # Given
     validations <- Session.Validator()
 
     # Then
     validations[["NavigationResponse"]] |> expect.exist()
   })
-  it("then validations should contain Filepath validator.", {
+  it("then validations contains Filepath validator.", {
     # Given
     validations <- Session.Validator()
 
     # Then
     validations[["Filepath"]] |> expect.exist()
   })
-  it("then validations should contain IsEmpty validator.", {
+  it("then validations contains IsEmpty validator.", {
     # Given
     validations <- Session.Validator()
 
     # Then
     validations[["IsEmpty"]] |> expect.exist()
   })
-  it("then validations should contain IsNull validator.", {
+  it("then validations contains IsNull validator.", {
     # Given
     validations <- Session.Validator()
 
     # Then
     validations[["IsNull"]] |> expect.exist()
   })
-  it("then validations should contain Name validator.",{
+  it("then validations contains Name validator.",{
     # Given
     validations <- Session.Validator()
 
     # Then
     validations[["Name"]] |> expect.exist()
   })
-  it("then validations should contain Value validator.",{
+  it("then validations contains Value validator.",{
     # Given
     validations <- Session.Validator()
 
     # Then
     validations[["Value"]] |> expect.exist()
   })
-  it("then validations should contain IDE Validator.",{
+  it("then validations contains IDE Validator.",{
     # Given
     validations <- Session.Validator()
 
     # Then
     validations[["IDE"]] |> expect.exist()
   })
-  it("then validations should contain APIAvailability Validator.",{
+  it("then validations contains APIAvailability Validator.",{
     # Given
     validations <- Session.Validator()
 
     # Then
     validations[["APIAvailability"]] |> expect.exist()
   })
-  it("then validations should contain APICapability Validator.",{
+  it("then validations contains APICapability Validator.",{
     # Given
     validations <- Session.Validator()
 

@@ -6,56 +6,56 @@ describe('Session.Broker', {
 })
 
 describe("When operations <- Session.Broker()", {
-  it("then operations should be a list.", {
+  it("then operations is a list.", {
     # Given
     operations <- Session.Broker()
 
     # Then
     operations |> expect.list()
   })
-  it("then operations should contain HasRStudioAPI operation.", {
+  it("then operations contains HasRStudioAPI operation.", {
     # Given
     operations <- Session.Broker()
 
     # Then
     operations[["HasRStudioAPI"]] |> expect.exist()
   })
-  it("then operations should contain HasNavigateToFile operation.", {
+  it("then operations contains HasNavigateToFile operation.", {
     # Given
     operations <- Session.Broker()
 
     # Then
     operations[["HasNavigateToFile"]] |> expect.exist()
   })
-  it("then operations should contain NavigateToFile operation.", {
+  it("then operations contains NavigateToFile operation.", {
     # Given
     operations <- Session.Broker()
 
     # Then
     operations[["NavigateToFile"]] |> expect.exist()
   })
-  it("then operations should contain IDEInUse operation.", {
+  it("then operations contains IDEInUse operation.", {
     # Given
     operations <- Session.Broker()
 
     # Then
     operations[["IDEInUse"]] |> expect.exist()
   })
-  it("then operations should contain VSCodeInUse operation.", {
+  it("then operations contains VSCodeInUse operation.", {
     # Given
     operations <- Session.Broker()
 
     # Then
     operations[["VSCodeInUse"]] |> expect.exist()
   })
-  it("then operations should contains GetEnvVariable operation.", {
+  it("then operations contains GetEnvVariable operation.", {
     # Given
     operations <- Session.Broker()
 
     # Then
     operations[["GetEnvVariable"]] |> expect.exist()
   })
-  it("then operations should contains CacheEnvVariable operation.", {
+  it("then operations contains CacheEnvVariable operation.", {
     # Given
     operations <- Session.Broker()
 

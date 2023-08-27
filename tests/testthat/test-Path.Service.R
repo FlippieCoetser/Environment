@@ -6,49 +6,49 @@ describe('Path.Service', {
 })
 
 describe("When services <- Path.Service()", {
-  it("then services should be a list.", {
+  it("then services is a list.", {
     # Given
     services <- Path.Broker()
 
     # Then
     services |> expect.list()
   })
-  it("then services should contain GetUserHomePath service.", {
+  it("then services contains GetUserHomePath service.", {
     # Given
     services <- Path.Broker()
 
     # Then
     services[["GetUserHomePath"]] |> expect.exist()
   })
-  it("then services should contain GetConfigFilename service.", {
+  it("then services contains GetConfigFilename service.", {
     # Given
     services <- Path.Broker()
 
     # Then
     services[["GetConfigFilename"]] |> expect.exist()
   })
-  it("then services should contain NormalizePath service.", {
+  it("then services contains NormalizePath service.", {
     # Given
     services <- Path.Broker()
 
     # Then
     services[["NormalizePath"]] |> expect.exist()
   })
-  it("then services should contain CombinePath service.", {
+  it("then services contains CombinePath service.", {
     # Given
     services <- Path.Broker()
 
     # Then
     services[["CombinePath"]] |> expect.exist()
   })
-  it("then services should contain FilepathExists service.", {
+  it("then services contains FilepathExists service.", {
     # Given
     services <- Path.Broker()
 
     # Then
     services[["FilepathExists"]] |> expect.exist()
   })
-  it("then services should contain CreateFilepath service.", {
+  it("then services contains CreateFilepath service.", {
     # Given
     services <- Path.Broker()
 

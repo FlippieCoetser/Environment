@@ -6,49 +6,49 @@ describe('Path.Broker', {
 })
 
 describe("When operations <- Path.Broker()", {
-  it("then operations should be a list.", {
+  it("then operations is a list.", {
     # Given
     operations <- Path.Broker()
 
     # Then
     operations |> expect.list()
   })
-  it("then operations should contain GetUserHomePath operation.", {
+  it("then operations contains GetUserHomePath operation.", {
     # Given
     operations <- Path.Broker()
 
     # Then
     operations[["GetUserHomePath"]] |> expect.exist()
   })
-  it("then operations should contain GetConfigFilename operation.", {
+  it("then operations contains GetConfigFilename operation.", {
     # Given
     operations <- Path.Broker()
 
     # Then
     operations[["GetConfigFilename"]] |> expect.exist()
   })
-  it("then operations should contain NormalizePath operation.", {
+  it("then operations contains NormalizePath operation.", {
     # Given
     operations <- Path.Broker()
 
     # Then
     operations[["NormalizePath"]] |> expect.exist()
   })
-  it("then operations should contain CombinePath operation.", {
+  it("then operations contains CombinePath operation.", {
     # Given
     operations <- Path.Broker()
 
     # Then
     operations[["CombinePath"]] |> expect.exist()
   })
-  it("then operations should contain FilepathExists operation.", {
+  it("then operations contains FilepathExists operation.", {
     # Given
     operations <- Path.Broker()
 
     # Then
     operations[["FilepathExists"]] |> expect.exist()
   })
-  it("then operations should contain CreateFilepath operation.", {
+  it("then operations contains CreateFilepath operation.", {
     # Given
     operations <- Path.Broker()
 

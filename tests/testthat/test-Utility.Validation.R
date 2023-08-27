@@ -6,21 +6,21 @@ describe('Utility.Validation', {
 })
 
 describe("When validations <- Utility.Validation()", {
-  it("then validations should be a list.", {
+  it("then validations is a list.", {
     # Given
     validations <- Utility.Validation()
 
     # Then
     validations |> expect.list()
   })
-  it("then validations should contain Name validator.", {
+  it("then validations contains Name validator.", {
     # Given
     validations <- Utility.Validation()
 
     # Then
     validations[["Name"]] |> expect.exist()
   })
-  it("then validations should contain Value validator.", {
+  it("then validations contains Value validator.", {
     # Given
     validations <- Utility.Validation()
 

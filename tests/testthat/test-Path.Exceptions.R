@@ -6,35 +6,35 @@ describe('Path.Exceptions', {
 })
 
 describe("When exceptions <- Path.Exceptions()",{
-  it("then exceptions should be a list.",{
+  it("then exceptions is a list.",{
     # Given
     exceptions <- Path.Exceptions()
 
     # Then
     exceptions |> expect.list()
   })
-  it("then exceptions should contain InvalidPath exception.",{
+  it("then exceptions contains InvalidPath exception.",{
     # Given
     exceptions <- Path.Exceptions()
 
     # Then
     exceptions[["InvalidPath"]] |> expect.exist()
   })
-  it("then exceptions should contain InvalidFilename exception.",{
+  it("then exceptions contains InvalidFilename exception.",{
     # Given
     exceptions <- Path.Exceptions()
 
     # Then
     exceptions[["InvalidFilename"]] |> expect.exist()
   })
-  it("then exceptions should contain InvalidNormalized exception.",{
+  it("then exceptions contains InvalidNormalized exception.",{
     # Given
     exceptions <- Path.Exceptions()
 
     # Then
     exceptions[["InvalidNormalized"]] |> expect.exist()
   })
-  it("then exceptions should contain InvalidFilepath exception.",{
+  it("then exceptions contains InvalidFilepath exception.",{
     # Given
     exceptions <- Path.Exceptions()
 

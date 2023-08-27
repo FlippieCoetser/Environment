@@ -5,42 +5,42 @@ describe("Session.Processor",{
 })
 
 describe("When processes <- Session.Processor()",{
-  it("then processes should be a list.", {
+  it("then processes is a list.", {
     # Given
     processes <- Session.Processor()
 
     # Then
     processes |> expect.list()
   })
-  it("then processes should contain GetIDEInUse.", {
+  it("then processes contains GetIDEInUse process.", {
     # Given
     processes <- Session.Processor()
 
     # Then
     processes[["GetIDEInUse"]] |> expect.exist()
   })
-  it("then processes should contain OpenFilepath.", {
+  it("then processes contains OpenFilepath process.", {
     # Given
     processes <- Session.Processor()
 
     # Then
     processes[["OpenFilepath"]] |> expect.exist()
   })
-  it("then processes should contain CheckIDEInUse.", {
+  it("then processes contains CheckIDEInUse process.", {
     # Given
     processes <- Session.Processor()
 
     # Then
     processes[["CheckIDEInUse"]] |> expect.exist()
   })
-  it("then processes should contain GetEnvVariable.", {
+  it("then processes contains GetEnvVariable process.", {
     # Given
     processes <- Session.Processor()
 
     # Then
     processes[["GetEnvVariable"]] |> expect.exist()
   })
-  it("then processes should contain CacheEnvVariable.", {
+  it("then processes contains CacheEnvVariable process.", {
     # Given
     processes <- Session.Processor()
 

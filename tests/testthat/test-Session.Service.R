@@ -6,56 +6,56 @@ describe('Session.Service', {
 })
 
 describe("When services <- Session.Service()",{
-  it("then services should be a list.", {
+  it("then services is a list.", {
     # Given
     services <- Session.Service()
 
     # Then
     services |> expect.list()
   })
-  it("then services should contain HasRStudioAPI service.", {
+  it("then services contains HasRStudioAPI service.", {
     # Given
     services <- Session.Service()
 
     # Then
     services[["HasRStudioAPI"]] |> expect.exist()
   })
-  it("then services should contain HasNavigateToFile service.", {
+  it("then services contains HasNavigateToFile service.", {
     # Given
     services <- Session.Service()
 
     # Then
     services[["HasNavigateToFile"]] |> expect.exist()
   })
-  it("then services should contain NavigateToFile service.", {
+  it("then services contains NavigateToFile service.", {
     # Given
     services <- Session.Service()
 
     # Then
     services[["NavigateToFile"]] |> expect.exist()
   })
-  it("then services should contain IDEInUse service.", {
+  it("then services contains IDEInUse service.", {
     # Given
     services <- Session.Service()
 
     # Then
     services[["IDEInUse"]] |> expect.exist()
   })
-  it("then services should contain VSCodeInUse service.", {
+  it("then services contains VSCodeInUse service.", {
     # Given
     services <- Session.Service()
 
     # Then
     services[["VSCodeInUse"]] |> expect.exist()
   })
-  it("then services should contain GetEnvVariable service.", {
+  it("then services contains GetEnvVariable service.", {
     # Given
     services <- Session.Service()
 
     # Then
     services[["GetEnvVariable"]] |> expect.exist()
   })
-  it("then services should contain CacheEnvVariable service.", {
+  it("then services contains CacheEnvVariable service.", {
     # Given
     services <- Session.Service()
 

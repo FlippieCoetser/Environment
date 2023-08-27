@@ -6,21 +6,21 @@ describe('Path.Processor', {
 })
 
 describe("When processes <- Path.Processor()",{
-  it("then processes should be a list.", {
+  it("then processes is a list.", {
     # Given
     processes <- Path.Processor()
 
     # Then
     processes |> expect.list()
   })
-  it("then processes contains GetConfigFilepath", {
+  it("then processes contains GetConfigFilepath process.", {
     # Given
     processes <- Path.Processor()
 
     # Then
     processes[['GetConfigFilepath']] |> expect.exist()
   })
-  it("then processes contains EnsureFilepathExist", {
+  it("then processes contains EnsureFilepathExist process.", {
     # Given
     processes <- Path.Processor()
 

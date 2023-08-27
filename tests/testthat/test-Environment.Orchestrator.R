@@ -6,7 +6,7 @@ describe('Environment.Orchestrator', {
 })
 
 describe("When orchestrations <- Environment.Orchestrator()", {
-  it("Then orchestrations should be a list", {
+  it("Then orchestrations is a list", {
     # Given
     orchestrations <- Environment.Orchestrator()
 
