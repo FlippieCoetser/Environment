@@ -87,6 +87,31 @@ describe("When process[['GetIDEInUse']]()",{
 })
 
 describe("When filepath |> process[['OpenFilePath']]()",{
+  it("then the filepath should be opened in the IDE in use.",{
+    # Given
+    expected.filepath <- NULL
+
+    broker <- Session.Utility.Broker()
+    broker[['IDEInUse']]          <- \() TRUE
+    broker[['HasRStudioAPI']]     <- \() TRUE
+    broker[['HasNavigateToFile']] <- \() TRUE
+
+    broker[['NavigateToFile']] <- \(filepath) {
+      expected.filepath <<- filepath
+    }
+
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    input.filepath <- "C:/Users/username/Documents/.Renviron"
+
+
+    # When
+    actual.filepath <- input.filepath |> process[['OpenFilePath']]()
+
+    # Then
+    actual.filepath |> expect.equal(expected.filepath)
+  })
   it("then an exception should be thrown if no IDE in use.",{
     # Given
     broker <- Session.Utility.Broker()
