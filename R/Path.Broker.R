@@ -1,4 +1,4 @@
-Path.Utility.Broker <- \() {
+Path.Broker <- \() {
   operations <- list()
   operations[['GetUserHomePath']]   <- \() {
     path.expand('~')

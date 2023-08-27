@@ -32,7 +32,7 @@ describe("When processors <- Path.Utility.Processing()",{
 describe("When process[['GetConfigFilepath']]()",{
   it("then the filepath to the users .Renviron file should be returned.", {
     # Given
-    broker  <- Path.Utility.Broker()
+    broker  <- Path.Broker()
     service <- broker |> Path.Utility.Service()
     process <- service |> Path.Utility.Processing()
 
@@ -54,7 +54,7 @@ describe("When process[['GetConfigFilepath']]()",{
 describe("When filepath |> process[['EnsureFilepathExist']]()",{
   it("then filepath is returned",{
     # Given
-    broker  <- Path.Utility.Broker()
+    broker  <- Path.Broker()
     service <- broker |> Path.Utility.Service()
     process <- service |> Path.Utility.Processing()
 
@@ -75,7 +75,7 @@ describe("When filepath |> process[['EnsureFilepathExist']]()",{
   })
   it("then file created in path if not exist.", {
     # Given
-    broker  <- Path.Utility.Broker()
+    broker  <- Path.Broker()
     service <- broker |> Path.Utility.Service()
     process <- service |> Path.Utility.Processing()
 

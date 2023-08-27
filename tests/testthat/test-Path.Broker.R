@@ -1,56 +1,56 @@
-describe('Path.Utility.Broker', {
+describe('Path.Broker', {
   it('Exist',{
     # Then
-    Path.Utility.Broker |> expect.exist()
+    Path.Broker |> expect.exist()
   })
 })
 
-describe("When operations <- Path.Utility.Broker()", {
+describe("When operations <- Path.Broker()", {
   it("then operations should be a list.", {
     # Given
-    operations <- Path.Utility.Broker()
+    operations <- Path.Broker()
 
     # Then
     operations |> expect.list()
   })
   it("then operations should contain GetUserHomePath operation.", {
     # Given
-    operations <- Path.Utility.Broker()
+    operations <- Path.Broker()
 
     # Then
     operations[["GetUserHomePath"]] |> expect.exist()
   })
   it("then operations should contain GetConfigFilename operation.", {
     # Given
-    operations <- Path.Utility.Broker()
+    operations <- Path.Broker()
 
     # Then
     operations[["GetConfigFilename"]] |> expect.exist()
   })
   it("then operations should contain NormalizePath operation.", {
     # Given
-    operations <- Path.Utility.Broker()
+    operations <- Path.Broker()
 
     # Then
     operations[["NormalizePath"]] |> expect.exist()
   })
   it("then operations should contain CombinePath operation.", {
     # Given
-    operations <- Path.Utility.Broker()
+    operations <- Path.Broker()
 
     # Then
     operations[["CombinePath"]] |> expect.exist()
   })
   it("then operations should contain FilepathExists operation.", {
     # Given
-    operations <- Path.Utility.Broker()
+    operations <- Path.Broker()
 
     # Then
     operations[["FilepathExists"]] |> expect.exist()
   })
   it("then operations should contain CreateFilepath operation.", {
     # Given
-    operations <- Path.Utility.Broker()
+    operations <- Path.Broker()
 
     # Then
     operations[["CreateFilepath"]] |> expect.exist()
@@ -60,7 +60,7 @@ describe("When operations <- Path.Utility.Broker()", {
 describe("When operation[['GetUserHomePath']]()",{
   it("then the user home path is returned.",{
     # Given
-    operation <- Path.Utility.Broker()
+    operation <- Path.Broker()
 
     expected.path <- path.expand('~')
 
@@ -75,7 +75,7 @@ describe("When operation[['GetUserHomePath']]()",{
 describe("When operation[['GetConfigFilename']]()",{
   it("then the config filename is returned.",{
     # Given
-    operation <- Path.Utility.Broker()
+    operation <- Path.Broker()
 
     expected.filename <- ".Renviron"
 
@@ -90,7 +90,7 @@ describe("When operation[['GetConfigFilename']]()",{
 describe("When path |> operation[['NormalizePath']]()",{
   it("then all double backslashes are replaced with single forwardslash.",{
     # Given
-    operation <- Path.Utility.Broker()
+    operation <- Path.Broker()
 
     input.path <- "C:\\Users\\user\\Documents\\"
     expected.path <- "C:/Users/user/Documents/"
@@ -106,7 +106,7 @@ describe("When path |> operation[['NormalizePath']]()",{
 describe("When path |> operation[['CombinePath']]()",{
   it("then the path and filename are combined.",{
     # Given
-    operation <- Path.Utility.Broker()
+    operation <- Path.Broker()
 
     input.path <- "C:/Users/user/Documents"
     input.filename <- "file.txt"
@@ -124,7 +124,7 @@ describe("When filepath |> operation[['FilepathExists']]()",{
   it("then FALSE is returned if filepath does not exist.",{
     skip_if_not(environment == 'local')
     # Given
-    operation <- Path.Utility.Broker()
+    operation <- Path.Broker()
 
     input.filepath <- "C:/InvalidPath/.Renviron"
     expected.result <- FALSE
@@ -138,7 +138,7 @@ describe("When filepath |> operation[['FilepathExists']]()",{
   it("then TRUE is returned if filepath exists.",{
     skip_if_not(environment == 'local')
     # Given
-    operation <- Path.Utility.Broker()
+    operation <- Path.Broker()
 
     input.filepath <- "C:/Users/Analyst/Documents/.Renviron"
     expected.result <- TRUE
@@ -155,7 +155,7 @@ describe("When filepath |> operation[['CreateFilepath']]()",{
   it("then the filepath is created if the path is valid.",{
     skip_if_not(environment == 'local')
     # Given
-    operation <- Path.Utility.Broker()
+    operation <- Path.Broker()
 
     input.filepath <- "C:/Users/Analyst/Documents/test.txt"
     expected.result <- TRUE
@@ -169,7 +169,7 @@ describe("When filepath |> operation[['CreateFilepath']]()",{
   it("then a warning is thrown if filepath is is invalid.",{
     skip_if_not(environment == 'local')
     # Given
-    operation <- Path.Utility.Broker()
+    operation <- Path.Broker()
 
     input.filepath <- "C:/Users/Analyst/Invalid/test.txt"
 

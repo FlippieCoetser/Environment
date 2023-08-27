@@ -40,7 +40,7 @@ describe("When orchestrate[['OpenConfigFile']]()",{
   it("Then the .Renviron opens in IDE", {
     # Given
     path <- 
-      Path.Utility.Broker()  |> 
+      Path.Broker()  |> 
       Path.Utility.Service() |> 
       Path.Utility.Processing()
 
