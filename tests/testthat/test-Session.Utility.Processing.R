@@ -52,7 +52,7 @@ describe("When processors <- Session.Utility.Processing()",{
 describe("When process[['GetIDEInUse']]()",{
   it("then None should be returned in no IDE is in use.", {
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     broker[['IDEInUse']] <- \() FALSE
 
     service <- broker |> Session.Utility.Service()
@@ -68,7 +68,7 @@ describe("When process[['GetIDEInUse']]()",{
   })
   it("then RStudio should be returned is RStudio is in use.", {
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     broker[['IDEInUse']]    <- \() TRUE
     broker[['VSCodeInUse']] <- \() FALSE
 
@@ -85,7 +85,7 @@ describe("When process[['GetIDEInUse']]()",{
   })
   it("then VSCode should be returned if VSCode is in use.", {
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     broker[['IDEInUse']]    <- \() TRUE
     broker[['VSCodeInUse']] <- \() TRUE
 
@@ -107,7 +107,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     # Given
     expected.filepath <- NULL
 
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     broker[['IDEInUse']]          <- \() TRUE
     broker[['HasRStudioAPI']]     <- \() TRUE
     broker[['HasNavigateToFile']] <- \() TRUE
@@ -130,7 +130,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
   })
   it("then an exception should be thrown if no IDE in use.",{
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     broker[['IDEInUse']] <- \() FALSE
 
     service <- broker |> Session.Utility.Service()
@@ -145,7 +145,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
   })
   it("then an exception should be thrown if RStudio API is unavailable in RStudio.",{
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     broker[['IDEInUse']]          <- \() TRUE
     broker[['VSCodeInUse']]       <- \() FALSE
     broker[['HasRStudioAPI']]     <- \() FALSE
@@ -163,7 +163,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
   })
   it("then an exception should be thrown if RStudio API is unavailable in VSCode.",{
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     broker[['IDEInUse']]          <- \() TRUE
     broker[['VSCodeInUse']]       <- \() TRUE
     broker[['HasRStudioAPI']]     <- \() FALSE
@@ -181,7 +181,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
   })
   it("then an exception should be thrown if Navigate To File function is unavailable in RStudio.",{
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     broker[['IDEInUse']]          <- \() TRUE
     broker[['VSCodeInUse']]       <- \() FALSE
     broker[['HasRStudioAPI']]     <- \() TRUE
@@ -199,7 +199,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
   })
   it("then an exception should be thrown if Navigate To File function is unavailable in VSCode.",{
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     broker[['IDEInUse']]          <- \() TRUE
     broker[['VSCodeInUse']]       <- \() TRUE
     broker[['HasRStudioAPI']]     <- \() TRUE
@@ -220,7 +220,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
 describe("When ide |> process[['CheckIDEInUse']]()",{
   it("then an exception should be thrown if no IDE in use.",{
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     service <- broker |> Session.Utility.Service()
     process <- service |> Session.Utility.Processing()
 
@@ -233,7 +233,7 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
   })
   it("then an exception should be thrown if RStudioAPI is unavailable in RStudio.",{
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     broker[['HasRStudioAPI']]     <- \() FALSE
     broker[['HasNavigateToFile']] <- \() TRUE
 
@@ -249,7 +249,7 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
   })
   it("then an exception should be thrown if RStudioAPI is unavailable in VSCode.",{
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     broker[['HasRStudioAPI']]     <- \() FALSE
     broker[['HasNavigateToFile']] <- \() TRUE
 
@@ -265,7 +265,7 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
   })
   it("then an exception should be thrown if Navigate To File function is unavailable in RStudio.",{
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     broker[['HasRStudioAPI']]     <- \() TRUE
     broker[['HasNavigateToFile']] <- \() FALSE
 
@@ -281,7 +281,7 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
   })
   it("then an exception should be thrown if Navigate To File function is unavailable in VSCode.",{
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     broker[['HasRStudioAPI']]     <- \() TRUE
     broker[['HasNavigateToFile']] <- \() FALSE
 
@@ -300,7 +300,7 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
 describe("When name |> process[['GetEnvVariable']]()",{
   it("then the value for variable with name is returned.", {
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     service <- broker |> Session.Utility.Service()
     process <- service |> Session.Utility.Processing()
 
@@ -314,7 +314,7 @@ describe("When name |> process[['GetEnvVariable']]()",{
   })
   it("then an exception is thrown is name is NULL",{
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     service <- broker |> Session.Utility.Service()
     process <- service |> Session.Utility.Processing()
 
@@ -328,7 +328,7 @@ describe("When name |> process[['GetEnvVariable']]()",{
   })
   it("then an exception is thrown if no value for variable is found",{
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     service <- broker |> Session.Utility.Service()
     process <- service |> Session.Utility.Processing()
 
@@ -343,7 +343,7 @@ describe("When name |> process[['GetEnvVariable']]()",{
 describe("When name |> service[['CacheEnvVariable']](value)",{
   it("then the value of variable with name is cached.", {
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     service <- broker |> Session.Utility.Service()
     process <- service |> Session.Utility.Processing()
 
@@ -358,7 +358,7 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
   })
   it("then an exception is thrown if name is NULL",{
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     service <- broker |> Session.Utility.Service()
     process <- service |> Session.Utility.Processing()
 
@@ -373,7 +373,7 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
   })
   it("then an exception is thrown if value is NULL",{
     # Given
-    broker <- Session.Utility.Broker()
+    broker <- Session.Broker()
     service <- broker |> Session.Utility.Service()
     process <- service |> Session.Utility.Processing()
 

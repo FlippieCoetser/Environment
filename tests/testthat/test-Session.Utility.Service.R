@@ -67,7 +67,7 @@ describe("When services <- Session.Utility.Service()",{
 describe("When service[['HasRStudioAPI']]()",{
   it("then TRUE is returned if RStudioAPI is available.", {
     # Given
-    broker   <- Session.Utility.Broker()
+    broker   <- Session.Broker()
     broker[['HasRStudioAPI']] <- \() { TRUE }
 
     service <- broker |> Session.Utility.Service()
@@ -80,7 +80,7 @@ describe("When service[['HasRStudioAPI']]()",{
   })
   it("then FALSE is returned if RStudioAPI is not available.", {
     # Given
-    broker   <- Session.Utility.Broker()
+    broker   <- Session.Broker()
     broker[['HasRStudioAPI']] <- \() { FALSE }
 
     service <- broker |> Session.Utility.Service()
@@ -96,7 +96,7 @@ describe("When service[['HasRStudioAPI']]()",{
 describe("When service[['HasNavigateToFile']]()",{
   it("then TRUE is returned if navigateToFile function is available.", {
     # Given
-    broker   <- Session.Utility.Broker()
+    broker   <- Session.Broker()
     broker[['HasNavigateToFile']] <- \() { TRUE }
 
     service <- broker |> Session.Utility.Service()
@@ -109,7 +109,7 @@ describe("When service[['HasNavigateToFile']]()",{
   })
   it("then FALSE is returned if navigateToFile function is not available.", {
     # Given
-    broker   <- Session.Utility.Broker()
+    broker   <- Session.Broker()
     broker[['HasNavigateToFile']] <- \() { FALSE }
 
     service <- broker |> Session.Utility.Service()
@@ -125,7 +125,7 @@ describe("When service[['HasNavigateToFile']]()",{
 describe("When filepath |> service[['NavigateToFile']]()",{
   it("then an exception is thrown if path not found.", {
     # Given
-    broker  <- Session.Utility.Broker()
+    broker  <- Session.Broker()
     broker[['NavigateToFile']] <- \(filepath) {
       warning('path[1]="C:/Users/InvalidPath/Documents/.Renviron": The system cannot find the path specified.')
     }
@@ -141,7 +141,7 @@ describe("When filepath |> service[['NavigateToFile']]()",{
   })
   it("then an exception is thrown if file not found.",{
     # Given
-    broker  <- Session.Utility.Broker()
+    broker  <- Session.Broker()
     broker[['NavigateToFile']] <- \(filepath) {
       warning('path[1]="C:/Users/Analyst/Documents/check.txt": The system cannot find the file specified.')
     }
@@ -157,7 +157,7 @@ describe("When filepath |> service[['NavigateToFile']]()",{
   })
   it("then an exception is thrown if filepath is invalid.",{
     # Given
-    broker  <- Session.Utility.Broker()
+    broker  <- Session.Broker()
     service <- broker |> Session.Utility.Service()
 
     input.filepath <- "C:\\Users\\username\\Documents\\.Renviron"
@@ -171,7 +171,7 @@ describe("When filepath |> service[['NavigateToFile']]()",{
 describe("When service[['IDEInUse']]()",{
   it("then TRUE is returned if IDE is in use.", {
     # Given
-    broker   <- Session.Utility.Broker()
+    broker   <- Session.Broker()
     broker[['IDEInUse']] <- \() { TRUE }
 
     service <- broker |> Session.Utility.Service()
@@ -184,7 +184,7 @@ describe("When service[['IDEInUse']]()",{
   })
   it("then FALSE is returned if IDE is not in use.", {
     # Given
-    broker   <- Session.Utility.Broker()
+    broker   <- Session.Broker()
     broker[['IDEInUse']] <- \() { FALSE }
 
     service <- broker |> Session.Utility.Service()
@@ -200,7 +200,7 @@ describe("When service[['IDEInUse']]()",{
 describe("When service[['VSCodeInUse']]()",{
   it("then TRUE is returned if VS Code is in use.", {
     # Given
-    broker   <- Session.Utility.Broker()
+    broker   <- Session.Broker()
     broker[['VSCodeInUse']] <- \() { TRUE }
 
     service <- broker |> Session.Utility.Service()
@@ -213,7 +213,7 @@ describe("When service[['VSCodeInUse']]()",{
   })
   it("then FALSE is returned if VS Code is not in use.", {
     # Given
-    broker   <- Session.Utility.Broker()
+    broker   <- Session.Broker()
     broker[['VSCodeInUse']] <- \() { FALSE }
 
     service <- broker |> Session.Utility.Service()
@@ -229,7 +229,7 @@ describe("When service[['VSCodeInUse']]()",{
 describe("When name |> service[['GetEnvVariable']]()",{
   it("then the value for variable with name is returned.", {
     # Given
-    broker  <- Session.Utility.Broker()
+    broker  <- Session.Broker()
     service <- broker |> Session.Utility.Service()
 
     name  <- "ENVIRONMENT"
@@ -242,7 +242,7 @@ describe("When name |> service[['GetEnvVariable']]()",{
   })
   it("then an exception is thrown is name is NULL",{
     # Given
-    broker  <- Session.Utility.Broker()
+    broker  <- Session.Broker()
     service <- broker |> Session.Utility.Service()
 
     expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
@@ -255,7 +255,7 @@ describe("When name |> service[['GetEnvVariable']]()",{
   })
   it("then an exception is thrown if no value for variable is found",{
     # Given
-    broker  <- Session.Utility.Broker()
+    broker  <- Session.Broker()
     service <- broker |> Session.Utility.Service()
 
     name           <- "INVALID"
@@ -269,7 +269,7 @@ describe("When name |> service[['GetEnvVariable']]()",{
 describe("When name |> service[['CacheEnvVariable']](value)",{
   it("then the value of variable with name is cached.", {
     # Given
-    broker  <- Session.Utility.Broker()
+    broker  <- Session.Broker()
     service <- broker |> Session.Utility.Service()
 
     name  <- "NEW_VARIABLE"
@@ -283,7 +283,7 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
   })
   it("then an exception is thrown if name is NULL",{
     # Given
-    broker  <- Session.Utility.Broker()
+    broker  <- Session.Broker()
     service <- broker |> Session.Utility.Service()
 
     expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
@@ -297,7 +297,7 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
   })
   it("then an exception is thrown if value is NULL",{
     # Given
-    broker  <- Session.Utility.Broker()
+    broker  <- Session.Broker()
     service <- broker |> Session.Utility.Service()
 
     expected.error <- "Value is null. Expected a value for the environment to cache."
