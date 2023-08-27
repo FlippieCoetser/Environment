@@ -74,7 +74,7 @@ describe("When name |> orchestrate[['GetEnvVariable']]()",{
     # Then
     name |> Sys.getenv() |> expect.equal(value)
   })
-  it("then an exception is thrown is name is NULL",{
+  it("then an exception is thrown if name is NULL",{
     # Given
     orchestrate <- Environment.Orchestrator()
 

@@ -118,7 +118,7 @@ describe("When service[['GetUserHomePath']]()", {
 })
 
 describe("When service[['GetConfigFilename']]()", {
-  it("then broker[['GetConfigFilename']]() is returned.", {
+  it("then the configuration filename is returned.", {
     # Given
     broker  <- Path.Broker()
     service <- broker |> Path.Service()

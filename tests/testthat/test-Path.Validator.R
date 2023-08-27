@@ -127,7 +127,7 @@ describe("When filename |> validate[['Filename']]()",{
     # Then
     actual.filename |> expect.equal(expect.filename)
   })
-  it("then an exception is thrown if filename is not valid.",{
+  it("then an exception is thrown if filename is invalid.",{
     # Given
     validate <- Path.Validator()
 
@@ -153,7 +153,7 @@ describe("When path |> validate[['Normalized']]()",{
     # Then
     actual.path |> expect.equal(expect.path)
   })
-  it("then an exception is thrown if path is invalid path.",{
+  it("then an exception is thrown if path is invalid.",{
     # Given
     validate <- Path.Validator()
 
