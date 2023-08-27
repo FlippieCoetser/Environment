@@ -22,6 +22,7 @@ Session.Utility.Processing <- \(service) {
   processors[['OpenFilePath']] <- \(filepath) {
     processors[['GetIDEInUse']]() |> processors[['CheckIDEInUse']]()
 
+    filepath |> service[['NavigateToFile']]()
   }
   return(processors)
 }
