@@ -23,7 +23,7 @@ describe("When orchestrations <- Environment.Utility.Orchestration()", {
 })
 
 describe("When orchestrate[['OpenConfigFile']]()",{
-  it("Then the .Renviron file in users home directory should be opened", {
+  it("Then the .Renviron opens in IDE", {
     # Given
     path <- 
       Path.Utility.Broker()  |> 
