@@ -147,6 +147,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     # Given
     broker <- Session.Utility.Broker()
     broker[['IDEInUse']]          <- \() TRUE
+    broker[['VSCodeInUse']]       <- \() FALSE
     broker[['HasRStudioAPI']]     <- \() FALSE
     broker[['HasNavigateToFile']] <- \() FALSE
 
@@ -182,6 +183,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     # Given
     broker <- Session.Utility.Broker()
     broker[['IDEInUse']]          <- \() TRUE
+    broker[['VSCodeInUse']]       <- \() FALSE
     broker[['HasRStudioAPI']]     <- \() TRUE
     broker[['HasNavigateToFile']] <- \() FALSE
 
@@ -193,7 +195,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     expected.error <- "Navigate to File function is unavailable in RStudio."
 
     # Then
-    filepath |> process[['OpenFilepath']]() |> expect.error(expected.error)
+    filepath |> process[['OpenFilepath']]() |> expect_error(expected.error)
   })
   it("then an exception should be thrown if Navigate To File function is unavailable in VSCode.",{
     # Given
