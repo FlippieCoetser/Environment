@@ -1,4 +1,4 @@
-Path.Utility.Validation <- \() {
+Path.Validation <- \() {
   exception <- Path.Exceptions()
 
   validators <- list()
