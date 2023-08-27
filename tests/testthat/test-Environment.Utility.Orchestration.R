@@ -21,3 +21,28 @@ describe("When orchestrations <- Environment.Utility.Orchestration()", {
     orchestrations[['OpenConfigFile']] |> expect.exist()
   })
 })
+
+describe("When orchestrate[['OpenConfigFile']]()",{
+  it("Then the .Renviron file in users home directory should be opened", {
+    # Given
+    path <- 
+      Path.Utility.Broker()  |> 
+      Path.Utility.Service() |> 
+      Path.Utility.Processing()
+
+    session <- 
+      Session.Utility.Broker()  |> 
+      Session.Utility.Service() |> 
+      Session.Utility.Processing()
+
+    session[['OpenFilepath']] <- \(filepath) TRUE
+
+    orchestrations <- Environment.Utility.Orchestration(path = path, session = session)
+
+    # When
+    result <- orchestrations[['OpenConfigFile']]()
+
+    # Then
+    result |> expect.true()
+  })
+})
