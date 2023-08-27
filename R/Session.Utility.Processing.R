@@ -19,7 +19,7 @@ Session.Utility.Processing <- \(service) {
     service[['HasRStudioAPI']]() |> validate[['APIAvailability']](ide)
     service[['HasNavigateToFile']]() |> validate[['APICapability']](ide)
   }
-  processors[['OpenFilePath']] <- \(filepath) {
+  processors[['OpenFilepath']] <- \(filepath) {
     processors[['GetIDEInUse']]() |> processors[['CheckIDEInUse']]()
 
     filepath |> service[['NavigateToFile']]()
