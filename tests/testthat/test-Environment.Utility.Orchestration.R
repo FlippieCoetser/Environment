@@ -97,3 +97,46 @@ describe("When name |> orchestrate[['GetEnvVariable']]()",{
     name |> orchestrate[["GetEnvVariable"]]() |> expect.error(expected.error)
   })
 })
+
+
+describe("When name |> orchestrate[['CacheEnvVariable']](value)",{
+  it("then the value of variable with name is cached.", {
+    # Given
+    orchestrate <- Environment.Utility.Orchestration()
+
+    name  <- "NEW_VARIABLE"
+    value <- "new_value"
+
+    # When
+    name |> orchestrate[["CacheEnvVariable"]](value)
+
+    # Then
+    name |> Sys.getenv() |> expect.equal(value)
+  })
+  it("then an exception is thrown if name is NULL",{
+    # Given
+    orchestrate <- Environment.Utility.Orchestration()
+
+    expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
+
+    # When
+    name  <- NULL
+    value <- "new_value"
+
+    # Then
+    name |> orchestrate[["CacheEnvVariable"]](value) |> expect.error(expected.error)
+  })
+  it("then an exception is thrown if value is NULL",{
+    # Given
+    orchestrate <- Environment.Utility.Orchestration()
+
+    expected.error <- "Value is null. Expected a value for the environment to cache."
+
+    # When
+    name  <- "NEW_VARIABLE"
+    value <- NULL
+
+    # Then
+    name |> orchestrate[["CacheEnvVariable"]](value) |> expect.error(expected.error)
+  })
+})
