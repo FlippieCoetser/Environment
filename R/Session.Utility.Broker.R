@@ -19,7 +19,8 @@ Session.Utility.Broker <- \() {
     name |> Sys.getenv()
   }
   operations[['CacheEnvVariable']]  <- \(name, value) {
-    entry <- value |> list() |> setNames(name)
+    entry <- list()
+    entry[[name]] <- value
     "Sys.setenv" |> do.call(entry)
   }
   return(operations)
