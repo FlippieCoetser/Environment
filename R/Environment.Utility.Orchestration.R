@@ -24,7 +24,7 @@ Environment.Utility.Orchestration <- \(...) {
   session <- 
     Session.Broker()  |> 
     Session.Service() |> 
-    Session.Utility.Processing()
+    Session.Processing()
 
   arguments <- list(...)
   if(arguments[['path']] |> is.null() |> isFALSE()) {

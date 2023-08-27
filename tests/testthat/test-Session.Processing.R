@@ -1,48 +1,48 @@
-describe("Session.Utility.Processing",{
+describe("Session.Processing",{
   it("Exist",{
-     Session.Utility.Processing |> expect.exist()
+     Session.Processing |> expect.exist()
   })
 })
 
-describe("When processors <- Session.Utility.Processing()",{
+describe("When processors <- Session.Processing()",{
   it("then processors should be a list.", {
     # Given
-    processors <- Session.Utility.Processing()
+    processors <- Session.Processing()
 
     # Then
     processors |> expect.list()
   })
   it("then processors should contain GetIDEInUse.", {
     # Given
-    processors <- Session.Utility.Processing()
+    processors <- Session.Processing()
 
     # Then
     processors[["GetIDEInUse"]] |> expect.exist()
   })
   it("then processors should contain OpenFilepath.", {
     # Given
-    processors <- Session.Utility.Processing()
+    processors <- Session.Processing()
 
     # Then
     processors[["OpenFilepath"]] |> expect.exist()
   })
   it("then processors should contain CheckIDEInUse.", {
     # Given
-    processors <- Session.Utility.Processing()
+    processors <- Session.Processing()
 
     # Then
     processors[["CheckIDEInUse"]] |> expect.exist()
   })
   it("then processors should contain GetEnvVariable.", {
     # Given
-    processors <- Session.Utility.Processing()
+    processors <- Session.Processing()
 
     # Then
     processors[["GetEnvVariable"]] |> expect.exist()
   })
   it("then processors should contain CacheEnvVariable.", {
     # Given
-    processors <- Session.Utility.Processing()
+    processors <- Session.Processing()
 
     # Then
     processors[["CacheEnvVariable"]] |> expect.exist()
@@ -56,7 +56,7 @@ describe("When process[['GetIDEInUse']]()",{
     broker[['IDEInUse']] <- \() FALSE
 
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     expected.result <- "None"
 
@@ -73,7 +73,7 @@ describe("When process[['GetIDEInUse']]()",{
     broker[['VSCodeInUse']] <- \() FALSE
 
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     expected.result <- "RStudio"
 
@@ -90,7 +90,7 @@ describe("When process[['GetIDEInUse']]()",{
     broker[['VSCodeInUse']] <- \() TRUE
 
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     expected.result <- "VSCode"
 
@@ -117,7 +117,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     }
 
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     input.filepath <- "C:/Users/username/Documents/.Renviron"
 
@@ -134,7 +134,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     broker[['IDEInUse']] <- \() FALSE
 
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     filepath <- "C:/Users/username/Documents/.Renviron"
 
@@ -152,7 +152,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     broker[['HasNavigateToFile']] <- \() FALSE
 
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     filepath <- "C:/Users/username/Documents/.Renviron"
 
@@ -170,7 +170,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     broker[['HasNavigateToFile']] <- \() FALSE
 
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     filepath <- "C:/Users/username/Documents/.Renviron"
 
@@ -188,7 +188,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     broker[['HasNavigateToFile']] <- \() FALSE
 
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     filepath <- "C:/Users/username/Documents/.Renviron"
 
@@ -206,7 +206,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     broker[['HasNavigateToFile']] <- \() FALSE
 
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     filepath <- "C:/Users/username/Documents/.Renviron"
 
@@ -222,7 +222,7 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
     # Given
     broker <- Session.Broker()
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     ide <- "None"
 
@@ -238,7 +238,7 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
     broker[['HasNavigateToFile']] <- \() TRUE
 
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     ide <- "RStudio"
 
@@ -254,7 +254,7 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
     broker[['HasNavigateToFile']] <- \() TRUE
 
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     ide <- "VSCode"
 
@@ -270,7 +270,7 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
     broker[['HasNavigateToFile']] <- \() FALSE
 
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     ide <- "RStudio"
 
@@ -286,7 +286,7 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
     broker[['HasNavigateToFile']] <- \() FALSE
 
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     ide <- "VSCode"
 
@@ -302,7 +302,7 @@ describe("When name |> process[['GetEnvVariable']]()",{
     # Given
     broker <- Session.Broker()
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     name  <- "ENVIRONMENT"
 
@@ -316,7 +316,7 @@ describe("When name |> process[['GetEnvVariable']]()",{
     # Given
     broker <- Session.Broker()
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
 
@@ -330,7 +330,7 @@ describe("When name |> process[['GetEnvVariable']]()",{
     # Given
     broker <- Session.Broker()
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     name           <- "INVALID"
     expected.error <- "No value found for provided environment variable:INVALID. Please check .Renviron configuration file."
@@ -345,7 +345,7 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
     # Given
     broker <- Session.Broker()
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     name  <- "NEW_VARIABLE"
     value <- "new_value"
@@ -360,7 +360,7 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
     # Given
     broker <- Session.Broker()
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
 
@@ -375,7 +375,7 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
     # Given
     broker <- Session.Broker()
     service <- broker |> Session.Service()
-    process <- service |> Session.Utility.Processing()
+    process <- service |> Session.Processing()
 
     expected.error <- "Value is null. Expected a value for the environment to cache."
 
