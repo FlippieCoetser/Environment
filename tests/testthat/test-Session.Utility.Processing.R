@@ -337,3 +337,51 @@ describe("When name |> process[['GetEnvVariable']]()",{
     name |> process[["GetEnvVariable"]]() |> expect.error(expected.error)
   })
 })
+
+describe("When name |> service[['CacheEnvVariable']](value)",{
+  it("then the value of variable with name is cached.", {
+    # Given
+    broker <- Session.Utility.Broker()
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    name  <- "NEW_VARIABLE"
+    value <- "new_value"
+
+    # When
+    name |> process[["CacheEnvVariable"]](value)
+
+    # Then
+    name |> Sys.getenv() |> expect.equal(value)
+  })
+  it("then an exception is thrown if name is NULL",{
+    # Given
+    broker <- Session.Utility.Broker()
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
+
+    # When
+    name  <- NULL
+    value <- "new_value"
+
+    # Then
+    name |> process[["CacheEnvVariable"]](value) |> expect.error(expected.error)
+  })
+  it("then an exception is thrown if value is NULL",{
+    # Given
+    broker <- Session.Utility.Broker()
+    service <- broker |> Session.Utility.Service()
+    process <- service |> Session.Utility.Processing()
+
+    expected.error <- "Value is null. Expected a value for the environment to cache."
+
+    # When
+    name  <- "NEW_VARIABLE"
+    value <- NULL
+
+    # Then
+    name |> process[["CacheEnvVariable"]](value) |> expect.error(expected.error)
+  })
+})
