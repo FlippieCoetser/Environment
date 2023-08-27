@@ -1,5 +1,5 @@
 Session.Processor <- \(service) {
-  validate <- Session.Validation()
+  validate <- Session.Validator()
 
   processes <- list()
   processes[['GetIDEInUse']]      <- \() {

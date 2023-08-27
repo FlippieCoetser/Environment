@@ -1,4 +1,4 @@
-Session.Validation <- \() {
+Session.Validator <- \() {
   exception <- Session.Exceptions()
   
   validations <- list()
