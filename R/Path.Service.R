@@ -1,4 +1,4 @@
-Path.Utility.Service <- \(broker) {
+Path.Service <- \(broker) {
   validate <- Path.Validation()
 
   services <- list()

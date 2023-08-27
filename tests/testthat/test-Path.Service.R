@@ -1,11 +1,11 @@
-describe('Path.Utility.Service', {
+describe('Path.Service', {
   it('Exist',{
     # Then
-    Path.Utility.Service |> expect.exist()
+    Path.Service |> expect.exist()
   })
 })
 
-describe("When services <- Path.Utility.Service()", {
+describe("When services <- Path.Service()", {
   it("then services should be a list.", {
     # Given
     services <- Path.Broker()
@@ -61,7 +61,7 @@ describe("When service[['GetUserHomePath']]()", {
   it("then broker[['GetUserHomePath']]() should be returned.", {
     # Given
     broker  <- Path.Broker()
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     expected.path <- broker[['GetUserHomePath']]()
 
@@ -76,7 +76,7 @@ describe("When service[['GetUserHomePath']]()", {
     broker  <- Path.Broker()
     broker[['GetUserHomePath']] <- \() "C:/Users/Analyst/Documents"
 
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     # Then
     service[['GetUserHomePath']]() |> expect.no.error()
@@ -86,7 +86,7 @@ describe("When service[['GetUserHomePath']]()", {
     broker  <- Path.Broker()
     broker[['GetUserHomePath']] <- \() "/home/username/Documents"
 
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     # Then
     service[['GetUserHomePath']]() |> expect.no.error()
@@ -96,7 +96,7 @@ describe("When service[['GetUserHomePath']]()", {
     broker  <- Path.Broker()
     broker[['GetUserHomePath']] <- \() "C:\\Users\\username/Documents"
 
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     expected.error <- paste0("Invalid path: ", "C:\\\\Users\\\\username/Documents", ".")
 
@@ -108,7 +108,7 @@ describe("When service[['GetUserHomePath']]()", {
     broker  <- Path.Broker()
     broker[['GetUserHomePath']] <- \() "/home/username\\Documents"
 
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     expected.error <- paste0("Invalid path: ", "/home/username\\\\Documents", ".")
 
@@ -121,7 +121,7 @@ describe("When service[['GetConfigFilename']]()", {
   it("then broker[['GetConfigFilename']]() should be returned.", {
     # Given
     broker  <- Path.Broker()
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     expected.filename <- broker[['GetConfigFilename']]()
 
@@ -136,7 +136,7 @@ describe("When service[['GetConfigFilename']]()", {
     broker  <- Path.Broker()
     broker[['GetConfigFilename']] <- \() "filename."
 
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     expected.error <- paste0("Invalid filename: ", "filename.", ".")
 
@@ -149,7 +149,7 @@ describe("When path |> service[['NormalizePath']]()",{
   it("then all backslashes are replaced with forwardslash.",{
     # Given
     broker  <- Path.Broker()
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     input.path    <- "C:\\Users\\username\\Documents"
     expected.path <- "C:/Users/username/Documents"
@@ -163,7 +163,7 @@ describe("When path |> service[['NormalizePath']]()",{
   it("then an exception should be thrown if path is invalid windows style path.",{
     # Given
     broker  <- Path.Broker()
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     input.path <- "C:\\Users\\username/Documents"
     expected.error <- paste0("Invalid path: ", "C:\\\\Users\\\\username/Documents", ".")
@@ -174,7 +174,7 @@ describe("When path |> service[['NormalizePath']]()",{
   it("then an exception should be thrown if path is invalid unix style path.",{
     # Given
     broker  <- Path.Broker()
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     input.path <- "/home/username\\Documents"
     expected.error <- paste0("Invalid path: ", "/home/username\\\\Documents", ".")
@@ -187,7 +187,7 @@ describe("When path |> service[['NormalizePath']]()",{
     broker  <- Path.Broker()
     broker[['NormalizePath']] <- \(...) "C:\\Users\\username\\Documents"
 
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     input.path    <- "C:\\Users\\username\\Documents"
 
@@ -202,7 +202,7 @@ describe("When path |> service[['CombinePath']](filename)",{
   it("then path and filename are combined.",{
     # Given
     broker  <- Path.Broker()
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     input.path     <- "C:/Users/username/Documents"
     input.filename <- "file.txt"
@@ -217,7 +217,7 @@ describe("When path |> service[['CombinePath']](filename)",{
   it("then an exception is thrown if path is invalid.",{
     # Given
     broker  <- Path.Broker()
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     input.path     <- "C:\\Users\\username\\Documents"
     input.filename <- "file.txt"
@@ -229,7 +229,7 @@ describe("When path |> service[['CombinePath']](filename)",{
   it("then an exception is thrown if filename is invalid.",{
     # Given
     broker  <- Path.Broker()
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     input.path     <- "C:/Users/username/Documents"
     input.filename <- "file."
@@ -243,7 +243,7 @@ describe("When path |> service[['CombinePath']](filename)",{
     broker  <- Path.Broker()
     broker[['CombinePath']] <- \(...) "C:\\Users\\username\\Documents\\file.txt"
 
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     input.path     <- "C:/Users/username/Documents"
     input.filename <- "file.txt"
@@ -260,7 +260,7 @@ describe("When filepath |> service[['FilepathExists']]()",{
     skip_if_not(environment == 'local')
     # Given
     broker  <- Path.Broker()
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     input.filepath <- "C:/InvalidPath/.Renviron"
     expected.exists <- input.filepath |> broker[['FilepathExists']]()
@@ -275,7 +275,7 @@ describe("When filepath |> service[['FilepathExists']]()",{
     skip_if_not(environment == 'local')
     # Given
     broker  <- Path.Broker()
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     input.filepath <- "C:/Users/Analyst/Documents/.Renviron"
     expected.exists <- input.filepath |> broker[['FilepathExists']]()
@@ -289,7 +289,7 @@ describe("When filepath |> service[['FilepathExists']]()",{
   it("then an exception is thrown if filepath is invalid.",{
     # Given
     broker  <- Path.Broker()
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     input.filepath <- "C:\\Users\\username\\Documents\\.Renviron"
     expected.error <- paste0("Invalid filepath: ", "C:\\\\Users\\\\username\\\\Documents\\\\.Renviron", ".")
@@ -304,7 +304,7 @@ describe("When filepath |> service[['CreateFilepath']]()",{
     skip_if_not(environment == 'local')
     # Given
     broker  <- Path.Broker()
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     input.filepath <- "C:/Users/Analyst/Documents/test.txt"
     expected.exists <- input.filepath |> broker[['CreateFilepath']]()
@@ -318,7 +318,7 @@ describe("When filepath |> service[['CreateFilepath']]()",{
   it("then an exception is thrown if filepath is invalid.",{
     # Given
     broker  <- Path.Broker()
-    service <- broker |> Path.Utility.Service()
+    service <- broker |> Path.Service()
 
     input.filepath <- "C:\\Users\\username\\Documents\\test.txt"
     expected.error <- paste0("Invalid filepath: ", "C:\\\\Users\\\\username\\\\Documents\\\\test.txt", ".")
