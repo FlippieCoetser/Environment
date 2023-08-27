@@ -26,6 +26,8 @@ Environment.Utility.Orchestration <- \(...) {
   orchestrations[['GetEnvVariable']] <- \(name) {
     name |> session[['GetEnvVariable']]()
   }
-  orchestrations[['CacheEnvVariable']] <- \() {}
+  orchestrations[['CacheEnvVariable']] <- \(name, value) {
+    name |> session[['CacheEnvVariable']](value)
+  }
   return(orchestrations)
 }
