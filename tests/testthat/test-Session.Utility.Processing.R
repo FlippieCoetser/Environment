@@ -19,12 +19,12 @@ describe("When processors <- Session.Utility.Processing()",{
     # Then
     processors[["GetIDEInUse"]] |> expect.exist()
   })
-  it("then processors should contain OpenConfigFile.", {
+  it("then processors should contain OpenFilepath.", {
     # Given
     processors <- Session.Utility.Processing()
 
     # Then
-    processors[["OpenConfigFile"]] |> expect.exist()
+    processors[["OpenFilepath"]] |> expect.exist()
   })
   it("then processors should contain CheckIDEInUse.", {
     # Given
