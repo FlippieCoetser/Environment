@@ -18,3 +18,10 @@
 Environment <- \() {
   Environment.Orchestrator()
 }
+
+.onLoad <- \(libname, pkgname) {
+  orchestrator <- Environment.Orchestrator()
+  assign("OpenConfigFile", orchestrator[['OpenConfigFile']], envir = .GlobalEnv)
+  assign("GetEnvVariable", orchestrator[['GetEnvVariable']], envir = .GlobalEnv)
+  assign("CacheEnvVariable", orchestrator[['CacheEnvVariable']], envir = .GlobalEnv)
+}
