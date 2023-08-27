@@ -1,5 +1,5 @@
 Path.Utility.Validation <- \() {
-  exception <- Path.Utility.Exceptions()
+  exception <- Path.Exceptions()
 
   validators <- list()
   validators[['Path']]       <- \(path) {

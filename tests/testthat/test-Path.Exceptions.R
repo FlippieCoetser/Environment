@@ -1,42 +1,42 @@
-describe('Path.Utility.Exceptions', {
+describe('Path.Exceptions', {
   it('Exist',{
     # Then
-    Path.Utility.Exceptions |> expect.exist()
+    Path.Exceptions |> expect.exist()
   })
 })
 
-describe("When exceptions <- Path.Utility.Exceptions()",{
+describe("When exceptions <- Path.Exceptions()",{
   it("then exceptions should be a list.",{
     # Given
-    exceptions <- Path.Utility.Exceptions()
+    exceptions <- Path.Exceptions()
 
     # Then
     exceptions |> expect.list()
   })
   it("then exceptions should contain InvalidPath exception.",{
     # Given
-    exceptions <- Path.Utility.Exceptions()
+    exceptions <- Path.Exceptions()
 
     # Then
     exceptions[["InvalidPath"]] |> expect.exist()
   })
   it("then exceptions should contain InvalidFilename exception.",{
     # Given
-    exceptions <- Path.Utility.Exceptions()
+    exceptions <- Path.Exceptions()
 
     # Then
     exceptions[["InvalidFilename"]] |> expect.exist()
   })
   it("then exceptions should contain InvalidNormalized exception.",{
     # Given
-    exceptions <- Path.Utility.Exceptions()
+    exceptions <- Path.Exceptions()
 
     # Then
     exceptions[["InvalidNormalized"]] |> expect.exist()
   })
   it("then exceptions should contain InvalidFilepath exception.",{
     # Given
-    exceptions <- Path.Utility.Exceptions()
+    exceptions <- Path.Exceptions()
 
     # Then
     exceptions[["InvalidFilepath"]] |> expect.exist()
@@ -46,7 +46,7 @@ describe("When exceptions <- Path.Utility.Exceptions()",{
 describe("When input |> exception[['InvalidPath']](path)",{
   it("then no exception should be thrown if input is FALSE.",{
     # Given
-    exception <- Path.Utility.Exceptions()
+    exception <- Path.Exceptions()
 
     # When
     validation.input <- FALSE
@@ -56,7 +56,7 @@ describe("When input |> exception[['InvalidPath']](path)",{
   })
   it("then an exception should be thrown if input is TRUE.",{
     # Given
-    exception <- Path.Utility.Exceptions()
+    exception <- Path.Exceptions()
 
     random.path    <- "random.path"
     expected.error <- paste0("Invalid path: ", random.path, ".")
@@ -72,7 +72,7 @@ describe("When input |> exception[['InvalidPath']](path)",{
 describe("When input |> exception[['InvalidFilename']](filename)",{
   it("then no exception should be thrown if input is FALSE.",{
     # Given
-    exception <- Path.Utility.Exceptions()
+    exception <- Path.Exceptions()
 
     # When
     validation.input <- FALSE
@@ -82,7 +82,7 @@ describe("When input |> exception[['InvalidFilename']](filename)",{
   })
   it("then an exception should be thrown if input is TRUE.",{
     # Given
-    exception <- Path.Utility.Exceptions()
+    exception <- Path.Exceptions()
 
     random.filename <- "filename."
     expected.error  <- paste0("Invalid filename: ", random.filename, ".")
@@ -98,7 +98,7 @@ describe("When input |> exception[['InvalidFilename']](filename)",{
 describe("When input |> exception[['InvalidNormalized']](path)",{
   it("then no exception should be thrown if input is FALSE.",{
     # Given
-    exception <- Path.Utility.Exceptions()
+    exception <- Path.Exceptions()
 
     # When
     validation.input <- FALSE
@@ -108,7 +108,7 @@ describe("When input |> exception[['InvalidNormalized']](path)",{
   })
   it("then an exception should be thrown if input is TRUE.",{
     # Given
-    exception <- Path.Utility.Exceptions()
+    exception <- Path.Exceptions()
 
     random.path    <- "random.path"
     expected.error <- paste0("Invalid normalized path: ", random.path, ".")
@@ -124,7 +124,7 @@ describe("When input |> exception[['InvalidNormalized']](path)",{
 describe("When input |> exception[['InvalidFilepath']]()",{
   it("then no exception should be thrown if input is FALSE.",{
     # Given
-    exception <- Path.Utility.Exceptions()
+    exception <- Path.Exceptions()
 
     # When
     validation.input <- FALSE
@@ -134,7 +134,7 @@ describe("When input |> exception[['InvalidFilepath']]()",{
   })
   it("then an exception should be thrown if input is TRUE.",{
     # Given
-    exception <- Path.Utility.Exceptions()
+    exception <- Path.Exceptions()
 
     random.filepath <- "filepath"
     expected.error  <- paste0("Invalid filepath: ", random.filepath, ".")
