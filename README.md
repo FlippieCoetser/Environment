@@ -4,16 +4,16 @@ This R Package is used to Manage Environment Variables using the `.Renviron` fil
 
 This `Environment` package makes defining and reading environment variables straightforward by providing three utility functions:
 
-1. `OpenConfigFile` - Opens the `.Renviron` configuration file in the IDE
-2. `GetEnvVariable` - Gets the value of an environment variable by name as stored in `.Renviron`
-3. `CacheEnvVariable` - Caches the value of an environment variable by name for current R session
+1. `OpenConfigFile` - Opens the `.Renviron` configuration file in the IDE: RStudio or VSCode.
+2. `GetEnvVariable` - Gets the value of an environment variable by name, as stored in `.Renviron`
+3. `CacheEnvVariable` - Caches the value of an environment variable by name, for current R session.
 
 > Note: This package is [Standard](https://github.com/hassanhabib/The-Standard) compliant package.
 
 ## Installation
 
 At the time of writing this README, this `Environment` R-Package is not available on CRAN.
-Use `devtools` to Either install from GitHub or Build and Install Locally:
+Use `devtools` to either install from GitHub or Build and Install Locally:
 
 ### Install via GitHub
 
@@ -42,7 +42,7 @@ install.packages("path_to_file/tar_gz_file", repos = NULL, type="source")
 There are two ways to access the three utility functions:
 
 1. Use the library function to load the three utility functions into the global namespace
-2. Create an instance of the Environment component with three utility functions using the package namespace
+2. Create an instance of the Environment component using the package namespace
 
 ### Use Global Namespace
 
@@ -56,7 +56,7 @@ library(Environment)
 
 ### Use Package Namespace
 
-When using the package namespace a new instance of the Environment component is created. The three utility functions on the instance.
+When using the package namespace to create a new instance of the Environment component, the three utility functions will be available as member of the instance.
 
 1. Create new instance of Environment component
 
@@ -94,14 +94,14 @@ environment[['OpenConfigFile']]()
 
 ### Get an environment variable's value
 
-Attempting to read an environment variable that is not defined will throw an exception with useful details.
+Reading environment variables is the most common use case of this package. Attempting to read an environment variable that is not defined will throw an exception with useful details.
 
 1. Get environment variable's value
 
 ```r
 name <- "Username"
 
-value <- value |> GetEnvVariable()
+value <- name |> GetEnvVariable()
 ```
 
 or
@@ -114,7 +114,7 @@ value <- name |> environment[['GetEnvVariable']]()
 
 ### Cache an environment variable's value
 
-This package provides a way to cache the value of an environment variable for the current R session. This is useful when the value of an environment variable is used multiple times in the same R session.
+This package provides a way to cache an environment variable with value for the current R session. This is useful when the value of an environment variable is used multiple times in the same R session.
 
 1. Cache the value of an environment variable
 
@@ -138,7 +138,7 @@ name |> environment[['CacheEnvVariable']](value)
 
 > Note: Developing R-Packages assumes you have devtools installed
 
-Contributions is encouraged and very much welcomed! Given this R-Package is [Standard](https://github.com/hassanhabib/The-Standard) compliant, any contribution is expected to follow the same principles. This package is also developed using a TDD approach. It is therefore expected that a commits happen in pairs: One commit with a failing test and one with a passing test. Lastly, R is flexible and allows for different syntax and techniques to achieve the same outcome. Please stick to the naming and style convention used. For example `dot.case` is used as naming convention, and `[['']]` is preferred over `$` as subset operator.
+Contributions is encouraged and very much welcome! Given this R-Package is [Standard](https://github.com/hassanhabib/The-Standard) compliant, any contribution is expected to follow the same principles. This package is also developed using a TDD approach. It is therefore expected that commits happen in pairs: One commit with a failing test and one with a passing test. Lastly, R is flexible and allows for different syntax. Please stick to the naming and style convention used. For example `dot.case` is used as naming convention, and `[['']]` is preferred over `$` as subset operator.
 
 ### Running Unit Tests
 
