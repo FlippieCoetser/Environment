@@ -317,3 +317,22 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
     name |> service[["CacheEnvVariable"]](value) |> expect.error(expected.error)
   })
 })
+
+describe("When name |> service[['ClearEnvVariable']]()",{
+  it("then the value of variable with name is cleared.", {
+    # Given
+    broker  <- Session.Broker()
+    service <- broker |> Session.Service()
+
+    name  <- "NEW_VARIABLE"
+    value <- "new_value"
+
+    name |> broker[["CacheEnvVariable"]](value)
+
+    # When
+    name |> service[["ClearEnvVariable"]]()
+
+    # Then
+    name |> broker[['GetEnvVariable']]() |> expect.empty()
+  })
+})
