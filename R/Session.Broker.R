@@ -23,5 +23,6 @@ Session.Broker <- \() {
     entry[[name]] <- value
     "Sys.setenv" |> do.call(entry)
   }
+  operations[['ClearEnvVariable']]  <- \() {}
   return(operations)
 }
