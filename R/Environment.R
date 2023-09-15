@@ -24,4 +24,5 @@ Environment <- \() {
   assign("OpenConfigFile", orchestrator[['OpenConfigFile']], envir = .GlobalEnv)
   assign("GetEnvVariable", orchestrator[['GetEnvVariable']], envir = .GlobalEnv)
   assign("CacheEnvVariable", orchestrator[['CacheEnvVariable']], envir = .GlobalEnv)
+  assign("ClearEnvVariable", orchestrator[['ClearEnvVariable']], envir = .GlobalEnv)
 }

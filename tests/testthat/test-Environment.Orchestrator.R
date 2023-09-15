@@ -34,6 +34,13 @@ describe("When orchestrations <- Environment.Orchestrator()", {
     # Then
     orchestrations[['CacheEnvVariable']] |> expect.exist()
   })
+  it("then orchestrations contains ClearEnvVariable orchestration",{
+    # Given
+    orchestrations <- Environment.Orchestrator()
+
+    # Then
+    orchestrations[['ClearEnvVariable']] |> expect.exist()
+  })
 })
 
 describe("When orchestrate[['OpenConfigFile']]()",{
@@ -137,5 +144,35 @@ describe("When name |> orchestrate[['CacheEnvVariable']](value)",{
 
     # Then
     name |> orchestrate[["CacheEnvVariable"]](value) |> expect.error(expected.error)
+  })
+})
+
+describe("When name |> orchestrate[['ClearEnvVariable']]()",{
+  it("then the value of variable with name is cleared.", {
+    # Given
+    orchestrate <- Environment.Orchestrator()
+
+    name  <- "NEW_VARIABLE"
+    value <- "new_value"
+
+    name |> orchestrate[["CacheEnvVariable"]](value)
+
+    # When
+    name |> orchestrate[["ClearEnvVariable"]]()
+
+    # Then
+    name |> orchestrate[["GetEnvVariable"]]() |> expect.error(NULL)
+  })
+  it("then an exception is thrown when name is NULL",{
+    # Given
+    orchestrate <- Environment.Orchestrator()
+
+    expected.error <- "Environment variable name is null, but required."
+
+    # When
+    name <- NULL
+
+    # Then
+    name |> orchestrate[["ClearEnvVariable"]]() |> expect.error(expected.error)
   })
 })

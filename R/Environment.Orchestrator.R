@@ -45,5 +45,8 @@ Environment.Orchestrator <- \(...) {
   orchestrations[['CacheEnvVariable']] <- \(name, value) {
     name |> session[['CacheEnvVariable']](value)
   }
+  orchestrations[['ClearEnvVariable']] <- \(name) {
+    name |> session[['ClearEnvVariable']]()
+  }
   return(orchestrations)
 }
