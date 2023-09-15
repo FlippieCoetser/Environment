@@ -62,6 +62,13 @@ describe("When operations <- Session.Broker()", {
     # Then
     operations[["CacheEnvVariable"]] |> expect.exist()
   })
+  it("then operations contains ClearEnvVariable operation.", {
+    # Given
+    operations <- Session.Broker()
+
+    # Then
+    operations[["ClearEnvVariable"]] |> expect.exist()
+  })
 })
 
 describe("When name |> operation[['GetEnvVariable']]()",{
