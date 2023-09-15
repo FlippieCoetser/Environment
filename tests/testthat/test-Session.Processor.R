@@ -413,4 +413,18 @@ describe("When name |> service[['ClearEnvVariable']]()",{
     # Then
     name |> broker[['GetEnvVariable']]() |> expect.empty()
   })
+  it("then an exception is thrown if name is NULL",{
+    # Given
+    broker <- Session.Broker()
+    service <- broker |> Session.Service()
+    process <- service |> Session.Processor()
+
+    expected.error <- "Environment variable name is null, but required."
+
+    # When
+    name  <- NULL
+
+    # Then
+    name |> process[["ClearEnvVariable"]]() |> expect.error(expected.error)
+  })
 })
