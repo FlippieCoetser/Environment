@@ -23,7 +23,7 @@ Session.Exceptions <- \() {
   }
   exceptions[['NameIsNull']]                <- \(invoke) {
     if (invoke) {
-      stop("Name is null. Expected a name for the environment to retrieve its value.")
+      stop("Environment variable name is null, but required.")
     }
   }
   exceptions[['ValueIsEmpty']]              <- \(invoke, name = NULL) {
