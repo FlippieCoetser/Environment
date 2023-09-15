@@ -2,11 +2,12 @@
 
 This R Package is used to Manage Environment Variables using the `.Renviron` file. `.Renviron` configuration file is part of the R ecosystem and well suited to manage sensitive information.
 
-This `Environment` package makes defining and reading environment variables straightforward by providing three utility functions:
+This `Environment` package makes defining, reading and clearing environment variables straightforward by providing four utility functions:
 
 1. `OpenConfigFile` - Opens the `.Renviron` configuration file in the IDE: RStudio or VSCode.
 2. `GetEnvVariable` - Gets the value of an environment variable by name, as stored in `.Renviron`
 3. `CacheEnvVariable` - Caches the value of an environment variable by name, for current R session.
+4. `ClearEnvVariable` - Clears the value of an environment variable by name, for current R session.
 
 > Note: This package is [Standard](https://github.com/hassanhabib/The-Standard) compliant package.
 
@@ -39,14 +40,14 @@ install.packages("path_to_file/tar_gz_file", repos = NULL, type="source")
 
 ## Loading the Package
 
-There are two ways to access the three utility functions:
+There are two ways to access the four utility functions:
 
-1. Use the library function to load the three utility functions into the global namespace
+1. Use the library function to load the four utility functions into the global namespace
 2. Create an instance of the Environment component using the package namespace
 
 ### Use Global Namespace
 
-When using the library function to load the package the three utility functions are automatically loaded into the global namespace.
+When using the library function to load the package the four utility functions are automatically loaded into the global namespace.
 
 1. Load Package
 
@@ -56,7 +57,7 @@ library(Environment)
 
 ### Use Package Namespace
 
-When using the package namespace to create a new instance of the Environment component, the three utility functions will be available as member of the instance.
+When using the package namespace to create a new instance of the Environment component, the four utility functions will be available as member of the instance.
 
 1. Create new instance of Environment component
 
@@ -132,6 +133,26 @@ name  <- "Username"
 value <- "DefinedUsername"
 
 name |> environment[['CacheEnvVariable']](value)
+```
+
+### Clear an environment variable's value
+
+This package provides a way to clear an environment variable for the current R session. This is useful when testing packages which relies on this package.
+
+1. Clear the value of an environment variable
+
+```r
+name  <- "Username"
+
+name |> ClearEnvVariable()
+```
+
+or
+
+```r
+name  <- "Username"
+
+name |> environment[['ClearEnvVariable']]()
 ```
 
 ## Contribute
