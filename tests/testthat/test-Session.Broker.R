@@ -138,6 +138,6 @@ describe("When name |> operation[['ClearEnvVariable']]()",{
 
     # Then
     actual.value <- name |> Sys.getenv()
-    actual.value |> expect.equal("")
+    actual.value |> expect.empty()
   })
 })

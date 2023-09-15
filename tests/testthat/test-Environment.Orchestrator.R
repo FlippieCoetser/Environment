@@ -78,7 +78,7 @@ describe("When name |> orchestrate[['GetEnvVariable']]()",{
     # Given
     orchestrate <- Environment.Orchestrator()
 
-    expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
+    expected.error <- "Environment variable name is null, but required."
 
     # When
     name <- NULL
@@ -98,7 +98,6 @@ describe("When name |> orchestrate[['GetEnvVariable']]()",{
   })
 })
 
-
 describe("When name |> orchestrate[['CacheEnvVariable']](value)",{
   it("then the value of variable with name is cached.", {
     # Given
@@ -117,7 +116,7 @@ describe("When name |> orchestrate[['CacheEnvVariable']](value)",{
     # Given
     orchestrate <- Environment.Orchestrator()
 
-    expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
+    expected.error <- "Environment variable name is null, but required."
 
     # When
     name  <- NULL

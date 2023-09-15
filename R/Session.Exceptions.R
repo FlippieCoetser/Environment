@@ -23,22 +23,22 @@ Session.Exceptions <- \() {
   }
   exceptions[['NameIsNull']]                <- \(invoke) {
     if (invoke) {
-      stop("Name is null. Expected a name for the environment to retrieve its value.")
+      stop("Environment variable name is null, but required.", call. = FALSE)
     }
   }
   exceptions[['ValueIsEmpty']]              <- \(invoke, name = NULL) {
     if (invoke) {
-      stop("No value found for provided environment variable:", name, ". Please check .Renviron configuration file.")
+      stop("No value found for provided environment variable:", name, ". Please check .Renviron configuration file.", call. = FALSE)
     }
   }
   exceptions[['ValueIsNull']]               <- \(invoke) {
     if (invoke) {
-      stop("Value is null. Expected a value for the environment to cache.")
+      stop("Value is null. Expected a value for the environment to cache.", call. = FALSE)
     }
   }
   exceptions[['NoIDEInUse']]                <- \(invoke) {
     if (invoke) {
-      stop("No IDE in use but required.")
+      stop("No IDE in use but required.", call. = FALSE)
     }
   }
   exceptions[['RStudioAPIUnavailable']]     <- \(invoke, ide = NULL) {

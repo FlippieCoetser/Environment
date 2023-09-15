@@ -202,7 +202,7 @@ describe("When name |> validate[['Name']]()",{
     # Given
     validate <- Session.Validator()
 
-    expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
+    expected.error <- "Environment variable name is null, but required."
 
     # When
     name  <- NULL 

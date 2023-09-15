@@ -62,6 +62,13 @@ describe("When services <- Session.Service()",{
     # Then
     services[["CacheEnvVariable"]] |> expect.exist()
   })
+  it("then services contains ClearEnvVariable service.", {
+    # Given
+    services <- Session.Service()
+
+    # Then
+    services[["ClearEnvVariable"]] |> expect.exist()
+  })
 })
 
 describe("When service[['HasRStudioAPI']]()",{
@@ -245,7 +252,7 @@ describe("When name |> service[['GetEnvVariable']]()",{
     broker  <- Session.Broker()
     service <- broker |> Session.Service()
 
-    expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
+    expected.error <- "Environment variable name is null, but required."
 
     # When
     name <- NULL
@@ -286,7 +293,7 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
     broker  <- Session.Broker()
     service <- broker |> Session.Service()
 
-    expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
+    expected.error <- "Environment variable name is null, but required."
 
     # When
     name  <- NULL
@@ -308,5 +315,37 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
 
     # Then
     name |> service[["CacheEnvVariable"]](value) |> expect.error(expected.error)
+  })
+})
+
+describe("When name |> service[['ClearEnvVariable']]()",{
+  it("then the value of variable with name is cleared.", {
+    # Given
+    broker  <- Session.Broker()
+    service <- broker |> Session.Service()
+
+    name  <- "NEW_VARIABLE"
+    value <- "new_value"
+
+    name |> broker[["CacheEnvVariable"]](value)
+
+    # When
+    name |> service[["ClearEnvVariable"]]()
+
+    # Then
+    name |> broker[['GetEnvVariable']]() |> expect.empty()
+  })
+  it("then an exception is thrown if name is NULL",{
+    # Given
+    broker  <- Session.Broker()
+    service <- broker |> Session.Service()
+
+    expected.error <- "Environment variable name is null, but required."
+
+    # When
+    name <- NULL
+
+    # Then
+    name |> service[["ClearEnvVariable"]]() |> expect.error(expected.error)
   })
 })

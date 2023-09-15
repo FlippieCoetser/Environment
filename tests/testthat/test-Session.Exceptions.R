@@ -207,7 +207,7 @@ describe("When input |> exception[['NameIsNull']]()",{
     # Given
     exception <- Session.Exceptions()
 
-    expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
+    expected.error <- "Environment variable name is null, but required."
 
     # When
     input <- TRUE
