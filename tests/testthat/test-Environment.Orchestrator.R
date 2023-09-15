@@ -34,6 +34,13 @@ describe("When orchestrations <- Environment.Orchestrator()", {
     # Then
     orchestrations[['CacheEnvVariable']] |> expect.exist()
   })
+  it("then orchestrations contains ClearEnvVariable orchestration",{
+    # Given
+    orchestrations <- Environment.Orchestrator()
+
+    # Then
+    orchestrations[['ClearEnvVariable']] |> expect.exist()
+  })
 })
 
 describe("When orchestrate[['OpenConfigFile']]()",{
