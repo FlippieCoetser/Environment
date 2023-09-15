@@ -30,5 +30,7 @@ Session.Processor <- \(service) {
   processes[['CacheEnvVariable']] <- \(name, value) {  
     name |> service[['CacheEnvVariable']](value)
   }
+  processes[['ClearEnvVariable']]  <- \() {
+  }
   return(processes)
 }
