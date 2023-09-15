@@ -47,6 +47,13 @@ describe("When processes <- Session.Processor()",{
     # Then
     processes[["CacheEnvVariable"]] |> expect.exist()
   })
+  it("then processes contains ClearEnvVariable process.", {
+    # Given
+    processes <- Session.Processor()
+
+    # Then
+    processes[["ClearEnvVariable"]] |> expect.exist()
+  })
 })
 
 describe("When process[['GetIDEInUse']]()",{
@@ -385,5 +392,39 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
 
     # Then
     name |> process[["CacheEnvVariable"]](value) |> expect.error(expected.error)
+  })
+})
+
+describe("When name |> service[['ClearEnvVariable']]()",{
+  it("then the value of variable with name is cleared.", {
+    # Given
+    broker <- Session.Broker()
+    service <- broker |> Session.Service()
+    process <- service |> Session.Processor()
+
+    name  <- "NEW_VARIABLE"
+    value <- "new_value"
+
+    name |> broker[["CacheEnvVariable"]](value)
+
+    # When
+    name |> process[["ClearEnvVariable"]]()
+
+    # Then
+    name |> broker[['GetEnvVariable']]() |> expect.empty()
+  })
+  it("then an exception is thrown if name is NULL",{
+    # Given
+    broker <- Session.Broker()
+    service <- broker |> Session.Service()
+    process <- service |> Session.Processor()
+
+    expected.error <- "Environment variable name is null, but required."
+
+    # When
+    name  <- NULL
+
+    # Then
+    name |> process[["ClearEnvVariable"]]() |> expect.error(expected.error)
   })
 })
