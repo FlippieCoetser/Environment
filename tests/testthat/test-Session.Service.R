@@ -252,7 +252,7 @@ describe("When name |> service[['GetEnvVariable']]()",{
     broker  <- Session.Broker()
     service <- broker |> Session.Service()
 
-    expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
+    expected.error <- "Environment variable name is null, but required."
 
     # When
     name <- NULL
@@ -293,7 +293,7 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
     broker  <- Session.Broker()
     service <- broker |> Session.Service()
 
-    expected.error <- "Name is null. Expected a name for the environment to retrieve its value."
+    expected.error <- "Environment variable name is null, but required."
 
     # When
     name  <- NULL
@@ -334,5 +334,18 @@ describe("When name |> service[['ClearEnvVariable']]()",{
 
     # Then
     name |> broker[['GetEnvVariable']]() |> expect.empty()
+  })
+  it("then an exception is thrown if name is NULL",{
+    # Given
+    broker  <- Session.Broker()
+    service <- broker |> Session.Service()
+
+    expected.error <- "Environment variable name is null, but required."
+
+    # When
+    name <- NULL
+
+    # Then
+    name |> service[["ClearEnvVariable"]]() |> expect.error(expected.error)
   })
 })
