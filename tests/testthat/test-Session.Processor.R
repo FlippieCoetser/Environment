@@ -47,6 +47,13 @@ describe("When processes <- Session.Processor()",{
     # Then
     processes[["CacheEnvVariable"]] |> expect.exist()
   })
+  it("then processes contains ClearEnvVariable process.", {
+    # Given
+    processes <- Session.Processor()
+
+    # Then
+    processes[["ClearEnvVariable"]] |> expect.exist()
+  })
 })
 
 describe("When process[['GetIDEInUse']]()",{
