@@ -28,6 +28,8 @@ Session.Service <- \(broker) {
     
     name |> broker[["CacheEnvVariable"]](value)
   }
-  services[['ClearEnvVariable']]  <- \() {}
+  services[['ClearEnvVariable']]  <- \(name) {
+    name |> broker[["ClearEnvVariable"]]()
+  }
   return(services)
 }
