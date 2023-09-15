@@ -62,6 +62,13 @@ describe("When operations <- Session.Broker()", {
     # Then
     operations[["CacheEnvVariable"]] |> expect.exist()
   })
+  it("then operations contains ClearEnvVariable operation.", {
+    # Given
+    operations <- Session.Broker()
+
+    # Then
+    operations[["ClearEnvVariable"]] |> expect.exist()
+  })
 })
 
 describe("When name |> operation[['GetEnvVariable']]()",{
@@ -108,5 +115,29 @@ describe("When name |> operation[['CacheEnvVariable']](value)",{
 
     # Then
     name |> Sys.getenv() |> expect.equal(value)
+  })
+})
+
+describe("When name |> operation[['ClearEnvVariable']]()",{
+  it("then the value for name is cleared.", {
+    # Given
+    operations <- Session.Broker()
+
+    name  <- "NEW_VARIABLE"
+    value <- "value"
+
+    entry <- list()
+    entry[[name]] <- value
+    "Sys.setenv" |> do.call(entry)
+
+    actual.value <- name |> Sys.getenv()
+    actual.value |> expect.equal(value)
+
+    # When
+    name |> operations[["ClearEnvVariable"]]()
+
+    # Then
+    actual.value <- name |> Sys.getenv()
+    actual.value |> expect.equal("")
   })
 })
