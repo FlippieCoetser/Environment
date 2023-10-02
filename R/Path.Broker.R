@@ -1,21 +1,21 @@
 Path.Broker <- \() {
   operations <- list()
-  operations[['GetUserHomePath']]   <- \() {
+  operations[['Get.User.Path']]   <- \() {
     path.expand('~')
   }
-  operations[['GetConfigFilename']] <- \() { 
+  operations[['Get.Config.Filename']] <- \() { 
     '.Renviron'
   }
-  operations[['NormalizePath']]     <- \(path) {
+  operations[['Normalize.Path']]     <- \(path) {
     gsub("\\\\", "/", path)
   }
-  operations[['CombinePath']]       <- \(path, filename) {
+  operations[['Combine.Path']]       <- \(path, filename) {
     path |> file.path(filename)
   }
-  operations[['FilepathExists']]    <- \(filepath) {
+  operations[['Filepath.Exists']]    <- \(filepath) {
     filepath |> file.exists()
   }
-  operations[['CreateFilepath']]    <- \(filepath) {
+  operations[['Create.Filepath']]    <- \(filepath) {
     filepath |> file.create()
   }
   return(operations)

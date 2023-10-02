@@ -4,10 +4,10 @@ This R Package is used to Manage Environment Variables using the `.Renviron` fil
 
 This `Environment` package makes defining, reading and clearing environment variables straightforward by providing four utility functions:
 
-1. `OpenConfigFile` - Opens the `.Renviron` configuration file in the IDE: RStudio or VSCode.
-2. `GetEnvVariable` - Gets the value of an environment variable by name, as stored in `.Renviron`
-3. `CacheEnvVariable` - Caches the value of an environment variable by name, for current R session.
-4. `ClearEnvVariable` - Clears the value of an environment variable by name, for current R session.
+1. `Open.Config.File` - Opens the `.Renviron` configuration file in the IDE: RStudio or VSCode.
+2. `Get.Env.Variable` - Gets the value of an environment variable by name, as stored in `.Renviron`
+3. `Cache.Env.Variable` - Caches the value of an environment variable by name, for current R session.
+4. `Clear.Env.Variable` - Clears the value of an environment variable by name, for current R session.
 
 > Note: This package is [Standard](https://github.com/hassanhabib/The-Standard) compliant package.
 
@@ -82,13 +82,13 @@ To define new variable, simply use the provided utility function to open an exis
 1. Open `.Renviron` configuration file
 
 ```r
-OpenConfigFile()
+Open.Config.File()
 ```
 
 or
 
 ```r
-environment[['OpenConfigFile']]()
+environment[['Open.Config.File']]()
 ```
 
 > Note: Add new environment variables as key value pairs directly into the `.Renviron` configuration file. Example, adding this: `Username='DefinedUsername'` on a new line, defines a new environment variable with name `Username` and value `DefinedUsername`
@@ -102,7 +102,7 @@ Reading environment variables is the most common use case of this package. Attem
 ```r
 name <- "Username"
 
-value <- name |> GetEnvVariable()
+value <- name |> Get.Env.Variable()
 ```
 
 or
@@ -110,7 +110,7 @@ or
 ```r
 name <- "Username"
 
-value <- name |> environment[['GetEnvVariable']]()
+value <- name |> environment[['Get.Env.Variable']]()
 ```
 
 ### Cache an environment variable's value
@@ -123,7 +123,7 @@ This package provides a way to cache an environment variable with value for the 
 name  <- "Username"
 value <- "DefinedUsername"
 
-name |> CacheEnvVariable(value)
+name |> Cache.Env.Variable(value)
 ```
 
 or
@@ -132,7 +132,7 @@ or
 name  <- "Username"
 value <- "DefinedUsername"
 
-name |> environment[['CacheEnvVariable']](value)
+name |> environment[['Cache.Env.Variable']](value)
 ```
 
 ### Clear an environment variable's value
@@ -144,7 +144,7 @@ This package provides a way to clear an environment variable for the current R s
 ```r
 name  <- "Username"
 
-name |> ClearEnvVariable()
+name |> Clear.Env.Variable()
 ```
 
 or
@@ -152,7 +152,7 @@ or
 ```r
 name  <- "Username"
 
-name |> environment[['ClearEnvVariable']]()
+name |> environment[['Clear.Env.Variable']]()
 ```
 
 ## Contribute

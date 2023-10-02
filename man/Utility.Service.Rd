@@ -6,7 +6,7 @@
 \value{
 A \code{list} of utility functions:
 \itemize{
-\item \code{OpenConfigurationFile()}
+\item \code{Open.Configuration.File()}
 \item \code{GetVariableByName(name)}
 }
 }
@@ -16,7 +16,7 @@ This \code{Environment} package makes defining and reading environment variables
 
 \code{Utility.Service()} returns a set of utility functions that can be used to interact with \code{.Renviron} files:
 \itemize{
-\item The first function: \code{OpenConfigurationFile}, will open an existing or a new empty \code{.Renviron} configuration file.
+\item The first function: \code{Open.Configuration.File}, will open an existing or a new empty \code{.Renviron} configuration file.
 Users can then add environment variables by defining \code{'key'='value'} pairs.
 \item The second function: \code{GetVariableByName}, will read the value of the matching key (name) from the configuration file.
 }

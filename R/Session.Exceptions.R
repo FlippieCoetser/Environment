@@ -1,52 +1,52 @@
 Session.Exceptions <- \() {
   exceptions <- list()
-  exceptions[['NavigateToFileExceptions']]  <- \(error) {
+  exceptions[['Filepath.Not.Found']]  <- \(error) {
     filepath <- sub('.*?"(.*?)":.*', '\\1', error[['message']])
 
-    'cannot find the path' |> grepl(error) |> exceptions[['PathNotFound']](filepath) 
-    'cannot find the file' |> grepl(error) |> exceptions[['FileNotFound']](filepath)
+    'cannot find the path' |> grepl(error) |> exceptions[['Path.Not.Found']](filepath) 
+    'cannot find the file' |> grepl(error) |> exceptions[['File.Not.Found']](filepath)
   }
-  exceptions[['PathNotFound']]              <- \(invoke, path = NULL) {
+  exceptions[['Path.Not.Found']]              <- \(invoke, path = NULL) {
     if (invoke) {
       stop("Path not found: ", path, ".", call. = FALSE)
     } 
   }
-  exceptions[['FileNotFound']]              <- \(invoke, file = NULL) {
+  exceptions[['File.Not.Found']]              <- \(invoke, file = NULL) {
     if (invoke) {
       stop("File not found: ", file, ".", call. = FALSE)
     } 
   }
-  exceptions[['InvalidFilepath']]           <- \(invoke, filepath = NULL) {
+  exceptions[['Filepath.Invalid']]           <- \(invoke, filepath = NULL) {
     if (invoke) {
       stop("Invalid filepath: ", filepath, ".", call. = FALSE)
     }
   }
-  exceptions[['NameIsNull']]                <- \(invoke) {
+  exceptions[['Name.Null']]                <- \(invoke) {
     if (invoke) {
       stop("Environment variable name is null, but required.", call. = FALSE)
     }
   }
-  exceptions[['ValueIsEmpty']]              <- \(invoke, name = NULL) {
+  exceptions[['Value.Empty']]              <- \(invoke, name = NULL) {
     if (invoke) {
       stop("No value found for provided environment variable:", name, ". Please check .Renviron configuration file.", call. = FALSE)
     }
   }
-  exceptions[['ValueIsNull']]               <- \(invoke) {
+  exceptions[['Value.Null']]               <- \(invoke) {
     if (invoke) {
       stop("Value is null. Expected a value for the environment to cache.", call. = FALSE)
     }
   }
-  exceptions[['NoIDEInUse']]                <- \(invoke) {
+  exceptions[['NoIDE.InUse']]                <- \(invoke) {
     if (invoke) {
       stop("No IDE in use but required.", call. = FALSE)
     }
   }
-  exceptions[['RStudioAPIUnavailable']]     <- \(invoke, ide = NULL) {
+  exceptions[['RStudio.API.Unavailable']]     <- \(invoke, ide = NULL) {
     if (invoke) {
       stop("RStudio API is unavailable in ", ide, ".", call. = FALSE)
     }
   }
-  exceptions[['NavigateToFileUnavailable']] <- \(invoke, ide = NULL) {
+  exceptions[['Filepath.Unavailable']] <- \(invoke, ide = NULL) {
     if (invoke) {
       stop("Navigate to File function is unavailable in ",ide,".", call. = FALSE)
     }

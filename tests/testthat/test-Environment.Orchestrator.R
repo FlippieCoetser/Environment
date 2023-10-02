@@ -13,37 +13,37 @@ describe("When orchestrations <- Environment.Orchestrator()", {
     # Then
     orchestrations |> expect.list()
   })
-  it("then orchestrations contains OpenConfigFile orchestration", {
+  it("then orchestrations contains Open.Config.File orchestration", {
     # Given
     orchestrations <- Environment.Orchestrator()
 
     # Then
-    orchestrations[['OpenConfigFile']] |> expect.exist()
+    orchestrations[['Open.Config.File']] |> expect.exist()
   })
-  it("then orchestrations contains GetEnvVariable orchestration", {
+  it("then orchestrations contains Get.Env.Variable orchestration", {
     # Given
     orchestrations <- Environment.Orchestrator()
 
     # Then
-    orchestrations[['GetEnvVariable']] |> expect.exist()
+    orchestrations[['Get.Env.Variable']] |> expect.exist()
   })
-  it("then orchestrations contains CacheEnvVariable orchestration", {
+  it("then orchestrations contains Cache.Env.Variable orchestration", {
     # Given
     orchestrations <- Environment.Orchestrator()
 
     # Then
-    orchestrations[['CacheEnvVariable']] |> expect.exist()
+    orchestrations[['Cache.Env.Variable']] |> expect.exist()
   })
-  it("then orchestrations contains ClearEnvVariable orchestration",{
+  it("then orchestrations contains Clear.Env.Variable orchestration",{
     # Given
     orchestrations <- Environment.Orchestrator()
 
     # Then
-    orchestrations[['ClearEnvVariable']] |> expect.exist()
+    orchestrations[['Clear.Env.Variable']] |> expect.exist()
   })
 })
 
-describe("When orchestrate[['OpenConfigFile']]()",{
+describe("When orchestrate[['Open.Config.File']]()",{
   it("Then the .Renviron configuration file opens in IDE", {
     # Given
     path <- 
@@ -56,19 +56,19 @@ describe("When orchestrate[['OpenConfigFile']]()",{
       Session.Service() |> 
       Session.Processor()
 
-    session[['OpenFilepath']] <- \(filepath) TRUE
+    session[['Open.Filepath']] <- \(filepath) TRUE
 
     orchestrations <- Environment.Orchestrator(path = path, session = session)
 
     # When
-    result <- orchestrations[['OpenConfigFile']]()
+    result <- orchestrations[['Open.Config.File']]()
 
     # Then
     result |> expect.true()
   })
 })
 
-describe("When name |> orchestrate[['GetEnvVariable']]()",{
+describe("When name |> orchestrate[['Get.Env.Variable']]()",{
   it("then the value for variable with name is returned.", {
     # Given
     orchestrate <- Environment.Orchestrator()
@@ -76,7 +76,7 @@ describe("When name |> orchestrate[['GetEnvVariable']]()",{
     name  <- "ENVIRONMENT"
 
     # When
-    value <- name |> orchestrate[["GetEnvVariable"]]()
+    value <- name |> orchestrate[["Get.Env.Variable"]]()
 
     # Then
     name |> Sys.getenv() |> expect.equal(value)
@@ -91,7 +91,7 @@ describe("When name |> orchestrate[['GetEnvVariable']]()",{
     name <- NULL
 
     # Then
-    name |> orchestrate[["GetEnvVariable"]]() |> expect.error(expected.error)
+    name |> orchestrate[["Get.Env.Variable"]]() |> expect.error(expected.error)
   })
   it("then an exception is thrown if no value for variable is found",{
     # Given
@@ -101,11 +101,11 @@ describe("When name |> orchestrate[['GetEnvVariable']]()",{
     expected.error <- "No value found for provided environment variable:INVALID. Please check .Renviron configuration file."
 
     # Then
-    name |> orchestrate[["GetEnvVariable"]]() |> expect.error(expected.error)
+    name |> orchestrate[["Get.Env.Variable"]]() |> expect.error(expected.error)
   })
 })
 
-describe("When name |> orchestrate[['CacheEnvVariable']](value)",{
+describe("When name |> orchestrate[['Cache.Env.Variable']](value)",{
   it("then the value of variable with name is cached.", {
     # Given
     orchestrate <- Environment.Orchestrator()
@@ -114,7 +114,7 @@ describe("When name |> orchestrate[['CacheEnvVariable']](value)",{
     value <- "new_value"
 
     # When
-    name |> orchestrate[["CacheEnvVariable"]](value)
+    name |> orchestrate[["Cache.Env.Variable"]](value)
 
     # Then
     name |> Sys.getenv() |> expect.equal(value)
@@ -130,7 +130,7 @@ describe("When name |> orchestrate[['CacheEnvVariable']](value)",{
     value <- "new_value"
 
     # Then
-    name |> orchestrate[["CacheEnvVariable"]](value) |> expect.error(expected.error)
+    name |> orchestrate[["Cache.Env.Variable"]](value) |> expect.error(expected.error)
   })
   it("then an exception is thrown if value is NULL",{
     # Given
@@ -143,11 +143,11 @@ describe("When name |> orchestrate[['CacheEnvVariable']](value)",{
     value <- NULL
 
     # Then
-    name |> orchestrate[["CacheEnvVariable"]](value) |> expect.error(expected.error)
+    name |> orchestrate[["Cache.Env.Variable"]](value) |> expect.error(expected.error)
   })
 })
 
-describe("When name |> orchestrate[['ClearEnvVariable']]()",{
+describe("When name |> orchestrate[['Clear.Env.Variable']]()",{
   it("then the value of variable with name is cleared.", {
     # Given
     orchestrate <- Environment.Orchestrator()
@@ -155,13 +155,13 @@ describe("When name |> orchestrate[['ClearEnvVariable']]()",{
     name  <- "NEW_VARIABLE"
     value <- "new_value"
 
-    name |> orchestrate[["CacheEnvVariable"]](value)
+    name |> orchestrate[["Cache.Env.Variable"]](value)
 
     # When
-    name |> orchestrate[["ClearEnvVariable"]]()
+    name |> orchestrate[["Clear.Env.Variable"]]()
 
     # Then
-    name |> orchestrate[["GetEnvVariable"]]() |> expect.error(NULL)
+    name |> orchestrate[["Get.Env.Variable"]]() |> expect.error(NULL)
   })
   it("then an exception is thrown when name is NULL",{
     # Given
@@ -173,6 +173,6 @@ describe("When name |> orchestrate[['ClearEnvVariable']]()",{
     name <- NULL
 
     # Then
-    name |> orchestrate[["ClearEnvVariable"]]() |> expect.error(expected.error)
+    name |> orchestrate[["Clear.Env.Variable"]]() |> expect.error(expected.error)
   })
 })

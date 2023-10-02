@@ -12,55 +12,55 @@ describe("When processes <- Session.Processor()",{
     # Then
     processes |> expect.list()
   })
-  it("then processes contains GetIDEInUse process.", {
+  it("then processes contains GetIDE.InUse process.", {
     # Given
     processes <- Session.Processor()
 
     # Then
-    processes[["GetIDEInUse"]] |> expect.exist()
+    processes[["GetIDE.InUse"]] |> expect.exist()
   })
-  it("then processes contains OpenFilepath process.", {
+  it("then processes contains Open.Filepath process.", {
     # Given
     processes <- Session.Processor()
 
     # Then
-    processes[["OpenFilepath"]] |> expect.exist()
+    processes[["Open.Filepath"]] |> expect.exist()
   })
-  it("then processes contains CheckIDEInUse process.", {
+  it("then processes contains CheckIDE.InUse process.", {
     # Given
     processes <- Session.Processor()
 
     # Then
-    processes[["CheckIDEInUse"]] |> expect.exist()
+    processes[["CheckIDE.InUse"]] |> expect.exist()
   })
-  it("then processes contains GetEnvVariable process.", {
+  it("then processes contains Get.Env.Variable process.", {
     # Given
     processes <- Session.Processor()
 
     # Then
-    processes[["GetEnvVariable"]] |> expect.exist()
+    processes[["Get.Env.Variable"]] |> expect.exist()
   })
-  it("then processes contains CacheEnvVariable process.", {
+  it("then processes contains Cache.Env.Variable process.", {
     # Given
     processes <- Session.Processor()
 
     # Then
-    processes[["CacheEnvVariable"]] |> expect.exist()
+    processes[["Cache.Env.Variable"]] |> expect.exist()
   })
-  it("then processes contains ClearEnvVariable process.", {
+  it("then processes contains Clear.Env.Variable process.", {
     # Given
     processes <- Session.Processor()
 
     # Then
-    processes[["ClearEnvVariable"]] |> expect.exist()
+    processes[["Clear.Env.Variable"]] |> expect.exist()
   })
 })
 
-describe("When process[['GetIDEInUse']]()",{
+describe("When process[['GetIDE.InUse']]()",{
   it("then None is returned in no IDE is in use.", {
     # Given
     broker <- Session.Broker()
-    broker[['IDEInUse']] <- \() FALSE
+    broker[['IDE.InUse']] <- \() FALSE
 
     service <- broker |> Session.Service()
     process <- service |> Session.Processor()
@@ -68,7 +68,7 @@ describe("When process[['GetIDEInUse']]()",{
     expected.result <- "None"
 
     # When
-    result <- process[["GetIDEInUse"]]()
+    result <- process[["GetIDE.InUse"]]()
 
     # Then
     result |> expect.equal(expected.result)
@@ -76,8 +76,8 @@ describe("When process[['GetIDEInUse']]()",{
   it("then RStudio is returned if RStudio is in use.", {
     # Given
     broker <- Session.Broker()
-    broker[['IDEInUse']]    <- \() TRUE
-    broker[['VSCodeInUse']] <- \() FALSE
+    broker[['IDE.InUse']]    <- \() TRUE
+    broker[['VSCode.InUse']] <- \() FALSE
 
     service <- broker |> Session.Service()
     process <- service |> Session.Processor()
@@ -85,7 +85,7 @@ describe("When process[['GetIDEInUse']]()",{
     expected.result <- "RStudio"
 
     # When
-    result <- process[["GetIDEInUse"]]()
+    result <- process[["GetIDE.InUse"]]()
 
     # Then
     result |> expect.equal(expected.result)
@@ -93,8 +93,8 @@ describe("When process[['GetIDEInUse']]()",{
   it("then VSCode is returned if VSCode is in use.", {
     # Given
     broker <- Session.Broker()
-    broker[['IDEInUse']]    <- \() TRUE
-    broker[['VSCodeInUse']] <- \() TRUE
+    broker[['IDE.InUse']]    <- \() TRUE
+    broker[['VSCode.InUse']] <- \() TRUE
 
     service <- broker |> Session.Service()
     process <- service |> Session.Processor()
@@ -102,24 +102,24 @@ describe("When process[['GetIDEInUse']]()",{
     expected.result <- "VSCode"
 
     # When
-    result <- process[["GetIDEInUse"]]()
+    result <- process[["GetIDE.InUse"]]()
 
     # Then
     result |> expect.equal(expected.result)
   })
 })
 
-describe("When filepath |> process[['OpenFilepath']]()",{
+describe("When filepath |> process[['Open.Filepath']]()",{
   it("then the filepath is opened in the IDE in use.",{
     # Given
     expected.filepath <- NULL
 
     broker <- Session.Broker()
-    broker[['IDEInUse']]          <- \() TRUE
-    broker[['HasRStudioAPI']]     <- \() TRUE
-    broker[['HasNavigateToFile']] <- \() TRUE
+    broker[['IDE.InUse']]          <- \() TRUE
+    broker[['Has.RStudio.API']]     <- \() TRUE
+    broker[['Has.NavigateToFilepath']] <- \() TRUE
 
-    broker[['NavigateToFile']] <- \(filepath) {
+    broker[['Navigate.To.Filepath']] <- \(filepath) {
       expected.filepath <<- filepath
     }
 
@@ -130,7 +130,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
 
 
     # When
-    actual.filepath <- input.filepath |> process[['OpenFilepath']]()
+    actual.filepath <- input.filepath |> process[['Open.Filepath']]()
 
     # Then
     actual.filepath |> expect.equal(expected.filepath)
@@ -138,7 +138,7 @@ describe("When filepath |> process[['OpenFilepath']]()",{
   it("then an exception is thrown if no IDE in use.",{
     # Given
     broker <- Session.Broker()
-    broker[['IDEInUse']] <- \() FALSE
+    broker[['IDE.InUse']] <- \() FALSE
 
     service <- broker |> Session.Service()
     process <- service |> Session.Processor()
@@ -148,15 +148,15 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     expected.error <- "No IDE in use but required."
     
     # Then
-    filepath |> process[['OpenFilepath']]() |> expect.error(expected.error)
+    filepath |> process[['Open.Filepath']]() |> expect.error(expected.error)
   })
   it("then an exception is thrown if RStudio API is unavailable in RStudio.",{
     # Given
     broker <- Session.Broker()
-    broker[['IDEInUse']]          <- \() TRUE
-    broker[['VSCodeInUse']]       <- \() FALSE
-    broker[['HasRStudioAPI']]     <- \() FALSE
-    broker[['HasNavigateToFile']] <- \() FALSE
+    broker[['IDE.InUse']]          <- \() TRUE
+    broker[['VSCode.InUse']]       <- \() FALSE
+    broker[['Has.RStudio.API']]     <- \() FALSE
+    broker[['Has.NavigateToFilepath']] <- \() FALSE
 
     service <- broker |> Session.Service()
     process <- service |> Session.Processor()
@@ -166,15 +166,15 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     expected.error <- "RStudio API is unavailable in RStudio."
 
     # Then
-    filepath |> process[['OpenFilepath']]() |> expect.error(expected.error)
+    filepath |> process[['Open.Filepath']]() |> expect.error(expected.error)
   })
   it("then an exception is thrown if RStudio API is unavailable in VSCode.",{
     # Given
     broker <- Session.Broker()
-    broker[['IDEInUse']]          <- \() TRUE
-    broker[['VSCodeInUse']]       <- \() TRUE
-    broker[['HasRStudioAPI']]     <- \() FALSE
-    broker[['HasNavigateToFile']] <- \() FALSE
+    broker[['IDE.InUse']]          <- \() TRUE
+    broker[['VSCode.InUse']]       <- \() TRUE
+    broker[['Has.RStudio.API']]     <- \() FALSE
+    broker[['Has.NavigateToFilepath']] <- \() FALSE
 
     service <- broker |> Session.Service()
     process <- service |> Session.Processor()
@@ -184,15 +184,15 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     expected.error <- "RStudio API is unavailable in VSCode."
 
     # Then
-    filepath |> process[['OpenFilepath']]() |> expect.error(expected.error)
+    filepath |> process[['Open.Filepath']]() |> expect.error(expected.error)
   })
   it("then an exception is thrown if Navigate To File function is unavailable in RStudio.",{
     # Given
     broker <- Session.Broker()
-    broker[['IDEInUse']]          <- \() TRUE
-    broker[['VSCodeInUse']]       <- \() FALSE
-    broker[['HasRStudioAPI']]     <- \() TRUE
-    broker[['HasNavigateToFile']] <- \() FALSE
+    broker[['IDE.InUse']]          <- \() TRUE
+    broker[['VSCode.InUse']]       <- \() FALSE
+    broker[['Has.RStudio.API']]     <- \() TRUE
+    broker[['Has.NavigateToFilepath']] <- \() FALSE
 
     service <- broker |> Session.Service()
     process <- service |> Session.Processor()
@@ -202,15 +202,15 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     expected.error <- "Navigate to File function is unavailable in RStudio."
 
     # Then
-    filepath |> process[['OpenFilepath']]() |> expect_error(expected.error)
+    filepath |> process[['Open.Filepath']]() |> expect_error(expected.error)
   })
   it("then an exception is thrown if Navigate To File function is unavailable in VSCode.",{
     # Given
     broker <- Session.Broker()
-    broker[['IDEInUse']]          <- \() TRUE
-    broker[['VSCodeInUse']]       <- \() TRUE
-    broker[['HasRStudioAPI']]     <- \() TRUE
-    broker[['HasNavigateToFile']] <- \() FALSE
+    broker[['IDE.InUse']]          <- \() TRUE
+    broker[['VSCode.InUse']]       <- \() TRUE
+    broker[['Has.RStudio.API']]     <- \() TRUE
+    broker[['Has.NavigateToFilepath']] <- \() FALSE
 
     service <- broker |> Session.Service()
     process <- service |> Session.Processor()
@@ -220,11 +220,11 @@ describe("When filepath |> process[['OpenFilepath']]()",{
     expected.error <- "Navigate to File function is unavailable in VSCode."
 
     # Then
-    filepath |> process[['OpenFilepath']]() |> expect.error(expected.error)
+    filepath |> process[['Open.Filepath']]() |> expect.error(expected.error)
   })
 })
 
-describe("When ide |> process[['CheckIDEInUse']]()",{
+describe("When ide |> process[['CheckIDE.InUse']]()",{
   it("then an exception is thrown if no IDE in use.",{
     # Given
     broker <- Session.Broker()
@@ -236,13 +236,13 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
     expected.error <- "No IDE in use but required."
 
     # Then
-    ide |> process[['CheckIDEInUse']]() |> expect.error(expected.error)
+    ide |> process[['CheckIDE.InUse']]() |> expect.error(expected.error)
   })
   it("then an exception is thrown if RStudioAPI is unavailable in RStudio.",{
     # Given
     broker <- Session.Broker()
-    broker[['HasRStudioAPI']]     <- \() FALSE
-    broker[['HasNavigateToFile']] <- \() TRUE
+    broker[['Has.RStudio.API']]     <- \() FALSE
+    broker[['Has.NavigateToFilepath']] <- \() TRUE
 
     service <- broker |> Session.Service()
     process <- service |> Session.Processor()
@@ -252,13 +252,13 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
     expected.error <- "RStudio API is unavailable in RStudio."
 
     # Then
-    ide |> process[['CheckIDEInUse']]() |> expect.error(expected.error)
+    ide |> process[['CheckIDE.InUse']]() |> expect.error(expected.error)
   })
   it("then an exception is thrown if RStudioAPI is unavailable in VSCode.",{
     # Given
     broker <- Session.Broker()
-    broker[['HasRStudioAPI']]     <- \() FALSE
-    broker[['HasNavigateToFile']] <- \() TRUE
+    broker[['Has.RStudio.API']]     <- \() FALSE
+    broker[['Has.NavigateToFilepath']] <- \() TRUE
 
     service <- broker |> Session.Service()
     process <- service |> Session.Processor()
@@ -268,13 +268,13 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
     expected.error <- "RStudio API is unavailable in VSCode."
 
     # Then
-    ide |> process[['CheckIDEInUse']]() |> expect.error(expected.error)
+    ide |> process[['CheckIDE.InUse']]() |> expect.error(expected.error)
   })
   it("then an exception is thrown if Navigate To File function is unavailable in RStudio.",{
     # Given
     broker <- Session.Broker()
-    broker[['HasRStudioAPI']]     <- \() TRUE
-    broker[['HasNavigateToFile']] <- \() FALSE
+    broker[['Has.RStudio.API']]     <- \() TRUE
+    broker[['Has.NavigateToFilepath']] <- \() FALSE
 
     service <- broker |> Session.Service()
     process <- service |> Session.Processor()
@@ -284,13 +284,13 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
     expected.error <- "Navigate to File function is unavailable in RStudio."
 
     # Then
-    ide |> process[['CheckIDEInUse']]() |> expect.error(expected.error)
+    ide |> process[['CheckIDE.InUse']]() |> expect.error(expected.error)
   })
   it("then an exception is thrown if Navigate To File function is unavailable in VSCode.",{
     # Given
     broker <- Session.Broker()
-    broker[['HasRStudioAPI']]     <- \() TRUE
-    broker[['HasNavigateToFile']] <- \() FALSE
+    broker[['Has.RStudio.API']]     <- \() TRUE
+    broker[['Has.NavigateToFilepath']] <- \() FALSE
 
     service <- broker |> Session.Service()
     process <- service |> Session.Processor()
@@ -300,11 +300,11 @@ describe("When ide |> process[['CheckIDEInUse']]()",{
     expected.error <- "Navigate to File function is unavailable in VSCode."
 
     # Then
-    ide |> process[['CheckIDEInUse']]() |> expect.error(expected.error)
+    ide |> process[['CheckIDE.InUse']]() |> expect.error(expected.error)
   })
 })
 
-describe("When name |> process[['GetEnvVariable']]()",{
+describe("When name |> process[['Get.Env.Variable']]()",{
   it("then the value for variable with name is returned.", {
     # Given
     broker <- Session.Broker()
@@ -314,7 +314,7 @@ describe("When name |> process[['GetEnvVariable']]()",{
     name  <- "ENVIRONMENT"
 
     # When
-    value <- name |> process[["GetEnvVariable"]]()
+    value <- name |> process[["Get.Env.Variable"]]()
 
     # Then
     name |> Sys.getenv() |> expect.equal(value)
@@ -331,7 +331,7 @@ describe("When name |> process[['GetEnvVariable']]()",{
     name <- NULL
 
     # Then
-    name |> process[["GetEnvVariable"]]() |> expect.error(expected.error)
+    name |> process[["Get.Env.Variable"]]() |> expect.error(expected.error)
   })
   it("then an exception is thrown if no value for variable is found",{
     # Given
@@ -343,11 +343,11 @@ describe("When name |> process[['GetEnvVariable']]()",{
     expected.error <- "No value found for provided environment variable:INVALID. Please check .Renviron configuration file."
 
     # Then
-    name |> process[["GetEnvVariable"]]() |> expect.error(expected.error)
+    name |> process[["Get.Env.Variable"]]() |> expect.error(expected.error)
   })
 })
 
-describe("When name |> service[['CacheEnvVariable']](value)",{
+describe("When name |> service[['Cache.Env.Variable']](value)",{
   it("then the value of variable with name is cached.", {
     # Given
     broker <- Session.Broker()
@@ -358,7 +358,7 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
     value <- "new_value"
 
     # When
-    name |> process[["CacheEnvVariable"]](value)
+    name |> process[["Cache.Env.Variable"]](value)
 
     # Then
     name |> Sys.getenv() |> expect.equal(value)
@@ -376,7 +376,7 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
     value <- "new_value"
 
     # Then
-    name |> process[["CacheEnvVariable"]](value) |> expect.error(expected.error)
+    name |> process[["Cache.Env.Variable"]](value) |> expect.error(expected.error)
   })
   it("then an exception is thrown if value is NULL",{
     # Given
@@ -391,11 +391,11 @@ describe("When name |> service[['CacheEnvVariable']](value)",{
     value <- NULL
 
     # Then
-    name |> process[["CacheEnvVariable"]](value) |> expect.error(expected.error)
+    name |> process[["Cache.Env.Variable"]](value) |> expect.error(expected.error)
   })
 })
 
-describe("When name |> service[['ClearEnvVariable']]()",{
+describe("When name |> service[['Clear.Env.Variable']]()",{
   it("then the value of variable with name is cleared.", {
     # Given
     broker <- Session.Broker()
@@ -405,13 +405,13 @@ describe("When name |> service[['ClearEnvVariable']]()",{
     name  <- "NEW_VARIABLE"
     value <- "new_value"
 
-    name |> broker[["CacheEnvVariable"]](value)
+    name |> broker[["Cache.Env.Variable"]](value)
 
     # When
-    name |> process[["ClearEnvVariable"]]()
+    name |> process[["Clear.Env.Variable"]]()
 
     # Then
-    name |> broker[['GetEnvVariable']]() |> expect.empty()
+    name |> broker[['Get.Env.Variable']]() |> expect.empty()
   })
   it("then an exception is thrown if name is NULL",{
     # Given
@@ -425,6 +425,6 @@ describe("When name |> service[['ClearEnvVariable']]()",{
     name  <- NULL
 
     # Then
-    name |> process[["ClearEnvVariable"]]() |> expect.error(expected.error)
+    name |> process[["Clear.Env.Variable"]]() |> expect.error(expected.error)
   })
 })

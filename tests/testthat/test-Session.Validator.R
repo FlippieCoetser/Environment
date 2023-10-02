@@ -13,12 +13,12 @@ describe("When validations <- Session.Validator()",{
     # Then
     validations |> expect.list()
   })
-  it("then validations contains NavigationResponse validator.", {
+  it("then validations contains Navigation.Response validator.", {
     # Given
     validations <- Session.Validator()
 
     # Then
-    validations[["NavigationResponse"]] |> expect.exist()
+    validations[["Navigation.Response"]] |> expect.exist()
   })
   it("then validations contains Filepath validator.", {
     # Given
@@ -62,36 +62,36 @@ describe("When validations <- Session.Validator()",{
     # Then
     validations[["IDE"]] |> expect.exist()
   })
-  it("then validations contains APIAvailability Validator.",{
+  it("then validations contains API.Availability Validator.",{
     # Given
     validations <- Session.Validator()
 
     # Then
-    validations[["APIAvailability"]] |> expect.exist()
+    validations[["API.Availability"]] |> expect.exist()
   })
-  it("then validations contains APICapability Validator.",{
+  it("then validations contains API.Capability Validator.",{
     # Given
     validations <- Session.Validator()
 
     # Then
-    validations[["APICapability"]] |> expect.exist()
+    validations[["API.Capability"]] |> expect.exist()
   })
 })
 
-describe("When response |> validate[['NavigationResponse']]()",{
-  it("then a PathNotFound exception is thrown if response throws a warning containing path not found",{
+describe("When response |> validate[['Navigation.Response']]()",{
+  it("then a Path.Not.Found exception is thrown if response throws a warning containing path not found",{
     # Given
     validate <- Session.Validator()
     throw.warning <- \() {
-      warning('path[1]="C:/Users/InvalidPath/Documents/.Renviron": The system cannot find the path specified.')
+      warning('path[1]="C:/Users/Path.Invalid/Documents/.Renviron": The system cannot find the path specified.')
     }
 
-    expected.error <- "Path not found: C:/Users/InvalidPath/Documents/.Renviron."
+    expected.error <- "Path not found: C:/Users/Path.Invalid/Documents/.Renviron."
     
     # Then
-    throw.warning() |> validate[["NavigationResponse"]]() |> expect.error(expected.error)
+    throw.warning() |> validate[["Navigation.Response"]]() |> expect.error(expected.error)
   })
-  it("then a FileNotFound exception is thrown if response throws a warning containing file not found",{
+  it("then a File.Not.Found exception is thrown if response throws a warning containing file not found",{
     # Given
     validate <- Session.Validator()
     throw.warning <- \() {
@@ -101,7 +101,7 @@ describe("When response |> validate[['NavigationResponse']]()",{
     expected.error <- "File not found: C:/Users/Analyst/Documents/check.txt."
     
     # Then
-    throw.warning() |> validate[["NavigationResponse"]]() |> expect.error(expected.error)
+    throw.warning() |> validate[["Navigation.Response"]]() |> expect.error(expected.error)
   })
 })
 
@@ -277,7 +277,7 @@ describe("When ide |> validate[['IDE']]()",{
   })
 })
 
-describe("When availability |> validate[['APIAvailability']](ide)",{
+describe("When availability |> validate[['API.Availability']](ide)",{
   it("then no exception is thrown if RStudio API is available",{
     # Given
     validate <- Session.Validator()
@@ -286,7 +286,7 @@ describe("When availability |> validate[['APIAvailability']](ide)",{
     availability <- TRUE
 
     # Then
-    availability |> validate[["APIAvailability"]]() |> expect.no.error()
+    availability |> validate[["API.Availability"]]() |> expect.no.error()
   })
   it("then an exception is thrown if RStudio API is unavailable in RStudio.",{
     # Given
@@ -299,7 +299,7 @@ describe("When availability |> validate[['APIAvailability']](ide)",{
     ide <- "RStudio"
 
     # Then
-    availability |> validate[["APIAvailability"]](ide) |> expect.error(expected.error)
+    availability |> validate[["API.Availability"]](ide) |> expect.error(expected.error)
   })
   it("then an exception is thrown if RStudio API is unavailable in VSCode.",{
     # Given
@@ -312,11 +312,11 @@ describe("When availability |> validate[['APIAvailability']](ide)",{
     ide <- "VSCode"
 
     # Then
-    availability |> validate[["APIAvailability"]](ide) |> expect.error(expected.error)
+    availability |> validate[["API.Availability"]](ide) |> expect.error(expected.error)
   })
 })
 
-describe("When capable |> validate[['APICapability']](ide)",{
+describe("When capable |> validate[['API.Capability']](ide)",{
   it("then no exception is thrown if Navigate To File function is available.",{
     # Given
     validate <- Session.Validator()
@@ -325,7 +325,7 @@ describe("When capable |> validate[['APICapability']](ide)",{
     capable <- TRUE
 
     # Then
-    capable |> validate[["APICapability"]](ide) |> expect.no.error()
+    capable |> validate[["API.Capability"]](ide) |> expect.no.error()
   })
   it("then an exception is thrown if Navigate To File function is not available in RStudio.",{
     # Given
@@ -338,7 +338,7 @@ describe("When capable |> validate[['APICapability']](ide)",{
     ide <- "RStudio"
 
     # Then
-    capable |> validate[["APICapability"]](ide) |> expect.error(expected.error)
+    capable |> validate[["API.Capability"]](ide) |> expect.error(expected.error)
   })
   it("then an exception is thrown if Navigate To File function is not available in VSCode.",{
     # Given
@@ -351,6 +351,6 @@ describe("When capable |> validate[['APICapability']](ide)",{
     ide <- "VSCode"
 
     # Then
-    capable |> validate[["APICapability"]](ide) |> expect.error(expected.error)
+    capable |> validate[["API.Capability"]](ide) |> expect.error(expected.error)
   })
 })

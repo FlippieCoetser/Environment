@@ -2,29 +2,29 @@ Path.Service <- \(broker) {
   validate <- Path.Validator()
 
   services <- list()
-  services[['GetUserHomePath']]   <- \() {
-    broker[['GetUserHomePath']]() |> validate[['Path']]()
+  services[['Get.User.Path']]   <- \() {
+    broker[['Get.User.Path']]() |> validate[['Path']]()
   }
-  services[['GetConfigFilename']] <- \() {
-    broker[['GetConfigFilename']]() |> validate[['Filename']]()
+  services[['Get.Config.Filename']] <- \() {
+    broker[['Get.Config.Filename']]() |> validate[['Filename']]()
   }
-  services[['NormalizePath']]     <- \(path) {
+  services[['Normalize.Path']]     <- \(path) {
     path |> validate[['Path']]()
-    path |> broker[['NormalizePath']]() |> validate[['Normalized']]()
+    path |> broker[['Normalize.Path']]() |> validate[['Normalized']]()
   }
-  services[['CombinePath']]       <- \(path, filename) {
+  services[['Combine.Path']]       <- \(path, filename) {
     path     |> validate[['Normalized']]()
     filename |> validate[['Filename']]()
     
-    path |> broker[['CombinePath']](filename) |> validate[['Filepath']]()
+    path |> broker[['Combine.Path']](filename) |> validate[['Filepath']]()
   }
-  services[['FilepathExists']]    <- \(filepath) {
+  services[['Filepath.Exists']]    <- \(filepath) {
     filepath |> validate[['Filepath']]()
-    filepath |> broker[['FilepathExists']]()
+    filepath |> broker[['Filepath.Exists']]()
   }
-  services[['CreateFilepath']]    <- \(filepath) {
+  services[['Create.Filepath']]    <- \(filepath) {
     filepath |> validate[['Filepath']]()
-    filepath |> broker[['CreateFilepath']]()
+    filepath |> broker[['Create.Filepath']]()
   }
   return(services)
 }

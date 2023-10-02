@@ -13,51 +13,51 @@ describe("When operations <- Path.Broker()", {
     # Then
     operations |> expect.list()
   })
-  it("then operations contains GetUserHomePath operation.", {
+  it("then operations contains Get.User.Path operation.", {
     # Given
     operations <- Path.Broker()
 
     # Then
-    operations[["GetUserHomePath"]] |> expect.exist()
+    operations[["Get.User.Path"]] |> expect.exist()
   })
-  it("then operations contains GetConfigFilename operation.", {
+  it("then operations contains Get.Config.Filename operation.", {
     # Given
     operations <- Path.Broker()
 
     # Then
-    operations[["GetConfigFilename"]] |> expect.exist()
+    operations[["Get.Config.Filename"]] |> expect.exist()
   })
-  it("then operations contains NormalizePath operation.", {
+  it("then operations contains Normalize.Path operation.", {
     # Given
     operations <- Path.Broker()
 
     # Then
-    operations[["NormalizePath"]] |> expect.exist()
+    operations[["Normalize.Path"]] |> expect.exist()
   })
-  it("then operations contains CombinePath operation.", {
+  it("then operations contains Combine.Path operation.", {
     # Given
     operations <- Path.Broker()
 
     # Then
-    operations[["CombinePath"]] |> expect.exist()
+    operations[["Combine.Path"]] |> expect.exist()
   })
-  it("then operations contains FilepathExists operation.", {
+  it("then operations contains Filepath.Exists operation.", {
     # Given
     operations <- Path.Broker()
 
     # Then
-    operations[["FilepathExists"]] |> expect.exist()
+    operations[["Filepath.Exists"]] |> expect.exist()
   })
-  it("then operations contains CreateFilepath operation.", {
+  it("then operations contains Create.Filepath operation.", {
     # Given
     operations <- Path.Broker()
 
     # Then
-    operations[["CreateFilepath"]] |> expect.exist()
+    operations[["Create.Filepath"]] |> expect.exist()
   })
 })
 
-describe("When operation[['GetUserHomePath']]()",{
+describe("When operation[['Get.User.Path']]()",{
   it("then the user home path is returned.",{
     # Given
     operation <- Path.Broker()
@@ -65,14 +65,14 @@ describe("When operation[['GetUserHomePath']]()",{
     expected.path <- path.expand('~')
 
     # When
-    actual.path <- operation[["GetUserHomePath"]]()
+    actual.path <- operation[["Get.User.Path"]]()
 
     # Then
     actual.path |> expect.equal(expected.path)
   })
 })
 
-describe("When operation[['GetConfigFilename']]()",{
+describe("When operation[['Get.Config.Filename']]()",{
   it("then the configuration filename is returned.",{
     # Given
     operation <- Path.Broker()
@@ -80,14 +80,14 @@ describe("When operation[['GetConfigFilename']]()",{
     expected.filename <- ".Renviron"
 
     # When
-    actual.filename <- operation[["GetConfigFilename"]]()
+    actual.filename <- operation[["Get.Config.Filename"]]()
 
     # Then
     actual.filename |> expect.equal(expected.filename)
   })
 })
 
-describe("When path |> operation[['NormalizePath']]()",{
+describe("When path |> operation[['Normalize.Path']]()",{
   it("then all double backslashes are replaced with a single forwardslash.",{
     # Given
     operation <- Path.Broker()
@@ -96,14 +96,14 @@ describe("When path |> operation[['NormalizePath']]()",{
     expected.path <- "C:/Users/user/Documents/"
 
     # When
-    actual.path <- input.path |> operation[["NormalizePath"]]()
+    actual.path <- input.path |> operation[["Normalize.Path"]]()
 
     # Then
     actual.path |> expect.equal(expected.path)
   })
 })
 
-describe("When path |> operation[['CombinePath']]()",{
+describe("When path |> operation[['Combine.Path']]()",{
   it("then the path and filename are combined.",{
     # Given
     operation <- Path.Broker()
@@ -113,24 +113,24 @@ describe("When path |> operation[['CombinePath']]()",{
     expected.path <- "C:/Users/user/Documents/file.txt"
 
     # When
-    actual.path <- input.path |> operation[["CombinePath"]](input.filename)
+    actual.path <- input.path |> operation[["Combine.Path"]](input.filename)
 
     # Then
     actual.path |> expect.equal(expected.path)
   })
 })
 
-describe("When filepath |> operation[['FilepathExists']]()",{
+describe("When filepath |> operation[['Filepath.Exists']]()",{
   it("then FALSE is returned if filepath does not exist.",{
     skip_if_not(environment == 'local')
     # Given
     operation <- Path.Broker()
 
-    input.filepath <- "C:/InvalidPath/.Renviron"
+    input.filepath <- "C:/Path.Invalid/.Renviron"
     expected.result <- FALSE
 
     # When
-    actual.result <- input.filepath |> operation[["FilepathExists"]]()
+    actual.result <- input.filepath |> operation[["Filepath.Exists"]]()
 
     # Then
     actual.result |> expect.equal(expected.result)
@@ -144,14 +144,14 @@ describe("When filepath |> operation[['FilepathExists']]()",{
     expected.result <- TRUE
 
     # When
-    actual.result <- input.filepath |> operation[["FilepathExists"]]()
+    actual.result <- input.filepath |> operation[["Filepath.Exists"]]()
 
     # Then
     actual.result |> expect.equal(expected.result)
   })
 })
 
-describe("When filepath |> operation[['CreateFilepath']]()",{
+describe("When filepath |> operation[['Create.Filepath']]()",{
   it("then the filepath is created if filepath is valid.",{
     skip_if_not(environment == 'local')
     # Given
@@ -161,7 +161,7 @@ describe("When filepath |> operation[['CreateFilepath']]()",{
     expected.result <- TRUE
 
     # When
-    actual.result <- input.filepath |> operation[["CreateFilepath"]]()
+    actual.result <- input.filepath |> operation[["Create.Filepath"]]()
 
     # Then
     actual.result |> expect.equal(expected.result)
@@ -174,6 +174,6 @@ describe("When filepath |> operation[['CreateFilepath']]()",{
     input.filepath <- "C:/Users/Analyst/Invalid/test.txt"
 
     # Then
-    input.filepath |> operation[["CreateFilepath"]]() |> expect.warning()
+    input.filepath |> operation[["Create.Filepath"]]() |> expect.warning()
   })
 })
