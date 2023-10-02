@@ -1,6 +1,6 @@
 Package: Environment
 Title: Manage Environment Variables
-Version: 0.0.1.000
+Version: 0.0.1.001
 Authors@R: 
     person(given = "Flippie",
            family = "Coetser",
