@@ -70,6 +70,7 @@ describe("When orchestrate[['Open.Config.File']]()",{
 
 describe("When name |> orchestrate[['Get.Env.Variable']]()",{
   it("then the value for variable with name is returned.", {
+    skip_if_not(environment == 'local')
     # Given
     orchestrate <- Environment.Orchestrator()
 
