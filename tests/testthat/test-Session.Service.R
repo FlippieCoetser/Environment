@@ -235,6 +235,7 @@ describe("When service[['VSCode.InUse']]()",{
 
 describe("When name |> service[['Get.Env.Variable']]()",{
   it("then the value for variable with name is returned.", {
+    skip_if_not(environment == 'local')
     # Given
     broker  <- Session.Broker()
     service <- broker |> Session.Service()
