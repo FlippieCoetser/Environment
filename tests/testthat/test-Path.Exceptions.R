@@ -1,45 +1,44 @@
 describe('Path.Exceptions', {
   it('Exist',{
-    # Then
     Path.Exceptions |> expect.exist()
   })
 })
 
 describe("When exceptions <- Path.Exceptions()",{
   it("then exceptions is a list.",{
-    # Given
+    # When
     exceptions <- Path.Exceptions()
 
     # Then
     exceptions |> expect.list()
   })
-  it("then exceptions contains Path.Invalid exception.",{
-    # Given
+  it("then exceptions contains 'Path.Invalid' exception.",{
+    # When
     exceptions <- Path.Exceptions()
 
     # Then
-    exceptions[["Path.Invalid"]] |> expect.exist()
+    exceptions[['Path.Invalid']] |> expect.exist()
   })
-  it("then exceptions contains Filename.Invalid exception.",{
-    # Given
+  it("then exceptions contains 'Filename.Invalid' exception.",{
+    # When
     exceptions <- Path.Exceptions()
 
     # Then
-    exceptions[["Filename.Invalid"]] |> expect.exist()
+    exceptions[['Filename.Invalid']] |> expect.exist()
   })
-  it("then exceptions contains Normalized.Invalid exception.",{
-    # Given
+  it("then exceptions contains 'Normalized.Invalid' exception.",{
+    # When
     exceptions <- Path.Exceptions()
 
     # Then
-    exceptions[["Normalized.Invalid"]] |> expect.exist()
+    exceptions[['Normalized.Invalid']] |> expect.exist()
   })
-  it("then exceptions contains Filepath.Invalid exception.",{
-    # Given
+  it("then exceptions contains 'Filepath.Invalid' exception.",{
+    # When
     exceptions <- Path.Exceptions()
 
     # Then
-    exceptions[["Filepath.Invalid"]] |> expect.exist()
+    exceptions[['Filepath.Invalid']] |> expect.exist()
   })
 })
 
@@ -52,7 +51,7 @@ describe("When input |> exception[['Path.Invalid']](path)",{
     validation.input <- FALSE
 
     # Then
-    validation.input |> exception[["Path.Invalid"]]() |> expect.no.error()
+    validation.input |> exception[['Path.Invalid']]() |> expect.no.error()
   })
   it("then an exception is thrown if input is TRUE.",{
     # Given
@@ -65,7 +64,7 @@ describe("When input |> exception[['Path.Invalid']](path)",{
     validation.input <- TRUE
 
     # Then
-    validation.input |> exception[["Path.Invalid"]](random.path) |> expect.error(expected.error)
+    validation.input |> exception[['Path.Invalid']](random.path) |> expect.error(expected.error)
   })
 })
 
@@ -78,7 +77,7 @@ describe("When input |> exception[['Filename.Invalid']](filename)",{
     validation.input <- FALSE
 
     # Then
-    validation.input |> exception[["Filename.Invalid"]]() |> expect.no.error()
+    validation.input |> exception[['Filename.Invalid']]() |> expect.no.error()
   })
   it("then an exception is thrown if input is TRUE.",{
     # Given
@@ -91,7 +90,7 @@ describe("When input |> exception[['Filename.Invalid']](filename)",{
     validation.input <- TRUE
 
     # Then
-    validation.input |> exception[["Filename.Invalid"]](random.filename) |> expect.error(expected.error)
+    validation.input |> exception[['Filename.Invalid']](random.filename) |> expect.error(expected.error)
   })
 })
 
@@ -104,7 +103,7 @@ describe("When input |> exception[['Normalized.Invalid']](path)",{
     validation.input <- FALSE
 
     # Then
-    validation.input |> exception[["Normalized.Invalid"]]() |> expect.no.error()
+    validation.input |> exception[['Normalized.Invalid']]() |> expect.no.error()
   })
   it("then an exception is thrown if input is TRUE.",{
     # Given
@@ -117,7 +116,7 @@ describe("When input |> exception[['Normalized.Invalid']](path)",{
     validation.input <- TRUE
 
     # Then
-    validation.input |> exception[["Normalized.Invalid"]](random.path) |> expect.error(expected.error)
+    validation.input |> exception[['Normalized.Invalid']](random.path) |> expect.error(expected.error)
   })
 })
 
@@ -130,7 +129,7 @@ describe("When input |> exception[['Filepath.Invalid']]()",{
     validation.input <- FALSE
 
     # Then
-    validation.input |> exception[["Filepath.Invalid"]]() |> expect.no.error()
+    validation.input |> exception[['Filepath.Invalid']]() |> expect.no.error()
   })
   it("then an exception is thrown if input is TRUE.",{
     # Given
@@ -143,6 +142,6 @@ describe("When input |> exception[['Filepath.Invalid']]()",{
     validation.input <- TRUE
 
     # Then
-    validation.input |> exception[["Filepath.Invalid"]](random.filepath) |> expect.error(expected.error)
+    validation.input |> exception[['Filepath.Invalid']](random.filepath) |> expect.error(expected.error)
   })
 })

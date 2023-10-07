@@ -1,80 +1,79 @@
 describe('Session.Validator', {
   it('Exist',{
-    # Then
     Session.Validator |> expect.exist()
   })
 })
 
 describe("When validations <- Session.Validator()",{
   it("then validators is a list.", {
-    # Given
+    # When
     validations <- Session.Validator()
 
     # Then
     validations |> expect.list()
   })
-  it("then validations contains Navigation.Response validator.", {
-    # Given
+  it("then validations contains 'Navigation.Response' validator.", {
+    # When
     validations <- Session.Validator()
 
     # Then
-    validations[["Navigation.Response"]] |> expect.exist()
+    validations[['Navigation.Response']] |> expect.exist()
   })
-  it("then validations contains Filepath validator.", {
-    # Given
+  it("then validations contains 'Filepath' validator.", {
+    # When
     validations <- Session.Validator()
 
     # Then
-    validations[["Filepath"]] |> expect.exist()
+    validations[['Filepath']] |> expect.exist()
   })
-  it("then validations contains IsEmpty validator.", {
-    # Given
+  it("then validations contains 'IsEmpty' validator.", {
+    # When
     validations <- Session.Validator()
 
     # Then
-    validations[["IsEmpty"]] |> expect.exist()
+    validations[['IsEmpty']] |> expect.exist()
   })
-  it("then validations contains IsNull validator.", {
-    # Given
+  it("then validations contains 'IsNull' validator.", {
+    # When
     validations <- Session.Validator()
 
     # Then
-    validations[["IsNull"]] |> expect.exist()
+    validations[['IsNull']] |> expect.exist()
   })
-  it("then validations contains Name validator.",{
-    # Given
+  it("then validations contains 'Name' validator.",{
+    # When
     validations <- Session.Validator()
 
     # Then
-    validations[["Name"]] |> expect.exist()
+    validations[['Name']] |> expect.exist()
   })
-  it("then validations contains Value validator.",{
-    # Given
+  it("then validations contains 'Value' validator.",{
+    # When
     validations <- Session.Validator()
 
     # Then
-    validations[["Value"]] |> expect.exist()
+    validations[['Value']] |> expect.exist()
   })
-  it("then validations contains IDE Validator.",{
-    # Given
+  it("then validations contains 'IDE' Validator.",{
+    # When
     validations <- Session.Validator()
 
     # Then
-    validations[["IDE"]] |> expect.exist()
+    validations[['IDE']] |> expect.exist()
   })
-  it("then validations contains API.Availability Validator.",{
-    # Given
+  it("then validations contains 'API.Availability' Validator.",{
+    # When
     validations <- Session.Validator()
 
     # Then
-    validations[["API.Availability"]] |> expect.exist()
+    validations[['API.Availability']] |> expect.exist()
   })
-  it("then validations contains API.Capability Validator.",{
-    # Given
+  it("then validations contains 'API.Capability' Validator.",{
+    # When
     validations <- Session.Validator()
 
     # Then
-    validations[["API.Capability"]] |> expect.exist()
+    validations[['API.Capability']] |> expect.exist()
   })
 })
 
@@ -82,6 +81,7 @@ describe("When response |> validate[['Navigation.Response']]()",{
   it("then a Path.Not.Found exception is thrown if response throws a warning containing path not found",{
     # Given
     validate <- Session.Validator()
+
     throw.warning <- \() {
       warning('path[1]="C:/Users/Path.Invalid/Documents/.Renviron": The system cannot find the path specified.')
     }
@@ -89,11 +89,12 @@ describe("When response |> validate[['Navigation.Response']]()",{
     expected.error <- "Path not found: C:/Users/Path.Invalid/Documents/.Renviron."
     
     # Then
-    throw.warning() |> validate[["Navigation.Response"]]() |> expect.error(expected.error)
+    throw.warning() |> validate[['Navigation.Response']]() |> expect.error(expected.error)
   })
   it("then a File.Not.Found exception is thrown if response throws a warning containing file not found",{
     # Given
     validate <- Session.Validator()
+
     throw.warning <- \() {
       warning('path[1]="C:/Users/Analyst/Documents/check.txt": The system cannot find the file specified.')
     }
@@ -101,7 +102,7 @@ describe("When response |> validate[['Navigation.Response']]()",{
     expected.error <- "File not found: C:/Users/Analyst/Documents/check.txt."
     
     # Then
-    throw.warning() |> validate[["Navigation.Response"]]() |> expect.error(expected.error)
+    throw.warning() |> validate[['Navigation.Response']]() |> expect.error(expected.error)
   })
 })
 
@@ -111,10 +112,11 @@ describe("When filepath |> validate[['Filepath']]()",{
     validate <- Session.Validator()
 
     input.filepath <- "C:/Users/username/Documents/.Renviron"
+
     expect.filepath <- input.filepath
 
     # When
-    actual.filepath <-  input.filepath |> validate[["Filepath"]]()
+    actual.filepath <-  input.filepath |> validate[['Filepath']]()
     
     # Then
     actual.filepath |> expect.equal(expect.filepath)
@@ -124,10 +126,11 @@ describe("When filepath |> validate[['Filepath']]()",{
     validate <- Session.Validator()
 
     filepath <- "C:\\Users\\username\\Documents\\.Renviron"
+
     expected.error <- paste0("Invalid filepath: ", "C:\\\\Users\\\\username\\\\Documents\\\\.Renviron", ".")
 
     # Then
-    filepath |> validate[["Filepath"]]() |> expect.error(expected.error)
+    filepath |> validate[['Filepath']]() |> expect.error(expected.error)
   })
 })
 
@@ -140,7 +143,7 @@ describe("When value |> validate[['IsEmpty']]()",{
     value <- ""
 
     # Then
-    value |> validate[["IsEmpty"]]() |> expect.true()
+    value |> validate[['IsEmpty']]() |> expect.true()
   })
   it("then False is return if value is not empty.",{
     # Given
@@ -150,7 +153,7 @@ describe("When value |> validate[['IsEmpty']]()",{
     value <- "value"
 
     # Then
-    value |> validate[["IsEmpty"]]() |> expect.false()
+    value |> validate[['IsEmpty']]() |> expect.false()
   })
 })
 
@@ -163,7 +166,7 @@ describe("When value |> validate[['IsNull']]()",{
     value <- NULL
 
     # Then
-    value |> validate[["IsNull"]]() |> expect.true()
+    value |> validate[['IsNull']]() |> expect.true()
   })
   it("then False is return if value is not NULL.",{
     # Given
@@ -173,7 +176,7 @@ describe("When value |> validate[['IsNull']]()",{
     value <- "value"
 
     # Then
-    value |> validate[["IsNull"]]() |> expect.false()
+    value |> validate[['IsNull']]() |> expect.false()
   })
 })
 
@@ -186,7 +189,7 @@ describe("When name |> validate[['Name']]()",{
     name  <- "name" 
 
     # Then
-    name |> validate[["Name"]]() |> expect.equal(name)
+    name |> validate[['Name']]() |> expect.equal(name)
   })
   it("then no exception is thrown when name is not null",{
     # Given
@@ -196,7 +199,7 @@ describe("When name |> validate[['Name']]()",{
     name  <- "name" 
 
     # Then
-    name |> validate[["Name"]]() |> expect.no.error()
+    name |> validate[['Name']]() |> expect.no.error()
   })
   it("then an exception is thrown when name is null",{
     # Given
@@ -208,7 +211,7 @@ describe("When name |> validate[['Name']]()",{
     name  <- NULL 
 
     # Then
-    name |> validate[["Name"]]() |> expect.error(expected.error)
+    name |> validate[['Name']]() |> expect.error(expected.error)
   })
 })
 
@@ -222,7 +225,7 @@ describe("When value |> validate[['Value']](name)",{
     value <- "value"
 
     # Then
-    value |> validate[["Value"]](name) |> expect.equal(value)
+    value |> validate[['Value']](name) |> expect.equal(value)
   })
   it("then no exception is thrown when value is not empty",{
     # Given
@@ -233,7 +236,7 @@ describe("When value |> validate[['Value']](name)",{
     value <- "value"
 
     # Then
-    value |> validate[["Value"]](name) |> expect.no.error()
+    value |> validate[['Value']](name) |> expect.no.error()
   })
   it("then an exception is thrown when value is empty",{
     # Given
@@ -246,7 +249,7 @@ describe("When value |> validate[['Value']](name)",{
     expected.error <- paste0("No value found for provided environment variable:", name, ". Please check .Renviron configuration file.")
 
     # Then
-    value |> validate[["Value"]](name) |> expect.error(expected.error)
+    value |> validate[['Value']](name) |> expect.error(expected.error)
   })
   it("then an exception is thrown when value is Null",{
     # Given
@@ -258,7 +261,7 @@ describe("When value |> validate[['Value']](name)",{
     expected.error <- "Value is null. Expected a value for the environment to cache."
 
     # Then
-    value |> validate[["Value"]]() |> expect.error(expected.error)
+    value |> validate[['Value']]() |> expect.error(expected.error)
   })
 })
 
@@ -273,7 +276,7 @@ describe("When ide |> validate[['IDE']]()",{
     ide <- "None"
 
     # Then
-    ide |> validate[["IDE"]]() |> expect.error(expected.error)
+    ide |> validate[['IDE']]() |> expect.error(expected.error)
   })
 })
 
@@ -286,7 +289,7 @@ describe("When availability |> validate[['API.Availability']](ide)",{
     availability <- TRUE
 
     # Then
-    availability |> validate[["API.Availability"]]() |> expect.no.error()
+    availability |> validate[['API.Availability']]() |> expect.no.error()
   })
   it("then an exception is thrown if RStudio API is unavailable in RStudio.",{
     # Given
@@ -299,7 +302,7 @@ describe("When availability |> validate[['API.Availability']](ide)",{
     ide <- "RStudio"
 
     # Then
-    availability |> validate[["API.Availability"]](ide) |> expect.error(expected.error)
+    availability |> validate[['API.Availability']](ide) |> expect.error(expected.error)
   })
   it("then an exception is thrown if RStudio API is unavailable in VSCode.",{
     # Given
@@ -312,7 +315,7 @@ describe("When availability |> validate[['API.Availability']](ide)",{
     ide <- "VSCode"
 
     # Then
-    availability |> validate[["API.Availability"]](ide) |> expect.error(expected.error)
+    availability |> validate[['API.Availability']](ide) |> expect.error(expected.error)
   })
 })
 
@@ -325,7 +328,7 @@ describe("When capable |> validate[['API.Capability']](ide)",{
     capable <- TRUE
 
     # Then
-    capable |> validate[["API.Capability"]](ide) |> expect.no.error()
+    capable |> validate[['API.Capability']](ide) |> expect.no.error()
   })
   it("then an exception is thrown if Navigate To File function is not available in RStudio.",{
     # Given
@@ -338,7 +341,7 @@ describe("When capable |> validate[['API.Capability']](ide)",{
     ide <- "RStudio"
 
     # Then
-    capable |> validate[["API.Capability"]](ide) |> expect.error(expected.error)
+    capable |> validate[['API.Capability']](ide) |> expect.error(expected.error)
   })
   it("then an exception is thrown if Navigate To File function is not available in VSCode.",{
     # Given
@@ -351,6 +354,6 @@ describe("When capable |> validate[['API.Capability']](ide)",{
     ide <- "VSCode"
 
     # Then
-    capable |> validate[["API.Capability"]](ide) |> expect.error(expected.error)
+    capable |> validate[['API.Capability']](ide) |> expect.error(expected.error)
   })
 })

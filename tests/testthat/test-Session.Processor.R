@@ -6,53 +6,53 @@ describe("Session.Processor",{
 
 describe("When processes <- Session.Processor()",{
   it("then processes is a list.", {
-    # Given
+    # When
     processes <- Session.Processor()
 
     # Then
     processes |> expect.list()
   })
-  it("then processes contains GetIDE.InUse process.", {
-    # Given
+  it("then processes contains 'GetIDE.InUse' process.", {
+    # When
     processes <- Session.Processor()
 
     # Then
-    processes[["GetIDE.InUse"]] |> expect.exist()
+    processes[['GetIDE.InUse']] |> expect.exist()
   })
-  it("then processes contains Open.Filepath process.", {
-    # Given
+  it("then processes contains 'Open.Filepath' process.", {
+    # When
     processes <- Session.Processor()
 
     # Then
-    processes[["Open.Filepath"]] |> expect.exist()
+    processes[['Open.Filepath']] |> expect.exist()
   })
-  it("then processes contains CheckIDE.InUse process.", {
-    # Given
+  it("then processes contains 'CheckIDE.InUse' process.", {
+    # When
     processes <- Session.Processor()
 
     # Then
-    processes[["CheckIDE.InUse"]] |> expect.exist()
+    processes[['CheckIDE.InUse']] |> expect.exist()
   })
-  it("then processes contains Get.Env.Variable process.", {
-    # Given
+  it("then processes contains 'Get.Env.Variable' process.", {
+    # When
     processes <- Session.Processor()
 
     # Then
-    processes[["Get.Env.Variable"]] |> expect.exist()
+    processes[['Get.Env.Variable']] |> expect.exist()
   })
-  it("then processes contains Cache.Env.Variable process.", {
-    # Given
+  it("then processes contains 'Cache.Env.Variable' process.", {
+    # When
     processes <- Session.Processor()
 
     # Then
-    processes[["Cache.Env.Variable"]] |> expect.exist()
+    processes[['Cache.Env.Variable']] |> expect.exist()
   })
-  it("then processes contains Clear.Env.Variable process.", {
-    # Given
+  it("then processes contains 'Clear.Env.Variable' process.", {
+    # When
     processes <- Session.Processor()
 
     # Then
-    processes[["Clear.Env.Variable"]] |> expect.exist()
+    processes[['Clear.Env.Variable']] |> expect.exist()
   })
 })
 
@@ -68,7 +68,7 @@ describe("When process[['GetIDE.InUse']]()",{
     expected.result <- "None"
 
     # When
-    result <- process[["GetIDE.InUse"]]()
+    result <- process[['GetIDE.InUse']]()
 
     # Then
     result |> expect.equal(expected.result)
@@ -85,7 +85,7 @@ describe("When process[['GetIDE.InUse']]()",{
     expected.result <- "RStudio"
 
     # When
-    result <- process[["GetIDE.InUse"]]()
+    result <- process[['GetIDE.InUse']]()
 
     # Then
     result |> expect.equal(expected.result)
@@ -102,7 +102,7 @@ describe("When process[['GetIDE.InUse']]()",{
     expected.result <- "VSCode"
 
     # When
-    result <- process[["GetIDE.InUse"]]()
+    result <- process[['GetIDE.InUse']]()
 
     # Then
     result |> expect.equal(expected.result)
@@ -315,7 +315,7 @@ describe("When name |> process[['Get.Env.Variable']]()",{
     name  <- "ENVIRONMENT"
 
     # When
-    value <- name |> process[["Get.Env.Variable"]]()
+    value <- name |> process[['Get.Env.Variable']]()
 
     # Then
     name |> Sys.getenv() |> expect.equal(value)
@@ -332,7 +332,7 @@ describe("When name |> process[['Get.Env.Variable']]()",{
     name <- NULL
 
     # Then
-    name |> process[["Get.Env.Variable"]]() |> expect.error(expected.error)
+    name |> process[['Get.Env.Variable']]() |> expect.error(expected.error)
   })
   it("then an exception is thrown if no value for variable is found",{
     # Given
@@ -344,7 +344,7 @@ describe("When name |> process[['Get.Env.Variable']]()",{
     expected.error <- "No value found for provided environment variable:INVALID. Please check .Renviron configuration file."
 
     # Then
-    name |> process[["Get.Env.Variable"]]() |> expect.error(expected.error)
+    name |> process[['Get.Env.Variable']]() |> expect.error(expected.error)
   })
 })
 
@@ -359,7 +359,7 @@ describe("When name |> service[['Cache.Env.Variable']](value)",{
     value <- "new_value"
 
     # When
-    name |> process[["Cache.Env.Variable"]](value)
+    name |> process[['Cache.Env.Variable']](value)
 
     # Then
     name |> Sys.getenv() |> expect.equal(value)
@@ -377,7 +377,7 @@ describe("When name |> service[['Cache.Env.Variable']](value)",{
     value <- "new_value"
 
     # Then
-    name |> process[["Cache.Env.Variable"]](value) |> expect.error(expected.error)
+    name |> process[['Cache.Env.Variable']](value) |> expect.error(expected.error)
   })
   it("then an exception is thrown if value is NULL",{
     # Given
@@ -392,7 +392,7 @@ describe("When name |> service[['Cache.Env.Variable']](value)",{
     value <- NULL
 
     # Then
-    name |> process[["Cache.Env.Variable"]](value) |> expect.error(expected.error)
+    name |> process[['Cache.Env.Variable']](value) |> expect.error(expected.error)
   })
 })
 
@@ -406,10 +406,10 @@ describe("When name |> service[['Clear.Env.Variable']]()",{
     name  <- "NEW_VARIABLE"
     value <- "new_value"
 
-    name |> broker[["Cache.Env.Variable"]](value)
+    name |> broker[['Cache.Env.Variable']](value)
 
     # When
-    name |> process[["Clear.Env.Variable"]]()
+    name |> process[['Clear.Env.Variable']]()
 
     # Then
     name |> broker[['Get.Env.Variable']]() |> expect.empty()
@@ -426,6 +426,6 @@ describe("When name |> service[['Clear.Env.Variable']]()",{
     name  <- NULL
 
     # Then
-    name |> process[["Clear.Env.Variable"]]() |> expect.error(expected.error)
+    name |> process[['Clear.Env.Variable']]() |> expect.error(expected.error)
   })
 })

@@ -1,27 +1,26 @@
 describe('Path.Processor', {
   it('Exist',{
-    # Then
     Path.Processor |> expect.exist()
   })
 })
 
 describe("When processes <- Path.Processor()",{
   it("then processes is a list.", {
-    # Given
+    # When
     processes <- Path.Processor()
 
     # Then
     processes |> expect.list()
   })
-  it("then processes contains Get.Config.Filepath process.", {
-    # Given
+  it("then processes contains 'Get.Config.Filepath' process.", {
+    # When
     processes <- Path.Processor()
 
     # Then
     processes[['Get.Config.Filepath']] |> expect.exist()
   })
-  it("then processes contains Ensure.Filepath.Exist process.", {
-    # Given
+  it("then processes contains 'Ensure.Filepath.Exist' process.", {
+    # When
     processes <- Path.Processor()
 
     # Then
