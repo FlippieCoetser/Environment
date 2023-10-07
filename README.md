@@ -2,12 +2,15 @@
 
 This R Package is used to Manage Environment Variables using the `.Renviron` file. `.Renviron` configuration file is part of the R ecosystem and well suited to manage sensitive information.
 
-This `Environment` package makes defining, reading and clearing environment variables straightforward by providing four utility functions:
+This `Environment` package makes defining, reading and clearing environment variables straightforward.
+Four utility functions are provided to manage environment variables. These functions are:
 
 1. `Open.Config.File` - Opens the `.Renviron` configuration file in the IDE: RStudio or VSCode.
 2. `Get.Env.Variable` - Gets the value of an environment variable by name, as stored in `.Renviron`
 3. `Cache.Env.Variable` - Caches the value of an environment variable by name, for current R session.
 4. `Clear.Env.Variable` - Clears the value of an environment variable by name, for current R session.
+
+Structural Validation of inputs are performed. Meaningful error messages are thrown to guide the user to troubleshoot any mistakes.
 
 > Note: This package is [Standard](https://github.com/hassanhabib/The-Standard) compliant package.
 
