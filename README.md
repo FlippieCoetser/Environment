@@ -1,5 +1,8 @@
 # Environment
 
+![r-universe](https://flippiecoetser.r-universe.dev/badges/Environment)
+
+
 This R Package is used to Manage Environment Variables using the `.Renviron` file. `.Renviron` configuration file is part of the R ecosystem and well suited to manage sensitive information.
 
 This `Environment` package makes defining, reading and clearing environment variables straightforward.
