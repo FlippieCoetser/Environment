@@ -1,20 +1,20 @@
-#' Manage Environment Variables
+#' Environment Variable Orchestrator
 #'
 #' @description
-#' `.Renviron` configuration file is well suited to management sensitive information. 
-#' This `Environment` package makes defining and reading environment variables straightforward.
-#' 
-#' `Environment.Orchestrator()` returns a set of utility functions that can be used to interact with `.Renviron` files:
-#' * The first function: `open.config.file`, will open an existing or a new empty `.Renviron` configuration file.
-#' Users can then add environment variables by defining `'key'='value'` pairs.
-#' * The second function: `get.env.variable`, will read the value of the matching key (name) from the configuration file.
-#' * The third function: `cache.env.variable`, will cache the value of the matching key (name) in the current R session.
-#' @usage NULL
-#' @returns A `list` of utility functions: 
-#' * `open.config.file()`
-#' * `get.env.variable(name)`
-#' * `cache.env.variable(name, value)`
-Environment.Orchestrator <- \(...) {
+#' Provides a suite of utility functions for managing environment variables in the `.Renviron` file. 
+#' This includes initialization, retrieval, caching, and clearing of environment variables, enhancing secure management of sensitive data.
+#'
+#' @details
+#' The Environment.Orchestrator function initializes and provides access to the following utility functions:
+#'
+#' @return A list of utility functions that facilitate direct interactions with environment variables, structured as follows:
+#' \describe{
+#'   \item{\code{open.config.file}}{Opens or creates the `.Renviron` file, enabling the user to manage environment variables.}
+#'   \item{\code{get.env.variable}}{Retrieves the value of an environment variable by its key.}
+#'   \item{\code{cache.env.variable}}{Temporarily stores an environment variable value during the current R session.}
+#'   \item{\code{clear.env.variable}}{Removes a cached environment variable from the current session.}
+#' }
+Environment.Orchestrator <- \() {
   path <- 
     Path.Broker()  |> 
     Path.Service() |> 
@@ -24,14 +24,6 @@ Environment.Orchestrator <- \(...) {
     Session.Broker()  |> 
     Session.Service() |> 
     Session.Processor()
-
-  arguments <- list(...)
-  if(arguments[['path']] |> is.null() |> isFALSE()) {
-    path <- arguments[['path']]
-  }
-  if(arguments[['session']] |> is.null() |> isFALSE()) {
-    session <- arguments[['session']]
-  }
 
   orchestrations <- list()
   orchestrations[['open.config.file']] <- \() {

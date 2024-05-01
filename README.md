@@ -12,13 +12,13 @@ Four utility functions are provided to manage environment variables. These funct
 3. `cache.env.variable` - Caches the value of an environment variable by name, for current R session.
 4. `clear.env.variable` - Clears the value of an environment variable by name, for current R session.
 
-Structural Validation of inputs are performed. Meaningful error messages are thrown to guide the user to troubleshoot any mistakes.
+Structural Validation of inputs are performed with meaningful error messages thrown to guide the user to troubleshoot any mistakes.
 
 > Note: This package is [Standard](https://github.com/hassanhabib/The-Standard) compliant package.
 
 ## Installation
 
-At the time of writing this README, this `Environment` R-Package is not available on CRAN.
+This `Environment` R-Package is not available on CRAN.
 Use `devtools` to either install from GitHub or Build and Install Locally:
 
 ### Install via GitHub

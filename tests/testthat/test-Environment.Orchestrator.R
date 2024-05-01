@@ -42,31 +42,6 @@ describe("When orchestrations <- Environment.Orchestrator()", {
   })
 })
 
-describe("When orchestrate[['open.config.file']]()",{
-  it("Then the .Renviron configuration file opens in IDE", {
-    # Given
-    path <- 
-      Path.Broker()  |> 
-      Path.Service() |> 
-      Path.Processor()
-
-    session <- 
-      Session.Broker()  |> 
-      Session.Service() |> 
-      Session.Processor()
-
-    session[['open.filepath']] <- \(filepath) TRUE
-
-    orchestrations <- Environment.Orchestrator(path = path, session = session)
-
-    # When
-    result <- orchestrations[['open.config.file']]()
-
-    # Then
-    result |> expect.true()
-  })
-})
-
 describe("When name |> orchestrate[['get.env.variable']]()",{
   it("then the value for variable with name is returned.", {
     skip_if_not(environment == 'local')
