@@ -1,32 +1,30 @@
 Session.Broker <- \() {
   operations <- list()
-  operations[['Has.RStudio.API']]     <- \() {
+  operations[['has.RStudio.api']]     <- \() {
     rstudioapi::isAvailable()
   }
-  operations[['Has.NavigateToFilepath']] <- \() {
+  operations[['has.navigate.to.file']] <- \() {
     rstudioapi::hasFun("navigateToFile")
   }
-  operations[['Navigate.To.Filepath']]    <- \(filepath) {
+  operations[['navigate.to.file']]    <- \(filepath) {
     filepath |> rstudioapi::navigateToFile()
   }
-  operations[['IDE.InUse']]          <- \() {
+  operations[['IDE.active']]          <- \() {
     interactive()
   }
-  operations[['VSCode.InUse']]       <- \() {
+  operations[['VSCode.active']]       <- \() {
     Sys.getenv("TERM_PROGRAM") == "vscode"
   }
-  operations[['Get.Env.Variable']]    <- \(name) {
+  operations[['get.env.variable']]    <- \(name) {
     name |> Sys.getenv()
   }
-  operations[['Cache.Env.Variable']]  <- \(name, value) {
+  operations[['cache.env.variable']]  <- \(name, value) {
     entry <- list()
     entry[[name]] <- value
     "Sys.setenv" |> do.call(entry)
   }
-  operations[['Clear.Env.Variable']]  <- \(name) {
-    entry <- list()
-    entry[[name]] <- ''
-    "Sys.setenv" |> do.call(entry)
+  operations[['clear.env.variable']]  <- \(name) {
+   name |> Sys.unsetenv()
   }
   return(operations)
 }

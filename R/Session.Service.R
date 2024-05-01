@@ -2,35 +2,35 @@ Session.Service <- \(broker) {
   validate <- Session.Validator()
   
   services <- list()
-  services[['Has.RStudio.API']]     <- \() {
-    broker[["Has.RStudio.API"]]()
+  services[['has.RStudio.api']]     <- \() {
+    broker[["has.RStudio.api"]]()
   }
-  services[['Has.NavigateToFilepath']] <- \() {
-    broker[["Has.NavigateToFilepath"]]()
+  services[['has.navigate.to.file']] <- \() {
+    broker[["has.navigate.to.file"]]()
   }
-  services[['Navigate.To.Filepath']]    <- \(filepath) {
-    filepath |> validate[['Filepath']]()
-    filepath |> broker[["Navigate.To.Filepath"]]() |> validate[["Navigation.Response"]]()  
+  services[['navigate.to.file']]    <- \(filepath) {
+    filepath |> validate[['filepath']]()
+    filepath |> broker[["navigate.to.file"]]() |> validate[["navigation.response"]]()  
   }
-  services[['IDE.InUse']]          <- \() { 
-    broker[["IDE.InUse"]]()
+  services[['IDE.active']]          <- \() { 
+    broker[["IDE.active"]]()
   }
-  services[['VSCode.InUse']]       <- \() {
-    broker[["VSCode.InUse"]]()
+  services[['VSCode.active']]       <- \() {
+    broker[["VSCode.active"]]()
   }
-  services[['Get.Env.Variable']]    <- \(name) {
+  services[['get.env.variable']]    <- \(name) {
     name |> validate[['Name']]()
-    name |> broker[["Get.Env.Variable"]]() |> validate[['Value']](name)
+    name |> broker[["get.env.variable"]]() |> validate[['Value']](name)
   }
-  services[['Cache.Env.Variable']]  <- \(name, value) {
+  services[['cache.env.variable']]  <- \(name, value) {
     name  |> validate[['Name']]()
     value |> validate[['Value']]()
     
-    name |> broker[["Cache.Env.Variable"]](value)
+    name |> broker[["cache.env.variable"]](value)
   }
-  services[['Clear.Env.Variable']]  <- \(name) {
+  services[['clear.env.variable']]  <- \(name) {
     name |> validate[['Name']]()
-    name |> broker[["Clear.Env.Variable"]]()
+    name |> broker[["clear.env.variable"]]()
   }
   return(services)
 }

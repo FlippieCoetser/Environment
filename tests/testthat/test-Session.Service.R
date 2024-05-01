@@ -12,74 +12,74 @@ describe("When services <- Session.Service()",{
     # Then
     services |> expect.list()
   })
-  it("then services contains 'Has.RStudio.API' service.", {
+  it("then services contains 'has.RStudio.api' service.", {
     # When
     services <- Session.Service()
 
     # Then
-    services[['Has.RStudio.API']] |> expect.exist()
+    services[['has.RStudio.api']] |> expect.exist()
   })
-  it("then services contains 'Has.NavigateToFilepath' service.", {
+  it("then services contains 'has.navigate.to.file' service.", {
     # When
     services <- Session.Service()
 
     # Then
-    services[['Has.NavigateToFilepath']] |> expect.exist()
+    services[['has.navigate.to.file']] |> expect.exist()
   })
-  it("then services contains 'Navigate.To.Filepath' service.", {
+  it("then services contains 'navigate.to.file' service.", {
     # When
     services <- Session.Service()
 
     # Then
-    services[['Navigate.To.Filepath']] |> expect.exist()
+    services[['navigate.to.file']] |> expect.exist()
   })
-  it("then services contains 'IDE.InUse' service.", {
+  it("then services contains 'IDE.active' service.", {
     # When
     services <- Session.Service()
 
     # Then
-    services[['IDE.InUse']] |> expect.exist()
+    services[['IDE.active']] |> expect.exist()
   })
-  it("then services contains 'VSCode.InUse' service.", {
+  it("then services contains 'VSCode.active' service.", {
     # When
     services <- Session.Service()
 
     # Then
-    services[['VSCode.InUse']] |> expect.exist()
+    services[['VSCode.active']] |> expect.exist()
   })
-  it("then services contains 'Get.Env.Variable' service.", {
+  it("then services contains 'get.env.variable' service.", {
     # When
     services <- Session.Service()
 
     # Then
-    services[['Get.Env.Variable']] |> expect.exist()
+    services[['get.env.variable']] |> expect.exist()
   })
-  it("then services contains 'Cache.Env.Variable' service.", {
+  it("then services contains 'cache.env.variable' service.", {
     # When
     services <- Session.Service()
 
     # Then
-    services[['Cache.Env.Variable']] |> expect.exist()
+    services[['cache.env.variable']] |> expect.exist()
   })
-  it("then services contains 'Clear.Env.Variable' service.", {
+  it("then services contains 'clear.env.variable' service.", {
     # When
     services <- Session.Service()
 
     # Then
-    services[['Clear.Env.Variable']] |> expect.exist()
+    services[['clear.env.variable']] |> expect.exist()
   })
 })
 
-describe("When service[['Has.RStudio.API']]()",{
+describe("When service[['has.RStudio.api']]()",{
   it("then TRUE is returned if RStudioAPI is available.", {
     # Given
     broker   <- Session.Broker()
-    broker[['Has.RStudio.API']] <- \() TRUE
+    broker[['has.RStudio.api']] <- \() TRUE
 
     service <- broker |> Session.Service()
 
     # When
-    result <- service[['Has.RStudio.API']]()
+    result <- service[['has.RStudio.api']]()
 
     # Then
     result |> expect.true()
@@ -87,28 +87,28 @@ describe("When service[['Has.RStudio.API']]()",{
   it("then FALSE is returned if RStudioAPI is not available.", {
     # Given
     broker   <- Session.Broker()
-    broker[['Has.RStudio.API']] <- \() FALSE
+    broker[['has.RStudio.api']] <- \() FALSE
 
     service <- broker |> Session.Service()
 
     # When
-    result <- service[['Has.RStudio.API']]()
+    result <- service[['has.RStudio.api']]()
 
     # Then
     result |> expect.false()
   })
 })
 
-describe("When service[['Has.NavigateToFilepath']]()",{
+describe("When service[['has.navigate.to.file']]()",{
   it("then TRUE is returned if navigateToFile function is available.", {
     # Given
     broker   <- Session.Broker()
-    broker[['Has.NavigateToFilepath']] <- \() TRUE
+    broker[['has.navigate.to.file']] <- \() TRUE
 
     service <- broker |> Session.Service()
 
     # When
-    result <- service[['Has.NavigateToFilepath']]()
+    result <- service[['has.navigate.to.file']]()
 
     # Then
     result |> expect.true()
@@ -116,39 +116,39 @@ describe("When service[['Has.NavigateToFilepath']]()",{
   it("then FALSE is returned if navigateToFile function is not available.", {
     # Given
     broker   <- Session.Broker()
-    broker[['Has.NavigateToFilepath']] <- \() FALSE
+    broker[['has.navigate.to.file']] <- \() FALSE
 
     service <- broker |> Session.Service()
 
     # When
-    result <- service[['Has.NavigateToFilepath']]()
+    result <- service[['has.navigate.to.file']]()
 
     # Then
     result |> expect.false()
   })
 })
 
-describe("When filepath |> service[['Navigate.To.Filepath']]()",{
+describe("When filepath |> service[['navigate.to.file']]()",{
   it("then an exception is thrown if path not found.", {
     # Given
     broker  <- Session.Broker()
-    broker[['Navigate.To.Filepath']] <- \(filepath) {
-      warning('path[1]="C:/Users/Path.Invalid/Documents/.Renviron": The system cannot find the path specified.')
+    broker[['navigate.to.file']] <- \(filepath) {
+      warning('path[1]="C:/Users/path.invalid/Documents/.Renviron": The system cannot find the path specified.')
     }
     service <- broker |> Session.Service()
 
-    expected.error <- "Path not found: C:/Users/Path.Invalid/Documents/.Renviron."
+    expected.error <- "Path not found: C:/Users/path.invalid/Documents/.Renviron."
 
     # When
-    invalid.path <- "C:/Users/Path.Invalid/Documents/.Renviron"
+    invalid.path <- "C:/Users/path.invalid/Documents/.Renviron"
 
     # Then
-    invalid.path |> service[['Navigate.To.Filepath']]() |> expect.error(expected.error)
+    invalid.path |> service[['navigate.to.file']]() |> expect.error(expected.error)
   })
   it("then an exception is thrown if file not found.",{
     # Given
     broker  <- Session.Broker()
-    broker[['Navigate.To.Filepath']] <- \(filepath) {
+    broker[['navigate.to.file']] <- \(filepath) {
       warning('path[1]="C:/Users/Analyst/Documents/check.txt": The system cannot find the file specified.')
     }
     service <- broker |> Session.Service()
@@ -159,7 +159,7 @@ describe("When filepath |> service[['Navigate.To.Filepath']]()",{
     invalid.file <- "C:/Users/Analyst/Documents/check.txt"
 
     # Then
-    invalid.file |> service[['Navigate.To.Filepath']]() |> expect.error(expected.error)
+    invalid.file |> service[['navigate.to.file']]() |> expect.error(expected.error)
   })
   it("then an exception is thrown if filepath is invalid.",{
     # Given
@@ -169,20 +169,20 @@ describe("When filepath |> service[['Navigate.To.Filepath']]()",{
     expected.error <- paste0("Invalid filepath: ", "C:\\\\Users\\\\username\\\\Documents\\\\.Renviron", ".")
 
     # Then
-    input.filepath |> service[['Navigate.To.Filepath']]() |> expect.error(expected.error)
+    input.filepath |> service[['navigate.to.file']]() |> expect.error(expected.error)
   })
 })
 
-describe("When service[['IDE.InUse']]()",{
+describe("When service[['IDE.active']]()",{
   it("then TRUE is returned if IDE is in use.", {
     # Given
     broker   <- Session.Broker()
-    broker[['IDE.InUse']] <- \() TRUE
+    broker[['IDE.active']] <- \() TRUE
 
     service <- broker |> Session.Service()
 
     # When
-    result <- service[['IDE.InUse']]()
+    result <- service[['IDE.active']]()
 
     # Then
     result |> expect.true()
@@ -190,28 +190,28 @@ describe("When service[['IDE.InUse']]()",{
   it("then FALSE is returned if IDE is not in use.", {
     # Given
     broker   <- Session.Broker()
-    broker[['IDE.InUse']] <- \() FALSE
+    broker[['IDE.active']] <- \() FALSE
 
     service <- broker |> Session.Service()
 
     # When
-    result <- service[['IDE.InUse']]()
+    result <- service[['IDE.active']]()
 
     # Then
     result |> expect.false()
   })
 })
 
-describe("When service[['VSCode.InUse']]()",{
+describe("When service[['VSCode.active']]()",{
   it("then TRUE is returned if VS Code is in use.", {
     # Given
     broker   <- Session.Broker()
-    broker[['VSCode.InUse']] <- \() TRUE
+    broker[['VSCode.active']] <- \() TRUE
 
     service <- broker |> Session.Service()
 
     # When
-    result <- service[['VSCode.InUse']]()
+    result <- service[['VSCode.active']]()
 
     # Then
     result |> expect.true()
@@ -219,19 +219,19 @@ describe("When service[['VSCode.InUse']]()",{
   it("then FALSE is returned if VS Code is not in use.", {
     # Given
     broker   <- Session.Broker()
-    broker[['VSCode.InUse']] <- \() FALSE
+    broker[['VSCode.active']] <- \() FALSE
 
     service <- broker |> Session.Service()
 
     # When
-    result <- service[['VSCode.InUse']]()
+    result <- service[['VSCode.active']]()
 
     # Then
     result |> expect.false()
   })
 })
 
-describe("When name |> service[['Get.Env.Variable']]()",{
+describe("When name |> service[['get.env.variable']]()",{
   it("then the value for variable with name is returned.", {
     # Given
     service <- Session.Broker() |> Session.Service()
@@ -244,7 +244,7 @@ describe("When name |> service[['Get.Env.Variable']]()",{
     expected.value <- name |> Sys.getenv()
 
     # When
-    actual.value <- name |> service[['Get.Env.Variable']]()
+    actual.value <- name |> service[['get.env.variable']]()
 
     # Then
     actual.value |> expect.equal(expected.value)
@@ -259,7 +259,7 @@ describe("When name |> service[['Get.Env.Variable']]()",{
     name <- NULL
 
     # Then
-    name |> service[['Get.Env.Variable']]() |> expect.error(expected.error)
+    name |> service[['get.env.variable']]() |> expect.error(expected.error)
   })
   it("then an exception is thrown if no value for variable is found",{
     # Given
@@ -269,11 +269,11 @@ describe("When name |> service[['Get.Env.Variable']]()",{
     expected.error <- "No value found for provided environment variable:INVALID. Please check .Renviron configuration file."
 
     # Then
-    name |> service[['Get.Env.Variable']]() |> expect.error(expected.error)
+    name |> service[['get.env.variable']]() |> expect.error(expected.error)
   })
 })
 
-describe("When name |> service[['Cache.Env.Variable']](value)",{
+describe("When name |> service[['cache.env.variable']](value)",{
   it("then the value of variable with name is cached.", {
     # Given
     service <- Session.Broker() |> Session.Service()
@@ -284,7 +284,7 @@ describe("When name |> service[['Cache.Env.Variable']](value)",{
     expected.value <- value
 
     # When
-    name |> service[['Cache.Env.Variable']](value)
+    name |> service[['cache.env.variable']](value)
 
     # Then
     name |> Sys.getenv() |> expect.equal(expected.value)
@@ -300,7 +300,7 @@ describe("When name |> service[['Cache.Env.Variable']](value)",{
     value <- "new_value"
 
     # Then
-    name |> service[['Cache.Env.Variable']](value) |> expect.error(expected.error)
+    name |> service[['cache.env.variable']](value) |> expect.error(expected.error)
   })
   it("then an exception is thrown if value is NULL",{
     # Given
@@ -313,11 +313,11 @@ describe("When name |> service[['Cache.Env.Variable']](value)",{
     value <- NULL
 
     # Then
-    name |> service[['Cache.Env.Variable']](value) |> expect.error(expected.error)
+    name |> service[['cache.env.variable']](value) |> expect.error(expected.error)
   })
 })
 
-describe("When name |> service[['Clear.Env.Variable']]()",{
+describe("When name |> service[['clear.env.variable']]()",{
   it("then the value of variable with name is cleared.", {
     # Given
     broker  <- Session.Broker()
@@ -326,13 +326,13 @@ describe("When name |> service[['Clear.Env.Variable']]()",{
     name  <- "VARIABLE"
     value <- "VALUE"
 
-    name |> broker[['Cache.Env.Variable']](value)
+    name |> broker[['cache.env.variable']](value)
 
     # When
-    name |> service[['Clear.Env.Variable']]()
+    name |> service[['clear.env.variable']]()
 
     # Then
-    name |> broker[['Get.Env.Variable']]() |> expect.empty()
+    name |> broker[['get.env.variable']]() |> expect.empty()
   })
   it("then an exception is thrown if name is NULL",{
     # Given
@@ -344,6 +344,6 @@ describe("When name |> service[['Clear.Env.Variable']]()",{
     name <- NULL
 
     # Then
-    name |> service[['Clear.Env.Variable']]() |> expect.error(expected.error)
+    name |> service[['clear.env.variable']]() |> expect.error(expected.error)
   })
 })

@@ -2,36 +2,36 @@ Session.Processor <- \(service) {
   validate <- Session.Validator()
 
   processes <- list()
-  processes[['GetIDE.InUse']]      <- \() {
-    if(service[["IDE.InUse"]]() |> isFALSE()) {
+  processes[['get.active.IDE']]      <- \() {
+    if(service[["IDE.active"]]() |> isFALSE()) {
       return("None")
     }
-    if(service[["VSCode.InUse"]]() |> isFALSE()) {
+    if(service[["VSCode.active"]]() |> isFALSE()) {
       return("RStudio")
     }
-    if(service[['VSCode.InUse']]()) {
+    if(service[['VSCode.active']]()) {
       return("VSCode")
     }
   }
-  processes[['CheckIDE.InUse']]    <- \(ide) {
+  processes[['check.active.IDE']]    <- \(ide) {
     ide |> validate[['IDE']]()
     
-    service[['Has.RStudio.API']]() |> validate[['API.Availability']](ide)
-    service[['Has.NavigateToFilepath']]() |> validate[['API.Capability']](ide)
+    service[['has.RStudio.api']]() |> validate[['api.availability']](ide)
+    service[['has.navigate.to.file']]() |> validate[['api.capability']](ide)
   }
-  processes[['Open.Filepath']]     <- \(filepath) {
-    processes[['GetIDE.InUse']]() |> processes[['CheckIDE.InUse']]()
+  processes[['open.filepath']]     <- \(filepath) {
+    processes[['get.active.IDE']]() |> processes[['check.active.IDE']]()
 
-    filepath |> service[['Navigate.To.Filepath']]()
+    filepath |> service[['navigate.to.file']]()
   }
-  processes[['Get.Env.Variable']]   <- \(name) {
-    name |> service[['Get.Env.Variable']]()
+  processes[['get.env.variable']]   <- \(name) {
+    name |> service[['get.env.variable']]()
   }
-  processes[['Cache.Env.Variable']] <- \(name, value) {  
-    name |> service[['Cache.Env.Variable']](value)
+  processes[['cache.env.variable']] <- \(name, value) {  
+    name |> service[['cache.env.variable']](value)
   }
-  processes[['Clear.Env.Variable']]  <- \(name) {
-    name |> service[['Clear.Env.Variable']]()
+  processes[['clear.env.variable']]  <- \(name) {
+    name |> service[['clear.env.variable']]()
   }
   return(processes)
 }

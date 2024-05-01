@@ -12,65 +12,65 @@ describe("When operations <- Session.Broker()", {
     # Then
     operations |> expect.list()
   })
-  it("then operations contains 'Has.RStudio.API' operation.", {
+  it("then operations contains 'has.RStudio.api' operation.", {
     # When
     operations <- Session.Broker()
 
     # Then
-    operations[['Has.RStudio.API']] |> expect.exist()
+    operations[['has.RStudio.api']] |> expect.exist()
   })
-  it("then operations contains 'Has.NavigateToFilepath' operation.", {
+  it("then operations contains 'has.navigate.to.file' operation.", {
     # When
     operations <- Session.Broker()
 
     # Then
-    operations[['Has.NavigateToFilepath']] |> expect.exist()
+    operations[['has.navigate.to.file']] |> expect.exist()
   })
-  it("then operations contains 'Navigate.To.Filepath' operation.", {
+  it("then operations contains 'navigate.to.file' operation.", {
     # When
     operations <- Session.Broker()
 
     # Then
-    operations[['Navigate.To.Filepath']] |> expect.exist()
+    operations[['navigate.to.file']] |> expect.exist()
   })
-  it("then operations contains 'IDE.InUse' operation.", {
+  it("then operations contains 'IDE.active' operation.", {
     # When
     operations <- Session.Broker()
 
     # Then
-    operations[['IDE.InUse']] |> expect.exist()
+    operations[['IDE.active']] |> expect.exist()
   })
-  it("then operations contains 'VSCode.InUse' operation.", {
+  it("then operations contains 'VSCode.active' operation.", {
     # Given
     operations <- Session.Broker()
 
     # Then
-    operations[['VSCode.InUse']] |> expect.exist()
+    operations[['VSCode.active']] |> expect.exist()
   })
-  it("then operations contains 'Get.Env.Variable' operation.", {
+  it("then operations contains 'get.env.variable' operation.", {
     # When
     operations <- Session.Broker()
 
     # Then
-    operations[['Get.Env.Variable']] |> expect.exist()
+    operations[['get.env.variable']] |> expect.exist()
   })
-  it("then operations contains 'Cache.Env.Variable' operation.", {
+  it("then operations contains 'cache.env.variable' operation.", {
     # When
     operations <- Session.Broker()
 
     # Then
-    operations[['Cache.Env.Variable']] |> expect.exist()
+    operations[['cache.env.variable']] |> expect.exist()
   })
-  it("then operations contains 'Clear.Env.Variable' operation.", {
+  it("then operations contains 'clear.env.variable' operation.", {
     # When
     operations <- Session.Broker()
 
     # Then
-    operations[['Clear.Env.Variable']] |> expect.exist()
+    operations[['clear.env.variable']] |> expect.exist()
   })
 })
 
-describe("When name |> operation[['Get.Env.Variable']]()",{
+describe("When name |> operation[['get.env.variable']]()",{
   it("then the value of name stored in .Renviron file is returned.", {
     # Given
     operations <- Session.Broker()
@@ -83,7 +83,7 @@ describe("When name |> operation[['Get.Env.Variable']]()",{
     expected.value <- name |> Sys.getenv()
 
     # When
-    actual.value <- name |> operations[['Get.Env.Variable']]()
+    actual.value <- name |> operations[['get.env.variable']]()
 
     # Then
     actual.value |> expect.equal(expected.value)
@@ -96,14 +96,14 @@ describe("When name |> operation[['Get.Env.Variable']]()",{
     expected.value <- ""
 
     # When
-    actual.value <- name |> operations[['Get.Env.Variable']]()
+    actual.value <- name |> operations[['get.env.variable']]()
 
     # Then
     actual.value |> expect.equal(expected.value)
   })
 })
 
-describe("When name |> operation[['Cache.Env.Variable']](value)",{
+describe("When name |> operation[['cache.env.variable']](value)",{
   it("then the value for name is cached.", {
     # Given
     operations <- Session.Broker()
@@ -112,14 +112,14 @@ describe("When name |> operation[['Cache.Env.Variable']](value)",{
     value <- "VALUE"
 
     # When
-    name |> operations[['Cache.Env.Variable']](value)
+    name |> operations[['cache.env.variable']](value)
 
     # Then
     name |> Sys.getenv() |> expect.equal(value)
   })
 })
 
-describe("When name |> operation[['Clear.Env.Variable']]()",{
+describe("When name |> operation[['clear.env.variable']]()",{
   it("then the value for name is cleared.", {
     # Given
     operations <- Session.Broker()
@@ -133,7 +133,7 @@ describe("When name |> operation[['Clear.Env.Variable']]()",{
     actual.value |> expect.equal(value)
 
     # When
-    name |> operations[['Clear.Env.Variable']]()
+    name |> operations[['clear.env.variable']]()
 
     # Then
     actual.value <- name |> Sys.getenv()

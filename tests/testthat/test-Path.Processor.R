@@ -12,62 +12,62 @@ describe("When processes <- Path.Processor()",{
     # Then
     processes |> expect.list()
   })
-  it("then processes contains 'Get.Config.Filepath' process.", {
+  it("then processes contains 'get.config.filepath' process.", {
     # When
     processes <- Path.Processor()
 
     # Then
-    processes[['Get.Config.Filepath']] |> expect.exist()
+    processes[['get.config.filepath']] |> expect.exist()
   })
-  it("then processes contains 'Ensure.Filepath.Exist' process.", {
+  it("then processes contains 'ensure.filepath.exist' process.", {
     # When
     processes <- Path.Processor()
 
     # Then
-    processes[['Ensure.Filepath.Exist']] |> expect.exist()
+    processes[['ensure.filepath.exist']] |> expect.exist()
   })
 })
 
-describe("When process[['Get.Config.Filepath']]()",{
+describe("When process[['get.config.filepath']]()",{
   it("then the filepath to the users .Renviron file is returned.", {
     # Given
     broker  <- Path.Broker()
     service <- broker |> Path.Service()
     process <- service |> Path.Processor()
 
-    path     <- service[['Get.User.Path']]()
-    filename <- service[['Get.Config.Filename']]()
+    path     <- service[['get.user.path']]()
+    filename <- service[['get.config.filename']]()
 
     expected.filepath <- path |> 
-      service[['Normalize.Path']]() |> 
-      service[['Combine.Path']](filename)
+      service[['normalize.path']]() |> 
+      service[['combine.path']](filename)
 
     # When
-    actual.filepath <- process[['Get.Config.Filepath']]()
+    actual.filepath <- process[['get.config.filepath']]()
 
     # Then
     actual.filepath |> expect.equal(expected.filepath)
   })
 })
 
-describe("When filepath |> process[['Ensure.Filepath.Exist']]()",{
+describe("When filepath |> process[['ensure.filepath.exist']]()",{
   it("then filepath is returned",{
     # Given
     broker  <- Path.Broker()
     service <- broker |> Path.Service()
     process <- service |> Path.Processor()
 
-    path     <- service[['Get.User.Path']]()
+    path     <- service[['get.user.path']]()
     filename <- 'new.file'
 
     input.filepath <- path |> 
-      service[['Normalize.Path']]() |> 
-      service[['Combine.Path']](filename)
+      service[['normalize.path']]() |> 
+      service[['combine.path']](filename)
 
     expected.filepath <- input.filepath
 
     # When
-    actual.filepath <- input.filepath |> process[['Ensure.Filepath.Exist']]()
+    actual.filepath <- input.filepath |> process[['ensure.filepath.exist']]()
 
     # Then
     actual.filepath |> expect.equal(expected.filepath)
@@ -78,21 +78,21 @@ describe("When filepath |> process[['Ensure.Filepath.Exist']]()",{
     service <- broker |> Path.Service()
     process <- service |> Path.Processor()
 
-    path     <- service[['Get.User.Path']]()
+    path     <- service[['get.user.path']]()
     filename <- 'new.file'
 
     filepath <- path |> 
-      service[['Normalize.Path']]() |> 
-      service[['Combine.Path']](filename)
+      service[['normalize.path']]() |> 
+      service[['combine.path']](filename)
 
-    if(filepath |> service[['Filepath.Exists']]()) {
+    if(filepath |> service[['filepath.exists']]()) {
       filepath |> file.remove()
     }
 
     # When
-    filepath |> process[['Ensure.Filepath.Exist']]()
+    filepath |> process[['ensure.filepath.exist']]()
 
     # Then
-    filepath |> service[['Filepath.Exists']]() |> expect.true()
+    filepath |> service[['filepath.exists']]() |> expect.true()
   })
 })

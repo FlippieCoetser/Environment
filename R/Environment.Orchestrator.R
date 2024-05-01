@@ -5,15 +5,15 @@
 #' This `Environment` package makes defining and reading environment variables straightforward.
 #' 
 #' `Environment.Orchestrator()` returns a set of utility functions that can be used to interact with `.Renviron` files:
-#' * The first function: `Open.Config.File`, will open an existing or a new empty `.Renviron` configuration file.
+#' * The first function: `open.config.file`, will open an existing or a new empty `.Renviron` configuration file.
 #' Users can then add environment variables by defining `'key'='value'` pairs.
-#' * The second function: `Get.Env.Variable`, will read the value of the matching key (name) from the configuration file.
-#' * The third function: `Cache.Env.Variable`, will cache the value of the matching key (name) in the current R session.
+#' * The second function: `get.env.variable`, will read the value of the matching key (name) from the configuration file.
+#' * The third function: `cache.env.variable`, will cache the value of the matching key (name) in the current R session.
 #' @usage NULL
 #' @returns A `list` of utility functions: 
-#' * `Open.Config.File()`
-#' * `Get.Env.Variable(name)`
-#' * `Cache.Env.Variable(name, value)`
+#' * `open.config.file()`
+#' * `get.env.variable(name)`
+#' * `cache.env.variable(name, value)`
 Environment.Orchestrator <- \(...) {
   path <- 
     Path.Broker()  |> 
@@ -34,19 +34,19 @@ Environment.Orchestrator <- \(...) {
   }
 
   orchestrations <- list()
-  orchestrations[['Open.Config.File']] <- \() {
-    path[['Get.Config.Filepath']]()   |> 
-    path[['Ensure.Filepath.Exist']]() |>
-    session[['Open.Filepath']]()
+  orchestrations[['open.config.file']] <- \() {
+    path[['get.config.filepath']]()   |> 
+    path[['ensure.filepath.exist']]() |>
+    session[['open.filepath']]()
   }
-  orchestrations[['Get.Env.Variable']] <- \(name) {
-    name |> session[['Get.Env.Variable']]()
+  orchestrations[['get.env.variable']] <- \(name) {
+    name |> session[['get.env.variable']]()
   }
-  orchestrations[['Cache.Env.Variable']] <- \(name, value) {
-    name |> session[['Cache.Env.Variable']](value)
+  orchestrations[['cache.env.variable']] <- \(name, value) {
+    name |> session[['cache.env.variable']](value)
   }
-  orchestrations[['Clear.Env.Variable']] <- \(name) {
-    name |> session[['Clear.Env.Variable']]()
+  orchestrations[['clear.env.variable']] <- \(name) {
+    name |> session[['clear.env.variable']]()
   }
   return(orchestrations)
 }

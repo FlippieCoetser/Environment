@@ -6,9 +6,9 @@
 \value{
 A \code{list} of utility functions:
 \itemize{
-\item \code{Open.Config.File()}
-\item \code{Get.Env.Variable(name)}
-\item \code{Cache.Env.Variable(name, value)}
+\item \code{open.config.file()}
+\item \code{get.env.variable(name)}
+\item \code{cache.env.variable(name, value)}
 }
 }
 \description{
@@ -17,9 +17,9 @@ This \code{Environment} package makes defining and reading environment variables
 
 \code{Environment.Orchestrator()} returns a set of utility functions that can be used to interact with \code{.Renviron} files:
 \itemize{
-\item The first function: \code{Open.Config.File}, will open an existing or a new empty \code{.Renviron} configuration file.
+\item The first function: \code{open.config.file}, will open an existing or a new empty \code{.Renviron} configuration file.
 Users can then add environment variables by defining \code{'key'='value'} pairs.
-\item The second function: \code{Get.Env.Variable}, will read the value of the matching key (name) from the configuration file.
-\item The third function: \code{Cache.Env.Variable}, will cache the value of the matching key (name) in the current R session.
+\item The second function: \code{get.env.variable}, will read the value of the matching key (name) from the configuration file.
+\item The third function: \code{cache.env.variable}, will cache the value of the matching key (name) in the current R session.
 }
 }

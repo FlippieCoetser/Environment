@@ -33,12 +33,12 @@ describe("When validations <- Path.Validator()", {
     # Then
     validations[['Normalized']] |> expect.exist()
   })
-  it("then validations contains 'Filepath' validator.", {
+  it("then validations contains 'filepath' validator.", {
     # When
     validations <- Path.Validator()
 
     # Then
-    validations[['Filepath']] |> expect.exist()
+    validations[['filepath']] |> expect.exist()
   })
 })
 
@@ -174,7 +174,7 @@ describe("When path |> validate[['Normalized']]()",{
   })
 })
 
-describe("When filepath |> validate[['Filepath']]()",{
+describe("When filepath |> validate[['filepath']]()",{
   it("then filepath is returned if filepath is valid.",{
     # Given
     validate <- Path.Validator()
@@ -184,7 +184,7 @@ describe("When filepath |> validate[['Filepath']]()",{
     expect.filepath <- input.filepath
 
     # When
-    actual.filepath <-  input.filepath |> validate[['Filepath']]()
+    actual.filepath <-  input.filepath |> validate[['filepath']]()
     
     # Then
     actual.filepath |> expect.equal(expect.filepath)
@@ -198,6 +198,6 @@ describe("When filepath |> validate[['Filepath']]()",{
     expected.error <- paste0("Invalid filepath: ", "C:\\\\Users\\\\username\\\\Documents\\\\.Renviron", ".")
 
     # Then
-    filepath |> validate[['Filepath']]() |> expect.error(expected.error)
+    filepath |> validate[['filepath']]() |> expect.error(expected.error)
   })
 })

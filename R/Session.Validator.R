@@ -1,38 +1,38 @@
 Session.Validator <- \() {
-  exception <- Session.Exceptions()
+  exception <- Session.Validation.Exceptions()
   
   validations <- list()
-  validations[['Navigation.Response']] <- \(response) {
-    response |> tryCatch(warning = exception[['Filepath.Not.Found']])
+  validations[['navigation.response']] <- \(response) {
+    response |> tryCatch(warning = exception[['filepath.not.found']])
   }
-  validations[['Filepath']]           <- \(filepath) {
+  validations[['filepath']]           <- \(filepath) {
     pattern <- "^(([a-zA-Z]:)(/[a-zA-Z0-9_.-]+)+/[a-zA-Z0-9_.-]*[a-zA-Z0-9])|(/([a-zA-Z0-9_.-]*/?)*[a-zA-Z0-9_.-]*[a-zA-Z0-9])$"
-    pattern |> grepl(filepath) |> isFALSE() |> exception[['Filepath.Invalid']](filepath)
+    pattern |> grepl(filepath) |> isFALSE() |> exception[['filepath.invalid']](filepath)
     return(filepath)
   }
-  validations[['IsEmpty']]            <- \(value) {
+  validations[['is.empty']]            <- \(value) {
     value |> (\(x){ x == "" })()
   } 
-  validations[['IsNull']]             <- \(value) {
+  validations[['is.NULL']]             <- \(value) {
     value |> is.null()
   }
   validations[['Name']]               <- \(name) {
-    name |> validations[['IsNull']]() |> exception[['Name.Null']]()
+    name |> validations[['is.NULL']]() |> exception[['name.null']]()
     return(name)
   }
   validations[['Value']]              <- \(value, name = NULL) {
-    value |> validations[['IsNull']]() |> exception[['Value.Null']]()
-    value |> validations[['IsEmpty']]() |> exception[['Value.Empty']](name)
+    value |> validations[['is.NULL']]() |> exception[['value.null']]()
+    value |> validations[['is.empty']]() |> exception[['value.empty']](name)
     return(value)
   }
   validations[['IDE']]                <- \(ide) {
-    'None' |> grepl(ide) |> exception[['NoIDE.InUse']]()
+    'None' |> grepl(ide) |> exception[['IDE.not.active']]()
   }
-  validations[['API.Availability']]    <- \(available, ide = NULL) {
-    available |> isFALSE() |> exception[['RStudio.API.Unavailable']](ide)
+  validations[['api.availability']]    <- \(available, ide = NULL) {
+    available |> isFALSE() |> exception[['RStudio.api.unavailable']](ide)
   }
-  validations[['API.Capability']]      <- \(capable, ide = NULL) {
-    capable |> isFALSE() |> exception[['Filepath.Unavailable']](ide)
+  validations[['api.capability']]      <- \(capable, ide = NULL) {
+    capable |> isFALSE() |> exception[['filepath.unavailable']](ide)
   }
   return(validations)
 }

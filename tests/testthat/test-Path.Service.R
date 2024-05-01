@@ -12,60 +12,60 @@ describe("When services <- Path.Service()", {
     # Then
     services |> expect.list()
   })
-  it("then services contains 'Get.User.Path' service.", {
+  it("then services contains 'get.user.path' service.", {
     # When
     services <- Path.Broker()
 
     # Then
-    services[['Get.User.Path']] |> expect.exist()
+    services[['get.user.path']] |> expect.exist()
   })
-  it("then services contains 'Get.Config.Filename' service.", {
+  it("then services contains 'get.config.filename' service.", {
     # When
     services <- Path.Broker()
 
     # Then
-    services[['Get.User.Path']] |> expect.exist()
+    services[['get.user.path']] |> expect.exist()
   })
-  it("then services contains 'Normalize.Path' service.", {
+  it("then services contains 'normalize.path' service.", {
     # When
     services <- Path.Broker()
 
     # Then
-    services[['Normalize.Path']] |> expect.exist()
+    services[['normalize.path']] |> expect.exist()
   })
-  it("then services contains 'Combine.Path' service.", {
+  it("then services contains 'combine.path' service.", {
     # When
     services <- Path.Broker()
 
     # Then
-    services[['Combine.Path']] |> expect.exist()
+    services[['combine.path']] |> expect.exist()
   })
-  it("then services contains 'Filepath.Exists' service.", {
+  it("then services contains 'filepath.exists' service.", {
     # When
     services <- Path.Broker()
 
     # Then
-    services[['Filepath.Exists']] |> expect.exist()
+    services[['filepath.exists']] |> expect.exist()
   })
-  it("then services contains 'Create.Filepath' service.", {
+  it("then services contains 'create.filepath' service.", {
     # When
     services <- Path.Broker()
 
     # Then
-    services[['Create.Filepath']] |> expect.exist()
+    services[['create.filepath']] |> expect.exist()
   })
 })
 
-describe("When service[['Get.User.Path']]()", {
-  it("then broker[['Get.User.Path']]() is returned.", {
+describe("When service[['get.user.path']]()", {
+  it("then broker[['get.user.path']]() is returned.", {
     # Given
     broker  <- Path.Broker()
     service <- broker |> Path.Service()
 
-    expected.path <- broker[['Get.User.Path']]()
+    expected.path <- broker[['get.user.path']]()
 
     # When
-    actual.path <- service[['Get.User.Path']]()
+    actual.path <- service[['get.user.path']]()
 
     # Then
     expected.path |> expect.equal(expected.path)
@@ -73,59 +73,59 @@ describe("When service[['Get.User.Path']]()", {
   it("then no exception is thrown if returned path is valid normalized windows style path",{
     # Given
     broker  <- Path.Broker()
-    broker[['Get.User.Path']] <- \() "C:/Users/Analyst/Documents"
+    broker[['get.user.path']] <- \() "C:/Users/Analyst/Documents"
 
     service <- broker |> Path.Service()
 
     # Then
-    service[['Get.User.Path']]() |> expect.no.error()
+    service[['get.user.path']]() |> expect.no.error()
   })
   it("then on exception is thrown if returned path is valid normalized unix style path",{
     # Given
     broker  <- Path.Broker()
-    broker[['Get.User.Path']] <- \() "/home/username/Documents"
+    broker[['get.user.path']] <- \() "/home/username/Documents"
 
     service <- broker |> Path.Service()
 
     # Then
-    service[['Get.User.Path']]() |> expect.no.error()
+    service[['get.user.path']]() |> expect.no.error()
   })
   it("then an exception is thrown if returned path is invalid windows style path.", {
     # Given
     broker  <- Path.Broker()
-    broker[['Get.User.Path']] <- \() "C:\\Users\\username/Documents"
+    broker[['get.user.path']] <- \() "C:\\Users\\username/Documents"
 
     service <- broker |> Path.Service()
 
     expected.error <- paste0("Invalid path: ", "C:\\\\Users\\\\username/Documents", ".")
 
     # Then
-    service[['Get.User.Path']]() |> expect.error(expected.error)
+    service[['get.user.path']]() |> expect.error(expected.error)
   })
   it("then an exception is thrown if returned path is invalid unix style path.", {
     # Given
     broker  <- Path.Broker()
-    broker[['Get.User.Path']] <- \() "/home/username\\Documents"
+    broker[['get.user.path']] <- \() "/home/username\\Documents"
 
     service <- broker |> Path.Service()
 
     expected.error <- paste0("Invalid path: ", "/home/username\\\\Documents", ".")
 
     # Then
-    service[['Get.User.Path']]() |> expect.error(expected.error)
+    service[['get.user.path']]() |> expect.error(expected.error)
   })
 })
 
-describe("When service[['Get.Config.Filename']]()", {
+describe("When service[['get.config.filename']]()", {
   it("then the configuration filename is returned.", {
     # Given
     broker  <- Path.Broker()
     service <- broker |> Path.Service()
 
-    expected.filename <- broker[['Get.Config.Filename']]()
+    expected.filename <- broker[['get.config.filename']]()
 
     # When
-    actual.filename <- service[['Get.User.Path']]()
+    actual.filename <- service[['get.user.path']]()
 
     # Then
     expected.filename |> expect.equal(expected.filename)
@@ -133,18 +133,18 @@ describe("When service[['Get.Config.Filename']]()", {
   it("then an exception is thrown if returned filename is invalid.", {
     # Given
     broker  <- Path.Broker()
-    broker[['Get.Config.Filename']] <- \() "filename."
+    broker[['get.config.filename']] <- \() "filename."
 
     service <- broker |> Path.Service()
 
     expected.error <- paste0("Invalid filename: ", "filename.", ".")
 
     # Then
-    service[['Get.Config.Filename']]() |> expect.error(expected.error)
+    service[['get.config.filename']]() |> expect.error(expected.error)
   })
 })
 
-describe("When path |> service[['Normalize.Path']]()",{
+describe("When path |> service[['normalize.path']]()",{
   it("then all backslashes are replaced with forwardslash.",{
     # Given
     broker  <- Path.Broker()
@@ -155,7 +155,7 @@ describe("When path |> service[['Normalize.Path']]()",{
     expected.path <- "C:/Users/username/Documents"
 
     # When
-    actual.path <- input.path |> service[['Normalize.Path']]()
+    actual.path <- input.path |> service[['normalize.path']]()
 
     # Then
     actual.path |> expect.equal(expected.path)
@@ -170,7 +170,7 @@ describe("When path |> service[['Normalize.Path']]()",{
     expected.error <- paste0("Invalid path: ", "C:\\\\Users\\\\username/Documents", ".")
 
     # Then
-    input.path |> service[['Normalize.Path']]() |> expect.error(expected.error)
+    input.path |> service[['normalize.path']]() |> expect.error(expected.error)
   })
   it("then an exception is thrown if path is invalid unix style path.",{
     # Given
@@ -182,12 +182,12 @@ describe("When path |> service[['Normalize.Path']]()",{
     expected.error <- paste0("Invalid path: ", "/home/username\\\\Documents", ".")
 
     # Then
-    input.path |> service[['Normalize.Path']]() |> expect.error(expected.error)
+    input.path |> service[['normalize.path']]() |> expect.error(expected.error)
   })
   it("then an exception is thrown if returned path is not normalized.",{
     # Given
     broker  <- Path.Broker()
-    broker[['Normalize.Path']] <- \(...) "C:\\Users\\username\\Documents"
+    broker[['normalize.path']] <- \(...) "C:\\Users\\username\\Documents"
 
     service <- broker |> Path.Service()
 
@@ -196,11 +196,11 @@ describe("When path |> service[['Normalize.Path']]()",{
     expected.error <- paste0("Invalid normalized path: ", "C:\\\\Users\\\\username\\\\Documents", ".")
 
     # Then
-    input.path |> service[['Normalize.Path']]() |> expect.error(expected.error)
+    input.path |> service[['normalize.path']]() |> expect.error(expected.error)
   })
 })
 
-describe("When path |> service[['Combine.Path']](filename)",{
+describe("When path |> service[['combine.path']](filename)",{
   it("then path and filename are combined.",{
     # Given
     broker  <- Path.Broker()
@@ -209,10 +209,10 @@ describe("When path |> service[['Combine.Path']](filename)",{
     input.path     <- "C:/Users/username/Documents"
     input.filename <- "file.txt"
 
-    expected.path  <- input.path |> broker[['Combine.Path']](input.filename)
+    expected.path  <- input.path |> broker[['combine.path']](input.filename)
 
     # When
-    actual.path <- input.path |> service[['Combine.Path']](input.filename)
+    actual.path <- input.path |> service[['combine.path']](input.filename)
 
     # Then
     actual.path |> expect.equal(expected.path)
@@ -228,7 +228,7 @@ describe("When path |> service[['Combine.Path']](filename)",{
     expected.error <- paste0("Invalid normalized path: ", "C:\\\\Users\\\\username\\\\Documents", ".")
 
     # Then
-    input.path |> service[['Combine.Path']](filename) |> expect.error(expected.error)
+    input.path |> service[['combine.path']](filename) |> expect.error(expected.error)
   })
   it("then an exception is thrown if filename is invalid.",{
     # Given
@@ -241,12 +241,12 @@ describe("When path |> service[['Combine.Path']](filename)",{
     expected.error <- paste0("Invalid filename: ", "file.", ".")
 
     # Then
-    input.path |> service[['Combine.Path']](input.filename) |> expect.error(expected.error)
+    input.path |> service[['combine.path']](input.filename) |> expect.error(expected.error)
   })
   it("then an exception is thrown if returned filepath is invalid.",{
     # Given
     broker  <- Path.Broker()
-    broker[['Combine.Path']] <- \(...) "C:\\Users\\username\\Documents\\file.txt"
+    broker[['combine.path']] <- \(...) "C:\\Users\\username\\Documents\\file.txt"
 
     service <- broker |> Path.Service()
 
@@ -256,23 +256,23 @@ describe("When path |> service[['Combine.Path']](filename)",{
     expected.error <- paste0("Invalid filepath: ", "C:\\\\Users\\\\username\\\\Documents\\\\file.txt", ".")
 
     # Then
-    input.path |> service[['Combine.Path']](input.filename) |> expect.error(expected.error)
+    input.path |> service[['combine.path']](input.filename) |> expect.error(expected.error)
   })
 })
 
-describe("When filepath |> service[['Filepath.Exists']]()",{
+describe("When filepath |> service[['filepath.exists']]()",{
   it("then FALSE is returned if filepath does not exist.",{
     skip_if_not(environment == 'local')
     # Given
     broker  <- Path.Broker()
     service <- broker |> Path.Service()
 
-    input.filepath <- "C:/Path.Invalid/.Renviron"
+    input.filepath <- "C:/path.invalid/.Renviron"
 
-    expected.exists <- input.filepath |> broker[['Filepath.Exists']]()
+    expected.exists <- input.filepath |> broker[['filepath.exists']]()
 
     # When
-    actual.exists <- input.filepath |> service[['Filepath.Exists']]()
+    actual.exists <- input.filepath |> service[['filepath.exists']]()
 
     # Then
     actual.exists |> expect.equal(expected.exists)
@@ -285,10 +285,10 @@ describe("When filepath |> service[['Filepath.Exists']]()",{
 
     input.filepath <- "C:/Users/Analyst/Documents/.Renviron"
 
-    expected.exists <- input.filepath |> broker[['Filepath.Exists']]()
+    expected.exists <- input.filepath |> broker[['filepath.exists']]()
 
     # When
-    actual.exists <- input.filepath |> service[['Filepath.Exists']]()
+    actual.exists <- input.filepath |> service[['filepath.exists']]()
 
     # Then
     actual.exists |> expect.equal(expected.exists)
@@ -303,11 +303,11 @@ describe("When filepath |> service[['Filepath.Exists']]()",{
     expected.error <- paste0("Invalid filepath: ", "C:\\\\Users\\\\username\\\\Documents\\\\.Renviron", ".")
 
     # Then
-    input.filepath |> service[['Filepath.Exists']]() |> expect.error(expected.error)
+    input.filepath |> service[['filepath.exists']]() |> expect.error(expected.error)
   })
 })
 
-describe("When filepath |> service[['Create.Filepath']]()",{
+describe("When filepath |> service[['create.filepath']]()",{
   it("then the filepath is created if the path is valid.",{
     skip_if_not(environment == 'local')
     # Given
@@ -316,10 +316,10 @@ describe("When filepath |> service[['Create.Filepath']]()",{
 
     input.filepath <- "C:/Users/Analyst/Documents/test.txt"
 
-    expected.exists <- input.filepath |> broker[['Create.Filepath']]()
+    expected.exists <- input.filepath |> broker[['create.filepath']]()
 
     # When
-    actual.exists <- input.filepath |> service[['Create.Filepath']]()
+    actual.exists <- input.filepath |> service[['create.filepath']]()
 
     # Then
     actual.exists |> expect.equal(expected.exists)
@@ -334,6 +334,6 @@ describe("When filepath |> service[['Create.Filepath']]()",{
     expected.error <- paste0("Invalid filepath: ", "C:\\\\Users\\\\username\\\\Documents\\\\test.txt", ".")
 
     # Then
-    input.filepath |> service[['Create.Filepath']]() |> expect.error(expected.error)
+    input.filepath |> service[['create.filepath']]() |> expect.error(expected.error)
   })
 })

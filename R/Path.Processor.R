@@ -1,17 +1,17 @@
 Path.Processor <- \(service) {
   processes <- list()
-  processes[['Get.Config.Filepath']]   <- \() {
-    filename <- service[['Get.Config.Filename']]()
+  processes[['get.config.filepath']]   <- \() {
+    filename <- service[['get.config.filename']]()
 
-    service[['Get.User.Path']]() |> 
-    service[['Normalize.Path']]()   |> 
-    service[['Combine.Path']](filename)
+    service[['get.user.path']]() |> 
+    service[['normalize.path']]()   |> 
+    service[['combine.path']](filename)
   }
-  processes[['Ensure.Filepath.Exist']] <- \(filepath) {
-    filepath.exists <- filepath |> service[['Filepath.Exists']]()
+  processes[['ensure.filepath.exist']] <- \(filepath) {
+    filepath.exists <- filepath |> service[['filepath.exists']]()
 
     if(!filepath.exists) {
-      filepath |> service[['Create.Filepath']]()
+      filepath |> service[['create.filepath']]()
     }
     return(filepath)
   }
