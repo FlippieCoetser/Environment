@@ -67,7 +67,7 @@ When using the package namespace to create a new instance of the Environment com
 1. Create new instance of Environment component
 
 ```r
-environment <- Environment::Environment()
+environment <- Environment::Configurator()
 ```
 
 2. Access the three utility functions, by name, on the instance
